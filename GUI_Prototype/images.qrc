@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/new/resources">
+        <file>Dvorak_keyboard_layout.png</file>
+        <file>3d_cyber_grid_background_by_tbh_1138.png</file>
+        <file>Tiny-Grid-Seamless-Patterns-For-Website-Backgrounds.jpg</file>
+    </qresource>
+</RCC>
