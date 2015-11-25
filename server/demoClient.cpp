@@ -59,9 +59,28 @@ int main(int, char const**)
 
     sf::Packet outPacket;
 
-    outPacket << "{\"action\":\"login\",\"user\":\"tpope\",\"password\":\"pass123\"}";
+    outPacket << "{\"action\":5,\"user\":\"tpope\",\"password\":\"pass123\"}";
 
     socket.send(outPacket);
+
+	sf::Packet data;
+
+	if (socket.receive(data) != sf::Socket::Done)
+	{
+	    // error...
+	}
+	// std::cout << "Received " << received << " bytes" << std::endl;
+	std::string msg;
+
+    data >> msg;
+
+    std::cout << "Msg received: " << msg << std::endl;
+
+    
+    data >> msg;
+
+    std::cout << "Msg received: " << msg << std::endl;
+
 
     socket.disconnect();
 

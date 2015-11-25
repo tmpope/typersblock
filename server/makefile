@@ -24,4 +24,12 @@ chat: chat.o
 chat-o: chat.cpp
 	g++ -c chat.cpp
 
+mysql: mysql-o
+	g++ mysqlexample.o -o mysqlexample -lmysqlcppconn
+
+mysql-o:
+	g++ mysqlexample.cpp -I ../mysql/include/ -c
+
+
 clean:
+	rm *.o mysqlexample chat demoClient demoServer sfml-app

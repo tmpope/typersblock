@@ -46,7 +46,7 @@
 // using namespace rapidjson;
 // using namespace std;
 
-void process(std::string msg) {
+void process(std::string msg, sf::TcpSocket* socket) {
     std::cout << "Processing..." << std::endl;
     rapidjson::Document document;
     if (document.Parse(msg.c_str()).HasParseError())
@@ -54,9 +54,57 @@ void process(std::string msg) {
         std::cout << "JSON ERROR" << std::endl;
         return;
     }
-    std::string action = document["action"].GetString();
+    int action = document["action"].GetInt();
+    std::string user = document["user"].GetString();
+    std::string pass = document["password"].GetString();
     std::cout << "action : " << action << std::endl;
+    sf::Packet packet;
+    switch(action){
+        case 0  : //login
+            std::cout << "user : " << user << std::endl;
+            // packet << "test string";
+            // if (socket->send(packet) != sf::Socket::Done)
+            // {
+            //     std::cout << "Error occurred while sending a packet." << std::endl;
+            // }
+            break; //optional
+        case 1  : //create user
+            std::cout << "user : " << user << std::endl;
+            std::cout << "pass : " << pass << std::endl;
+            break; //optional
+        case 2  : //get key mapping
+            std::cout << "Keymapping" << std::endl;
+            break;
+      
+        // you can have any number of case statements.
+        default : //Optional
+            break;
+
+
+    }
 }
+
+// //Sends a packet to the client, using the given data. 
+// //The data should have been encoded in JSON before being sent.
+// static void sendPacket(std::string dataString, sf::TcpSocket* socket)
+// {
+//     std::cout << dataString << std::endl;
+//     //Set up ip socket and packet
+//     // sf::IpAddress ip("127.0.0.1");
+//     sf::Packet packet;
+//     //Connect to the server
+//     // sf::Socket::Status status = socket->connect(ip, 53000);
+
+//     //Attach our information to the packet
+//     packet.append(dataString.c_str(), dataString.length());
+//     //Send the packet
+//     if (socket->send(packet) != sf::Socket::Done)
+//     {
+//         std::cout << "Error occurred while sending a packet." << std::endl;
+//     }
+//     //Transmit over; disconnect.
+//     // std::cout << "Socket disconnected." << std::endl;
+// }
 
 int main(int, char const**)
 
@@ -162,7 +210,10 @@ int main(int, char const**)
 
                             packet >> msg;
 
-                            process(msg);
+                            process(msg, &client);
+                            // sf::Packet packet2;
+                            // packet2 << "{\"action\":" << 13 << ",\"user\":\"tpope\"}";
+                            // client.send(packet2);
 
                             std::cout << "Msg received: " << msg << std::endl;
 
