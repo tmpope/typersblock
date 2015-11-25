@@ -59,7 +59,7 @@ int main(int, char const**)
 
     sf::Packet outPacket;
 
-    outPacket << "{\"action\":5,\"user\":\"tpope\",\"password\":\"pass123\"}";
+    outPacket << "{\"action\":0,\"user\":\"tpope\",\"password\":\"pass123\"}";
 
     socket.send(outPacket);
 
@@ -72,11 +72,6 @@ int main(int, char const**)
 	// std::cout << "Received " << received << " bytes" << std::endl;
 	std::string msg;
 
-    data >> msg;
-
-    std::cout << "Msg received: " << msg << std::endl;
-
-    
     data >> msg;
 
     std::cout << "Msg received: " << msg << std::endl;

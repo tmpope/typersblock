@@ -29,24 +29,69 @@
  
 
 #include <SFML/Audio.hpp>
-
 #include <SFML/Graphics.hpp>
-
 #include <SFML/Network.hpp>
 
 #include <iostream>
 
 #include <vector>
 
-
+#include "writer.h"
+#include "stringbuffer.h"
 #include "reader.h"
 #include "document.h"
 #include <iostream>
 
-// using namespace rapidjson;
-// using namespace std;
+std::string generateResponse(std::string user, std::string pass)
+{
+    rapidjson::StringBuffer s;
+    rapidjson::Writer<rapidjson::StringBuffer> writer(s);
+    
+    if (user == "tpope")
+    {
+        if (pass == "pass123")
+        {
+            writer.StartObject();
+            writer.String("type");
+            writer.String("success");
+            writer.String("user");
+            writer.String(user.c_str());
+            writer.String("error");
+            writer.Bool(false);
+            writer.String("level");
+            writer.Uint(1);
+            writer.String("id");
+            writer.Uint(0);
+            writer.String("scores");
+            writer.StartArray();
+            for (unsigned i = 0; i < 4; i++)
+                writer.Uint(5);
+            writer.EndArray();
+            writer.String("subObject");
+            writer.StartObject();
+            writer.String("field1");
+            writer.Uint(1);
+            writer.String("field2");
+            writer.Uint(2);
+            writer.EndObject();
+            writer.EndObject();
+            return s.GetString();//"Valid login for user " + user;
+        }
+        else
+        {
+            return "Invalid password";
+        }
+    }
+    else
+    {
+        return "Invalid username";
+    }
+    
 
-void process(std::string msg, sf::TcpSocket* socket) {
+    return s.GetString();
+}
+
+void process(std::string msg, sf::TcpSocket* client) {
     std::cout << "Processing..." << std::endl;
     rapidjson::Document document;
     if (document.Parse(msg.c_str()).HasParseError())
@@ -55,20 +100,24 @@ void process(std::string msg, sf::TcpSocket* socket) {
         return;
     }
     int action = document["action"].GetInt();
-    std::string user = document["user"].GetString();
-    std::string pass = document["password"].GetString();
+    std::string user;
+    std::string pass;
     std::cout << "action : " << action << std::endl;
     sf::Packet packet;
     switch(action){
         case 0  : //login
+            user = document["user"].GetString();
+            pass = document["password"].GetString();
             std::cout << "user : " << user << std::endl;
-            // packet << "test string";
-            // if (socket->send(packet) != sf::Socket::Done)
-            // {
-            //     std::cout << "Error occurred while sending a packet." << std::endl;
-            // }
+            packet << generateResponse(user, pass);
+            if (client->send(packet) != sf::Socket::Done)
+            {
+                std::cout << "Error occurred while sending a packet." << std::endl;
+            }
             break; //optional
         case 1  : //create user
+            user = document["user"].GetString();
+            pass = document["password"].GetString();
             std::cout << "user : " << user << std::endl;
             std::cout << "pass : " << pass << std::endl;
             break; //optional
@@ -78,11 +127,17 @@ void process(std::string msg, sf::TcpSocket* socket) {
       
         // you can have any number of case statements.
         default : //Optional
+            packet << "Invalid Action";
+            if (client->send(packet) != sf::Socket::Done)
+            {
+                std::cout << "Error occurred while sending a packet." << std::endl;
+            }
             break;
 
 
     }
 }
+
 
 // //Sends a packet to the client, using the given data. 
 // //The data should have been encoded in JSON before being sent.
