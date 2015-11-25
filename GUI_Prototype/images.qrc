@@ -4,4 +4,60 @@
         <file>3d_cyber_grid_background_by_tbh_1138.png</file>
         <file>Tiny-Grid-Seamless-Patterns-For-Website-Backgrounds.jpg</file>
     </qresource>
+    <qresource prefix="/new/keys">
+        <file>Keyboard keys/computer_key_A.png</file>
+        <file>Keyboard keys/computer_key_B.png</file>
+        <file>Keyboard keys/computer_key_Backspace.png</file>
+        <file>Keyboard keys/computer_key_brackets_right.png</file>
+        <file>Keyboard keys/computer_key_C.png</file>
+        <file>Keyboard keys/computer_key_Caps_Lock.png</file>
+        <file>Keyboard keys/computer_key_Colon_Semicolon.png</file>
+        <file>Keyboard keys/computer_key_Ctrl.png</file>
+        <file>Keyboard keys/computer_key_D.png</file>
+        <file>Keyboard keys/computer_key_E.png</file>
+        <file>Keyboard keys/computer_key_Enter.png</file>
+        <file>Keyboard keys/computer_key_F.png</file>
+        <file>Keyboard keys/computer_key_G.png</file>
+        <file>Keyboard keys/computer_key_H.png</file>
+        <file>Keyboard keys/computer_key_I.png</file>
+        <file>Keyboard keys/computer_key_J.png</file>
+        <file>Keyboard keys/computer_key_K.png</file>
+        <file>Keyboard keys/computer_key_L.png</file>
+        <file>Keyboard keys/computer_key_M.png</file>
+        <file>Keyboard keys/computer_key_N.png</file>
+        <file>Keyboard keys/computer_key_num_row_00.png</file>
+        <file>Keyboard keys/computer_key_num_row_0.png</file>
+        <file>Keyboard keys/computer_key_num_row_1.png</file>
+        <file>Keyboard keys/computer_key_num_row_2.png</file>
+        <file>Keyboard keys/computer_key_num_row_3.png</file>
+        <file>Keyboard keys/computer_key_num_row_4.png</file>
+        <file>Keyboard keys/computer_key_num_row_5.png</file>
+        <file>Keyboard keys/computer_key_num_row_6.png</file>
+        <file>Keyboard keys/computer_key_num_row_7.png</file>
+        <file>Keyboard keys/computer_key_num_row_8.png</file>
+        <file>Keyboard keys/computer_key_num_row_9.png</file>
+        <file>Keyboard keys/computer_key_num_row_Equals.png</file>
+        <file>Keyboard keys/computer_key_num_row_Minus.png</file>
+        <file>Keyboard keys/computer_key_O.png</file>
+        <file>Keyboard keys/computer_key_P.png</file>
+        <file>Keyboard keys/computer_key_Pipe_Backslash.png</file>
+        <file>Keyboard keys/computer_key_Q.png</file>
+        <file>Keyboard keys/computer_key_Question_Forward_slash.png</file>
+        <file>Keyboard keys/computer_key_Quotation_Marks.png</file>
+        <file>Keyboard keys/computer_key_R.png</file>
+        <file>Keyboard keys/computer_key_S.png</file>
+        <file>Keyboard keys/computer_key_Shift.png</file>
+        <file>Keyboard keys/computer_key_Space_bar.png</file>
+        <file>Keyboard keys/computer_key_T.png</file>
+        <file>Keyboard keys/computer_key_Tab.png</file>
+        <file>Keyboard keys/computer_key_U.png</file>
+        <file>Keyboard keys/computer_key_V.png</file>
+        <file>Keyboard keys/computer_key_W.png</file>
+        <file>Keyboard keys/computer_key_X.png</file>
+        <file>Keyboard keys/computer_key_Y.png</file>
+        <file>Keyboard keys/computer_key_Z.png</file>
+        <file>Keyboard keys/computer_key_Greater_than_Period.png</file>
+        <file>Keyboard keys/computer_key_Less_than_Comma.png</file>
+        <file>Keyboard keys/computer_key_brackets_left.png</file>
+    </qresource>
 </RCC>
