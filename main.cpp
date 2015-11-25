@@ -27,6 +27,10 @@ static void sendPacket(std::string dataString)
 	{
 		std::cout << "Error occurred while sending a packet." << std::endl;
 	}
+	else
+	{
+		std::cout << "Packet sent successfully." << std::endl;
+	}
 	//Transmit over; disconnect.
 	socket.disconnect();
 	std::cout << "Socket disconnected." << std::endl;
@@ -64,8 +68,7 @@ static void loginRequest()
 
 	//Going to store all our JSON information in here.
 	JSONObject data;
-
-	data[L"action"] = new JSONValue(L"login");
+	data[L"action"] = new JSONValue(L"0");
 	data[L"username"] = new JSONValue(username);
 	data[L"password"] = new JSONValue(password);
 
@@ -92,7 +95,7 @@ static void creationRequest()
 	//Going to store all our JSON information in here.
 	JSONObject data;
 
-	data[L"action"] = new JSONValue(L"createuser");
+	data[L"action"] = new JSONValue(L"1");
 	data[L"username"] = new JSONValue(username);
 	data[L"password"] = new JSONValue(password);
 	data[L"firstname"] = new JSONValue(firstName);
@@ -117,12 +120,19 @@ static void getKeyMappings()
 
 	JSONObject data;
 
-	data[L"action"] = new JSONValue(L"getkeymapings");
+	data[L"action"] = new JSONValue(L"2");
 	data[L"actualkeyboard"] = new JSONValue(actualKeyboard);
 	data[L"virtualkeyboard"] = new JSONValue(virtualKeyboard);
 
 	//Convert and send the packet
 	sendPacket(convertJSONtoString(data));
+}
+
+//Will wait for a response from the server
+//TODO: Implement this (Sprint 2)
+static void listenKeyMappings()
+{
+
 }
 
 
