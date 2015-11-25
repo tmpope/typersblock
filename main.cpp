@@ -31,9 +31,28 @@ static void sendPacket(std::string dataString)
 	{
 		std::cout << "Packet sent successfully." << std::endl;
 	}
-	//Transmit over; disconnect.
-	socket.disconnect();
 	std::cout << "Socket disconnected." << std::endl;
+	listenForResponse(socket);
+}
+
+//Will wait for a response from the server
+//TODO: Do something useful with the response, aside from printing to the console (Sprint 2)
+static std::string listenForResponse(sf::Socket socket)
+{
+	//Variables to store information for the response from the server
+	char buffer[512];
+	sf::IpAddress responseIp;
+	size_t responseSize;
+
+	//This is a blocking operation!
+	socket.Receive(buffer, 512, responseIp, 53000);
+	socket.Close();
+
+	//Turn the response into a string
+	std::string response(buffer, responseSize);
+	std::cout << response << std::endl;
+
+	return response;
 }
 
 //Given a JSONObject, takes care of Stringify and conversion from a wstring to a string
@@ -127,14 +146,6 @@ static void getKeyMappings()
 	//Convert and send the packet
 	sendPacket(convertJSONtoString(data));
 }
-
-//Will wait for a response from the server
-//TODO: Implement this (Sprint 2)
-static void listenKeyMappings()
-{
-
-}
-
 
 
 int main()
