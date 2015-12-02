@@ -50,19 +50,20 @@ try {
 
   /* Create a connection */
   driver = get_driver_instance();
-  con = driver->connect("waihoilaf.duckdns.org", "typerblock", "TyPeRbL0(k");
+  con = driver->connect("localhost", "typerblock", "TyPeRbL0(k");
   /* Connect to the MySQL test database */
-  con->setSchema("test");
-
   stmt = con->createStatement();
-  res = stmt->executeQuery("SELECT 'Hello World!' AS _message");
+  stmt->execute("USE TyperBlock");
+  res = stmt->executeQuery("SELECT * FROM user_table");
+  cout << "Done." << endl;
+
   while (res->next()) {
-    cout << "\t... MySQL replies: ";
+    cout << "Got some stuff.";
     /* Access column data by alias or column name */
-    cout << res->getString("_message") << endl;
-    cout << "\t... MySQL says it again: ";
+    //cout << res->getString("_message") << endl;
+    //cout << "\t... MySQL says it again: ";
     /* Access column fata by numeric offset, 1 is the first column */
-    cout << res->getString(1) << endl;
+    //cout << res->getString(1) << endl;
   }
   delete res;
   delete stmt;
