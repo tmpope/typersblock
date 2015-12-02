@@ -7,7 +7,7 @@ test: test.cpp
 	g++ -c test.cpp
 
 demo: demo-o
-	g++ demoServer.o -o demoServer -lsfml-graphics -lsfml-window -lsfml-system -lsfml-network
+	g++ demoServer.o -o demoServer -lsfml-graphics -lsfml-window -lsfml-system -lsfml-network -lmysqlcppconn
 
 demo-o: demoServer.cpp
 	g++ demoServer.cpp -I ../include/rapidjson/ -c

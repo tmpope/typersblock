@@ -35,12 +35,10 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include <cppconn/resultset.h>
 #include <cppconn/statement.h>
 
-using namespace std;
-
 int main(void)
 {
-cout << endl;
-cout << "Running 'SELECT 'Hello World!' AS _message'..." << endl;
+std::cout << std::endl;
+std::cout << "Running 'SELECT 'Hello World!' AS _message'..." << std::endl;
 
 try {
   sql::Driver *driver;
@@ -50,35 +48,35 @@ try {
 
   /* Create a connection */
   driver = get_driver_instance();
-  con = driver->connect("localhost", "typerblock", "TyPeRbL0(k");
+  con = driver->connect("waihoilaf.duckdns.org", "typerblock", "TyPeRbL0(k");
   /* Connect to the MySQL test database */
   stmt = con->createStatement();
   stmt->execute("USE TyperBlock");
   res = stmt->executeQuery("SELECT * FROM user_table");
-  cout << "Done." << endl;
+  std::cout << "Done." << std::endl;
 
   while (res->next()) {
-    cout << "Got some stuff.";
+    std::cout << "Got some stuff.";
     /* Access column data by alias or column name */
-    //cout << res->getString("_message") << endl;
-    //cout << "\t... MySQL says it again: ";
+    //std::cout << res->getString("_message") << std::endl;
+    //std::cout << "\t... MySQL says it again: ";
     /* Access column fata by numeric offset, 1 is the first column */
-    //cout << res->getString(1) << endl;
+    //std::cout << res->getString(1) << std::endl;
   }
   delete res;
   delete stmt;
   delete con;
 
 } catch (sql::SQLException &e) {
-  cout << "# ERR: SQLException in " << __FILE__;
-  cout << "(" << __FUNCTION__ << ") on line "
-     << __LINE__ << endl;
-  cout << "# ERR: " << e.what();
-  cout << " (MySQL error code: " << e.getErrorCode();
-  cout << ", SQLState: " << e.getSQLState() << " )" << endl;
+  std::cout << "# ERR: SQLException in " << __FILE__;
+  std::cout << "(" << __FUNCTION__ << ") on line "
+     << __LINE__ << std::endl;
+  std::cout << "# ERR: " << e.what();
+  std::cout << " (MySQL error code: " << e.getErrorCode();
+  std::cout << ", SQLState: " << e.getSQLState() << " )" << std::endl;
 }
 
-cout << endl;
+std::cout << std::endl;
 
 return EXIT_SUCCESS;
 }

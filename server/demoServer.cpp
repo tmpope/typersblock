@@ -11,6 +11,13 @@
 #include "reader.h"
 #include "document.h"
 #include <iostream>
+#include "mysql_connection.h"
+#include <cppconn/driver.h>
+#include <cppconn/exception.h>
+#include <cppconn/resultset.h>
+#include <cppconn/statement.h>
+
+int mySQLexample(void);
 
 bool validate(std::string user, std::string pass) {
     return user == "tpope" && pass == "pass123";
@@ -24,6 +31,8 @@ std::string generateResponse(std::string user, std::string pass)
 {
     rapidjson::StringBuffer s;
     rapidjson::Writer<rapidjson::StringBuffer> writer(s);
+
+    mySQLexample();
     
     if (validate(user, pass))
     {
@@ -56,6 +65,8 @@ std::string generateResponse(std::string user, std::string pass, std::string fir
     //TODO actually do what it should
     rapidjson::StringBuffer s;
     rapidjson::Writer<rapidjson::StringBuffer> writer(s);
+
+    mySQLexample();
     
     if (validate(user, pass))
     {
@@ -162,6 +173,52 @@ void process(std::string msg, sf::TcpSocket* client) {
 //     //Transmit over; disconnect.
 //     // std::cout << "Socket disconnected." << std::endl;
 // }
+
+int mySQLexample(void)
+{
+std::cout << std::endl;
+std::cout << "Running 'SELECT 'Hello World!' AS _message'..." << std::endl;
+
+try {
+  sql::Driver *driver;
+  sql::Connection *con;
+  sql::Statement *stmt;
+  sql::ResultSet *res;
+
+  /* Create a connection */
+  driver = get_driver_instance();
+  con = driver->connect("waihoilaf.duckdns.org", "typerblock", "TyPeRbL0(k");
+  /* Connect to the MySQL test database */
+  stmt = con->createStatement();
+  stmt->execute("USE TyperBlock");
+  res = stmt->executeQuery("SELECT * FROM user_table");
+  std::cout << "Done." << std::endl;
+
+  while (res->next()) {
+    std::cout << "Got some stuff.";
+    /* Access column data by alias or column name */
+    //std::cout << res->getString("_message") << std::endl;
+    //std::cout << "\t... MySQL says it again: ";
+    /* Access column fata by numeric offset, 1 is the first column */
+    //std::cout << res->getString(1) << std::endl;
+  }
+  delete res;
+  delete stmt;
+  delete con;
+
+} catch (sql::SQLException &e) {
+  std::cout << "# ERR: SQLException in " << __FILE__;
+  std::cout << "(" << __FUNCTION__ << ") on line "
+     << __LINE__ << std::endl;
+  std::cout << "# ERR: " << e.what();
+  std::cout << " (MySQL error code: " << e.getErrorCode();
+  std::cout << ", SQLState: " << e.getSQLState() << " )" << std::endl;
+}
+
+std::cout << std::endl;
+
+return EXIT_SUCCESS;
+}
 
 int main(int, char const**)
 
