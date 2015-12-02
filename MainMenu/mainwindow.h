@@ -5,6 +5,7 @@
 #include <SFML/Network.hpp>
 #include <simpleJSON/JSON.h>
 #include <simpleJSON/JSONValue.h>
+#include <levelselectwindow.h>
 
 namespace Ui {
 class MainWindow;
@@ -30,6 +31,7 @@ private:
     std::string receivePacket(sf::TcpSocket& socket);
     //Converts a JSONObject to a string, which can then be sent over a socket.
     std::string convertJSONtoString(JSONObject data);
+    LevelSelectWindow* levelSelectWindow;
 };
 
 #endif // MAINWINDOW_H

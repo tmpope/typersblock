@@ -103,33 +103,33 @@ public:
         label_3 = new QLabel(centralWidget);
         label_3->setObjectName(QStringLiteral("label_3"));
         label_3->setGeometry(QRect(870, 110, 47, 13));
-        label_3->setStyleSheet(QLatin1String("background-color: black;\n"
-"color: white;"));
+        label_3->setStyleSheet(QLatin1String("color: white;\n"
+"background-image: url(:/new/images/alpha.png);"));
         label_4 = new QLabel(centralWidget);
         label_4->setObjectName(QStringLiteral("label_4"));
         label_4->setGeometry(QRect(870, 260, 47, 13));
-        label_4->setStyleSheet(QLatin1String("background-color: black;\n"
-"color: white;"));
+        label_4->setStyleSheet(QLatin1String("color: white;\n"
+"background-image: url(:/new/images/alpha.png);"));
         label_5 = new QLabel(centralWidget);
         label_5->setObjectName(QStringLiteral("label_5"));
         label_5->setGeometry(QRect(870, 210, 47, 13));
-        label_5->setStyleSheet(QLatin1String("background-color: black;\n"
-"color: white;"));
+        label_5->setStyleSheet(QLatin1String("color: white;\n"
+"background-image: url(:/new/images/alpha.png);"));
         label_6 = new QLabel(centralWidget);
         label_6->setObjectName(QStringLiteral("label_6"));
         label_6->setGeometry(QRect(870, 160, 47, 13));
-        label_6->setStyleSheet(QLatin1String("background-color: black;\n"
-"color: white;"));
+        label_6->setStyleSheet(QLatin1String("color: white;\n"
+"background-image: url(:/new/images/alpha.png);"));
         label_7 = new QLabel(centralWidget);
         label_7->setObjectName(QStringLiteral("label_7"));
         label_7->setGeometry(QRect(410, 260, 47, 13));
-        label_7->setStyleSheet(QLatin1String("background-color: black;\n"
-"color: white;"));
+        label_7->setStyleSheet(QLatin1String("color: white;\n"
+"background-image: url(:/new/images/alpha.png);"));
         label_8 = new QLabel(centralWidget);
         label_8->setObjectName(QStringLiteral("label_8"));
         label_8->setGeometry(QRect(410, 210, 51, 16));
-        label_8->setStyleSheet(QLatin1String("background-color: black;\n"
-"color: white;"));
+        label_8->setStyleSheet(QLatin1String("color: white;\n"
+"background-image: url(:/new/images/alpha.png);"));
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));

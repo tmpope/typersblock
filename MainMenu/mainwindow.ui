@@ -174,8 +174,8 @@
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: black;
-color: white;</string>
+     <string notr="true">color: white;
+background-image: url(:/new/images/alpha.png);</string>
     </property>
     <property name="text">
      <string>First/Last</string>
@@ -191,8 +191,8 @@ color: white;</string>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: black;
-color: white;</string>
+     <string notr="true">color: white;
+background-image: url(:/new/images/alpha.png);</string>
     </property>
     <property name="text">
      <string>Class #</string>
@@ -208,8 +208,8 @@ color: white;</string>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: black;
-color: white;</string>
+     <string notr="true">color: white;
+background-image: url(:/new/images/alpha.png);</string>
     </property>
     <property name="text">
      <string>Password</string>
@@ -225,8 +225,8 @@ color: white;</string>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: black;
-color: white;</string>
+     <string notr="true">color: white;
+background-image: url(:/new/images/alpha.png);</string>
     </property>
     <property name="text">
      <string>Username</string>
@@ -242,8 +242,8 @@ color: white;</string>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: black;
-color: white;</string>
+     <string notr="true">color: white;
+background-image: url(:/new/images/alpha.png);</string>
     </property>
     <property name="text">
      <string>Password</string>
@@ -259,8 +259,8 @@ color: white;</string>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: black;
-color: white;</string>
+     <string notr="true">color: white;
+background-image: url(:/new/images/alpha.png);</string>
     </property>
     <property name="text">
      <string>Username</string>

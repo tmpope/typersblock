@@ -19,6 +19,8 @@ MainWindow::MainWindow(QWidget *parent) :
 MainWindow::~MainWindow()
 {
     delete ui;
+    qDebug() << "Deleting levelSelectWindow.";
+    delete levelSelectWindow;
 }
 /*
  * Socket must be conneceted before calling this method... may change architecture in a bit.
@@ -108,6 +110,10 @@ void MainWindow::login()
         qDebug() << QString::fromStdString(response);
         //Do something with the response
     }
+    levelSelectWindow = new LevelSelectWindow();
+    levelSelectWindow->show();
+    qDebug() << "Closing main window.";
+    this->close();
 }
 
 /*
