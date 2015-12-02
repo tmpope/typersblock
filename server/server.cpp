@@ -19,12 +19,19 @@
 
 int mySQLexample(void);
 
-bool validate(std::string user, std::string pass) {
+bool validate(std::string user, std::string pass) 
+{
     return user == "tpope" && pass == "pass123";
 }
 
-int getScore(std::string user, int level) {
+int getScore(std::string user, int level) 
+{
     return 3;
+}
+
+bool createUser(std::string user, std::string pass, std::string first, std::string last, std::string className) 
+{
+    return false;
 }
 
 std::string generateResponse(std::string user, std::string pass)
@@ -120,7 +127,7 @@ void process(std::string msg, sf::TcpSocket* client) {
             {
                 std::cout << "Error occurred while sending a packet." << std::endl;
             }
-            break; //optional
+            break;
         case 1  : //create user
             user = document["user"].GetString();
             pass = document["password"].GetString();
@@ -133,46 +140,19 @@ void process(std::string msg, sf::TcpSocket* client) {
             {
                 std::cout << "Error occurred while sending a packet." << std::endl;
             }
-            break; //optional
+            break;
         case 2  : //get key mapping
             std::cout << "Keymapping" << std::endl;
             break;
-      
-        // you can have any number of case statements.
-        default : //Optional
+        default : //any other action
             packet << "Invalid Action";
             if (client->send(packet) != sf::Socket::Done)
             {
                 std::cout << "Error occurred while sending a packet." << std::endl;
             }
             break;
-
-
     }
 }
-
-
-// //Sends a packet to the client, using the given data. 
-// //The data should have been encoded in JSON before being sent.
-// static void sendPacket(std::string dataString, sf::TcpSocket* socket)
-// {
-//     std::cout << dataString << std::endl;
-//     //Set up ip socket and packet
-//     // sf::IpAddress ip("127.0.0.1");
-//     sf::Packet packet;
-//     //Connect to the server
-//     // sf::Socket::Status status = socket->connect(ip, 53000);
-
-//     //Attach our information to the packet
-//     packet.append(dataString.c_str(), dataString.length());
-//     //Send the packet
-//     if (socket->send(packet) != sf::Socket::Done)
-//     {
-//         std::cout << "Error occurred while sending a packet." << std::endl;
-//     }
-//     //Transmit over; disconnect.
-//     // std::cout << "Socket disconnected." << std::endl;
-// }
 
 int mySQLexample(void)
 {
@@ -221,125 +201,54 @@ return EXIT_SUCCESS;
 }
 
 int main(int, char const**)
-
 {
-
     sf::TcpListener listener;
-
     if (listener.listen(53000) != sf::Socket::Done)
-
     {
-
-        // error...
-
+        std::cout << "Connection Error" << std::endl;
     }
 
-    // Create a list to store the future clients
 
     std::vector<sf::TcpSocket*> clients;
-
-    // Create a selector
-
     sf::SocketSelector selector;
-
-    // Add the listener to the selector
-
     selector.add(listener);
 
-    // Endless loop that waits for new connections
-
     while (1)
-
     {
-
-        // Make the selector wait for data on any socket
-
         if (selector.wait())
-
         {
-
-            // Test the listener
-
             if (selector.isReady(listener))
-
             {
-
-                // The listener is ready: there is a pending connection
-
                 sf::TcpSocket* client = new sf::TcpSocket;
-
                 if (listener.accept(*client) == sf::Socket::Done)
-
                 {
-
-                    // Add the new client to the clients list
-
                     clients.push_back(client);
-
-                    // Add the new client to the selector so that we will
-
-                    // be notified when he sends something
-
                     selector.add(*client);
-
                 }
-
                 else
-
                 {
-
-                    // Error, we won't get a new connection, delete the socket
-
                     delete client;
-
                 }
-
             }
-
             else
-
             {
-
-                // The listener socket is not ready, test all other sockets (the clients)
-
                 for (std::vector<sf::TcpSocket*>::iterator it = clients.begin(); it != clients.end(); ++it)
-
                 {
-
                     sf::TcpSocket& client = **it; // reference to the actual socket 1st * for it dereference second for pointer
-
                     if (selector.isReady(client))
-
                     {
-
                         sf::Packet packet;
-
                         if (client.receive(packet) == sf::Socket::Done)
-
                         {
-
-                            // The client has sent some data, we can receive it
-
                             std::string msg;
-
                             packet >> msg;
-
                             process(msg, &client);
-
                             std::cout << "Msg received: " << msg << std::endl;
-
                         }
-
                     }
-
                 }
-
             }
-
         }
-
     }
-
     return EXIT_SUCCESS;
-
 }
