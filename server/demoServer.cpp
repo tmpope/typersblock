@@ -1,33 +1,3 @@
-//
-
-// Disclamer:
-
-// ----------
-
-//
-
-// This code will work only if you selected window, graphics and audio.
-
-//
-
-// Note that the "Run Script" build phase will copy the required frameworks
-
-// or dylibs to your application bundle so you can execute it on any OS X
-
-// computer.
-
-//
-
-// Your resource files (images, sounds, fonts, ...) are also copied to your
-
-// application bundle. To get the path to these resource, use the helper
-
-// method resourcePath() from ResourcePath.hpp
-
-//
-
- 
-
 #include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
 #include <SFML/Network.hpp>
@@ -42,52 +12,74 @@
 #include "document.h"
 #include <iostream>
 
+bool validate(std::string user, std::string pass) {
+    return user == "tpope" && pass == "pass123";
+}
+
+int getScore(std::string user, int level) {
+    return 3;
+}
+
 std::string generateResponse(std::string user, std::string pass)
 {
     rapidjson::StringBuffer s;
     rapidjson::Writer<rapidjson::StringBuffer> writer(s);
     
-    if (user == "tpope")
+    if (validate(user, pass))
     {
-        if (pass == "pass123")
-        {
-            writer.StartObject();
-            writer.String("type");
-            writer.String("success");
-            writer.String("user");
-            writer.String(user.c_str());
-            writer.String("error");
-            writer.Bool(false);
-            writer.String("level");
-            writer.Uint(1);
-            writer.String("id");
-            writer.Uint(0);
-            writer.String("scores");
-            writer.StartArray();
-            for (unsigned i = 0; i < 4; i++)
-                writer.Uint(5);
-            writer.EndArray();
-            writer.String("subObject");
-            writer.StartObject();
-            writer.String("field1");
-            writer.Uint(1);
-            writer.String("field2");
-            writer.Uint(2);
-            writer.EndObject();
-            writer.EndObject();
-            return s.GetString();//"Valid login for user " + user;
-        }
-        else
-        {
-            return "Invalid password";
-        }
+        writer.StartObject();
+        writer.String("type");
+        writer.String("success");
+        writer.String("user");
+        writer.String(user.c_str());
+        writer.String("level");
+        writer.Uint(1);
+        writer.String("id");
+        writer.Uint(0);
+        writer.String("scores");
+        writer.StartArray();
+        for (unsigned i = 0; i < 3; i++)
+            writer.Uint(getScore(user, i));
+        writer.EndArray();
+        writer.EndObject();
+        return s.GetString();//"Valid login for user " + user;
     }
     else
     {
-        return "Invalid username";
+        return "Invalid username password combination";
     }
-    
+    return s.GetString();
+}
 
+std::string generateResponse(std::string user, std::string pass, std::string first, std::string last, std::string className)
+{
+    //TODO actually do what it should
+    rapidjson::StringBuffer s;
+    rapidjson::Writer<rapidjson::StringBuffer> writer(s);
+    
+    if (validate(user, pass))
+    {
+        writer.StartObject();
+        writer.String("type");
+        writer.String("success");
+        writer.String("user");
+        writer.String(user.c_str());
+        writer.String("level");
+        writer.Uint(1);
+        writer.String("id");
+        writer.Uint(0);
+        writer.String("scores");
+        writer.StartArray();
+        for (unsigned i = 0; i < 3; i++)
+            writer.Uint(getScore(user, i));
+        writer.EndArray();
+        writer.EndObject();
+        return s.GetString();//"Valid login for user " + user;
+    }
+    else
+    {
+        return "Invalid username password combination";
+    }
     return s.GetString();
 }
 
@@ -102,6 +94,9 @@ void process(std::string msg, sf::TcpSocket* client) {
     int action = document["action"].GetInt();
     std::string user;
     std::string pass;
+    std::string first;
+    std::string last;
+    std::string className;
     std::cout << "action : " << action << std::endl;
     sf::Packet packet;
     switch(action){
@@ -118,8 +113,15 @@ void process(std::string msg, sf::TcpSocket* client) {
         case 1  : //create user
             user = document["user"].GetString();
             pass = document["password"].GetString();
+            first = document["first"].GetString();
+            last = document["last"].GetString();
+            className = document["className"].GetString();
             std::cout << "user : " << user << std::endl;
-            std::cout << "pass : " << pass << std::endl;
+            packet << generateResponse(user, pass, first, last, className);
+            if (client->send(packet) != sf::Socket::Done)
+            {
+                std::cout << "Error occurred while sending a packet." << std::endl;
+            }
             break; //optional
         case 2  : //get key mapping
             std::cout << "Keymapping" << std::endl;
@@ -266,9 +268,6 @@ int main(int, char const**)
                             packet >> msg;
 
                             process(msg, &client);
-                            // sf::Packet packet2;
-                            // packet2 << "{\"action\":" << 13 << ",\"user\":\"tpope\"}";
-                            // client.send(packet2);
 
                             std::cout << "Msg received: " << msg << std::endl;
 

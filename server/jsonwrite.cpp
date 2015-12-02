@@ -28,6 +28,30 @@ int main() {
         writer.Uint(i);
     writer.EndArray();
     writer.EndObject();
+    writer.StartObject();
+    writer.String("type");
+    writer.String("success");
+    writer.String("user");
+    writer.String(user.c_str());
+    writer.String("error");
+    writer.Bool(false);
+    writer.String("level");
+    writer.Uint(1);
+    writer.String("id");
+    writer.Uint(0);
+    writer.String("scores");
+    writer.StartArray();
+    for (unsigned i = 0; i < 4; i++)
+        writer.Uint(5);
+    writer.EndArray();
+    writer.String("subObject");
+    writer.StartObject();
+    writer.String("field1");
+    writer.Uint(1);
+    writer.String("field2");
+    writer.Uint(2);
+    writer.EndObject();
+    writer.EndObject();
 
     cout << s.GetString() << endl;
 
