@@ -1,0 +1,8 @@
+<RCC>
+    <qresource prefix="/new/images">
+        <file>space_scene_by_felandi.jpg</file>
+        <file>Tiny-Grid-Seamless-Patterns-For-Website-Backgrounds.jpg</file>
+        <file>levelSelectBackground.jpg</file>
+        <file>black.jpg</file>
+    </qresource>
+</RCC>
