@@ -10,9 +10,10 @@ int main(int, char const**)
     sf::Packet data;
 
     sf::Socket::Status status = socket.connect("localhost", 53000);
-    outPacket << "{\"action\":0,\"user\":\"tpope\",\"password\":\"pass123\"}";
+    // outPacket << "{\"action\":0,\"user\":\"tpope\",\"password\":\"pass123\"}";
     // outPacket << "{\"action\":0,\"user\":\"tpope\",\"password\":\"wrongPass\"}";
-    // outPacket << "{\"action\":1,\"user\":\"tpope\",\"password\":\"pass123\"}";
+    // outPacket << "{\"action\":1,\"user\":\"newUser\",\"password\":\"notAndre\",\"first\":\"Andre\",\"last\":\"LaFleur\",\"className\":\"admin\"}";
+    outPacket << "{\"action\":0,\"user\":\"newUser\",\"password\":\"notAndre\"}";
     // outPacket << "{\"action\":2,\"user\":\"tpope\",\"password\":\"pass123\"}";
     socket.send(outPacket);
 	if (socket.receive(data) != sf::Socket::Done)

@@ -1,5 +1,3 @@
-#include <SFML/Audio.hpp>
-#include <SFML/Graphics.hpp>
 #include <SFML/Network.hpp>
 
 #include <iostream>
@@ -18,10 +16,70 @@
 #include <cppconn/statement.h>
 
 int mySQLexample(void);
+sql::ResultSet* runSqlQuery(std::string query)
+{
+    sql::ResultSet *res;
+    sql::Driver *driver;
+    sql::Connection *con;
+    sql::Statement *stmt;
+    try 
+    {
+        driver = get_driver_instance();
+        con = driver->connect("waihoilaf.duckdns.org", "typerblock", "TyPeRbL0(k");
+        stmt = con->createStatement();
+        stmt->execute("USE TyperBlock");
+        res = stmt->executeQuery(query.c_str());
+        delete stmt;
+        delete con;
+        return res;
+    } 
+    catch (sql::SQLException &e) {
+        if(e.getErrorCode() == 0)
+        {
+            delete stmt;
+            delete con;
+            return res;
+        }
+        std::cout << "# ERR: SQLException in " << __FILE__;
+        std::cout << "(" << __FUNCTION__ << ") on line "
+            << __LINE__ << std::endl;
+        std::cout << "# ERR: " << e.what();
+        std::cout << " (MySQL error code: " << e.getErrorCode();
+        std::cout << ", SQLState: " << e.getSQLState() << " )" << std::endl;
+        if(stmt)
+        {
+            delete stmt;
+        }
+        if(con)
+        {
+            delete con;
+        }
+        return res;
+    }
+}
+
+int insertNewUser(std::string user, std::string pass, std::string first, std::string last, std::string className)
+{
+    sql::ResultSet *res;
+    std::string query = "INSERT INTO user_table values('" + user
+        + "', 'doesnt', '" + pass + "', '" + className + "', 0, now(), now(), '" 
+        + first + "', '" + last + "')";
+    std::cout << query << std::endl;
+    runSqlQuery(query);
+    return 0;
+}
+
 
 bool validate(std::string user, std::string pass) 
 {
-    return user == "tpope" && pass == "pass123";
+    bool result = false;
+    std::string query = "SELECT first_name FROM user_table where username = '" + user
+        + "' AND password = '" + pass + "'";
+    sql::ResultSet *res = runSqlQuery(query);
+    while (res->next()) {
+        result = true;
+    }
+    return result;
 }
 
 int getScore(std::string user, int level) 
@@ -29,18 +87,17 @@ int getScore(std::string user, int level)
     return 3;
 }
 
-bool createUser(std::string user, std::string pass, std::string first, std::string last, std::string className) 
-{
-    return false;
-}
-
+/**
+ * Login
+ * @param  user [description]
+ * @param  pass [description]
+ * @return      [description]
+ */
 std::string generateResponse(std::string user, std::string pass)
 {
     rapidjson::StringBuffer s;
     rapidjson::Writer<rapidjson::StringBuffer> writer(s);
 
-    mySQLexample();
-    
     if (validate(user, pass))
     {
         writer.StartObject();
@@ -62,13 +119,29 @@ std::string generateResponse(std::string user, std::string pass)
     }
     else
     {
-        return "Invalid username password combination";
+        writer.StartObject();
+        writer.String("type");
+        writer.String("failure");
+        writer.String("message");
+        writer.String("Invalid username password combination");
+        writer.EndObject();
+        return s.GetString();//"Valid login for user " + user;
     }
     return s.GetString();
 }
 
+/**
+ * Create user
+ * @param  user      [description]
+ * @param  pass      [description]
+ * @param  first     [description]
+ * @param  last      [description]
+ * @param  className [description]
+ * @return           [description]
+ */
 std::string generateResponse(std::string user, std::string pass, std::string first, std::string last, std::string className)
 {
+    insertNewUser(user, pass, first, last, className);
     //TODO actually do what it should
     rapidjson::StringBuffer s;
     rapidjson::Writer<rapidjson::StringBuffer> writer(s);
@@ -82,15 +155,8 @@ std::string generateResponse(std::string user, std::string pass, std::string fir
         writer.String("success");
         writer.String("user");
         writer.String(user.c_str());
-        writer.String("level");
-        writer.Uint(1);
-        writer.String("id");
-        writer.Uint(0);
-        writer.String("scores");
-        writer.StartArray();
-        for (unsigned i = 0; i < 3; i++)
-            writer.Uint(getScore(user, i));
-        writer.EndArray();
+        writer.String("class");
+        writer.String(className.c_str());
         writer.EndObject();
         return s.GetString();//"Valid login for user " + user;
     }
