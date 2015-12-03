@@ -32,6 +32,7 @@ private:
     //Converts a JSONObject to a string, which can then be sent over a socket.
     std::string convertJSONtoString(JSONObject data);
     LevelSelectWindow* levelSelectWindow;
+    sf::Socket::Status connectToServer(sf::TcpSocket& socket);
 };
 
 #endif // MAINWINDOW_H

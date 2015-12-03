@@ -27,9 +27,11 @@ MainWindow::~MainWindow()
  */
 bool MainWindow::sendPacket(std::string dataString, sf::TcpSocket& socket)
 {
+    qDebug() << "Sending:" << QString::fromStdString(dataString);
     sf::Packet packet;
     packet.append(dataString.c_str(), dataString.length());
     //Send the packet
+    qDebug() << "Packet configured, sending data now.";
     if (socket.send(packet) != sf::Socket::Done)
     {
          QMessageBox::critical(this, "Error", "Couldn't contact the server. Try again later.");
@@ -42,17 +44,25 @@ bool MainWindow::sendPacket(std::string dataString, sf::TcpSocket& socket)
  */
 std::string MainWindow::receivePacket(sf::TcpSocket& socket)
 {
+
+    sf::SocketSelector selector;
+    selector.add(socket);
+
     //Variables to store information for the response from the server.
     char buffer[512];
-    sf::IpAddress responseIp;
     size_t responseSize;
 
-    //Receive data from the server.
-    socket.receive(buffer, 512, responseSize);
-    socket.disconnect();
-
-    //Turn response into a string, return it.
-    return std::string(buffer, responseSize);
+    if (selector.wait(sf::seconds(10)))
+    {
+        socket.receive(buffer, 512, responseSize);
+        return std::string(buffer, responseSize);
+    }
+    else
+    {
+        qDebug() << "Couldn't receive any information from the server.";
+        return "";
+        socket.disconnect();
+    }
 }
 
 /*
@@ -73,7 +83,6 @@ std::string MainWindow::convertJSONtoString(JSONObject data)
     dataString.assign(wideDataString.begin(), wideDataString.end());
     //Send the data
     return dataString;
-    //sendPacket(dataString);
 }
 
 /*
@@ -89,12 +98,8 @@ void MainWindow::login()
         return;
     }
 
-    //Ip equivalent of local host.
-    //TODO: Find our server's static IP address.
-    sf::IpAddress ip("127.0.0.1");
     sf::TcpSocket socket;
-
-    sf::Socket::Status status = socket.connect(ip, 53000);
+    sf::Socket::Status status = connectToServer(socket);
 
     //Pull information the user entered, wrap it in a JSONObject.
     JSONObject data;
@@ -105,6 +110,7 @@ void MainWindow::login()
     //Send the packet, after converting the JSON object back to a sendable, properly formatted string.
     if (sendPacket(convertJSONtoString(data), socket))
     {
+        qDebug() << "Packet sent, await response.";
         //Get a response from the server.
         std::string response = receivePacket(socket);
         qDebug() << QString::fromStdString(response);
@@ -131,11 +137,8 @@ void MainWindow::createAccount()
         return;
     }
 
-    sf::IpAddress ip("127.0.0.1");
     sf::TcpSocket socket;
-
-    sf::Socket::Status status = socket.connect(ip, 53000);
-
+    sf::Socket::Status status = connectToServer(socket);
     //Going to store all our JSON information in here.
     JSONObject data;
 
@@ -153,4 +156,9 @@ void MainWindow::createAccount()
         qDebug() << QString::fromStdString(response);
         //Do something with the response
     }
+}
+
+sf::Socket::Status MainWindow::connectToServer(sf::TcpSocket& socket)
+{
+    return socket.connect("waihoilaf.duckdns.org", 53000);
 }
