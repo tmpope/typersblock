@@ -58,7 +58,7 @@ void SFMLCanvas::paintEvent(QPaintEvent*)
 
 void SFMLCanvas::initialize()
 {
-    if (!texture.loadFromFile("C:/Users/ryant_000/Downloads/typersblock/MainMenu/linkTexture.jpg"))
+    if (!texture.loadFromFile("../MainMenu/linkTexture.jpg"))
 	{
         qDebug() << "Couldn't find file at \"C:/Users/ryant_000/Downloads/typersblock/MainMenu/linkTexture.jpg\"";
 	}
@@ -68,11 +68,11 @@ void SFMLCanvas::initialize()
 		sprite.setPosition(50, 50);
 		clock.restart();
 	}
-    if (!ground.loadFromFile("C:/Users/ryant_000/Downloads/typersblock/MainMenu/ground.png"))
+    if (!ground.loadFromFile("../MainMenu/ground.png"))
     {
         qDebug() << "Couldn't find ground texture file.";
     }
-    if (!box.loadFromFile("C:/Users/ryant_000/Downloads/typersblock/MainMenu/box.png"))
+    if (!box.loadFromFile("../MainMenu/box.png"))
     {
         qDebug () << "Couldn't find box texture file.";
     }
@@ -93,7 +93,6 @@ void SFMLCanvas::update()
             boxSprite.setTexture(box);
             boxSprite.setOrigin(16.f, 16.f);
             boxSprite.setPosition(bodyIt->GetPosition().x * SCALE, bodyIt->GetPosition().y * SCALE);
-            std::cout << "Box at: " << bodyIt->GetPosition().x * SCALE << "," << bodyIt->GetPosition().y * SCALE << std::endl;
             boxSprite.setRotation(bodyIt->GetAngle() * 180/b2_pi);
             RenderWindow::draw(boxSprite);
         }
