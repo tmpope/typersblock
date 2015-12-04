@@ -61,11 +61,11 @@ std::string MainWindow::receivePacket(sf::TcpSocket& socket)
  * contact the server, providing login information. */
 void MainWindow::login()
 {
-    /* I've been using this for testing the level select window itself.*/
+    /* I've been using this for testing the level select window itself.
     levelSelectWindow = new LevelSelectWindow("Ryan",this);
     levelSelectWindow->show();
     this->hide();
-    return;
+    return;*/
 
     if (ui->userLoginText->toPlainText() == "" || ui->passLoginText->toPlainText() == "")
     {
