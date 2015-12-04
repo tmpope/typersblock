@@ -13,10 +13,12 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    levelselectwindow.cpp
+    levelselectwindow.cpp \
+    sfmlcanvas.cpp
 
 HEADERS  += mainwindow.h \
-    levelselectwindow.h
+    levelselectwindow.h \
+    sfmlcanvas.h
 
 FORMS    += mainwindow.ui \
     levelselectwindow.ui

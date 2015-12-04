@@ -2,6 +2,7 @@
 #define LEVELSELECTWINDOW_H
 
 #include <QWidget>
+#include "sfmlcanvas.h"
 
 namespace Ui {
 class LevelSelectWindow;
@@ -21,6 +22,7 @@ private slots:
 private:
     Ui::LevelSelectWindow *ui;
     QWidget* prev;
+    SFMLCanvas* canvas;
 };
 
 #endif // LEVELSELECTWINDOW_H
