@@ -46,23 +46,237 @@ OBJECTS_DIR   = debug
 SOURCES       = ..\MainMenu\main.cpp \
 		..\MainMenu\mainwindow.cpp \
 		..\MainMenu\levelselectwindow.cpp \
-		..\MainMenu\sfmlcanvas.cpp debug\qrc_images.cpp \
+		..\MainMenu\sfmlcanvas.cpp \
+		..\MainMenu\Box2D\Collision\Shapes\b2ChainShape.cpp \
+		..\MainMenu\Box2D\Collision\Shapes\b2CircleShape.cpp \
+		..\MainMenu\Box2D\Collision\Shapes\b2EdgeShape.cpp \
+		..\MainMenu\Box2D\Collision\Shapes\b2PolygonShape.cpp \
+		..\MainMenu\Box2D\Collision\b2BroadPhase.cpp \
+		..\MainMenu\Box2D\Collision\b2CollideCircle.cpp \
+		..\MainMenu\Box2D\Collision\b2CollideEdge.cpp \
+		..\MainMenu\Box2D\Collision\b2CollidePolygon.cpp \
+		..\MainMenu\Box2D\Collision\b2Collision.cpp \
+		..\MainMenu\Box2D\Collision\b2Distance.cpp \
+		..\MainMenu\Box2D\Collision\b2DynamicTree.cpp \
+		..\MainMenu\Box2D\Collision\b2TimeOfImpact.cpp \
+		..\MainMenu\Box2D\Common\b2BlockAllocator.cpp \
+		..\MainMenu\Box2D\Common\b2Draw.cpp \
+		..\MainMenu\Box2D\Common\b2Math.cpp \
+		..\MainMenu\Box2D\Common\b2Settings.cpp \
+		..\MainMenu\Box2D\Common\b2StackAllocator.cpp \
+		..\MainMenu\Box2D\Common\b2Timer.cpp \
+		..\MainMenu\Box2D\Dynamics\Contacts\b2ChainAndCircleContact.cpp \
+		..\MainMenu\Box2D\Dynamics\Contacts\b2ChainAndPolygonContact.cpp \
+		..\MainMenu\Box2D\Dynamics\Contacts\b2CircleContact.cpp \
+		..\MainMenu\Box2D\Dynamics\Contacts\b2Contact.cpp \
+		..\MainMenu\Box2D\Dynamics\Contacts\b2ContactSolver.cpp \
+		..\MainMenu\Box2D\Dynamics\Contacts\b2EdgeAndCircleContact.cpp \
+		..\MainMenu\Box2D\Dynamics\Contacts\b2EdgeAndPolygonContact.cpp \
+		..\MainMenu\Box2D\Dynamics\Contacts\b2PolygonAndCircleContact.cpp \
+		..\MainMenu\Box2D\Dynamics\Contacts\b2PolygonContact.cpp \
+		..\MainMenu\Box2D\Dynamics\Joints\b2DistanceJoint.cpp \
+		..\MainMenu\Box2D\Dynamics\Joints\b2FrictionJoint.cpp \
+		..\MainMenu\Box2D\Dynamics\Joints\b2GearJoint.cpp \
+		..\MainMenu\Box2D\Dynamics\Joints\b2Joint.cpp \
+		..\MainMenu\Box2D\Dynamics\Joints\b2MotorJoint.cpp \
+		..\MainMenu\Box2D\Dynamics\Joints\b2MouseJoint.cpp \
+		..\MainMenu\Box2D\Dynamics\Joints\b2PrismaticJoint.cpp \
+		..\MainMenu\Box2D\Dynamics\Joints\b2PulleyJoint.cpp \
+		..\MainMenu\Box2D\Dynamics\Joints\b2RevoluteJoint.cpp \
+		..\MainMenu\Box2D\Dynamics\Joints\b2RopeJoint.cpp \
+		..\MainMenu\Box2D\Dynamics\Joints\b2WeldJoint.cpp \
+		..\MainMenu\Box2D\Dynamics\Joints\b2WheelJoint.cpp \
+		..\MainMenu\Box2D\Dynamics\b2Body.cpp \
+		..\MainMenu\Box2D\Dynamics\b2ContactManager.cpp \
+		..\MainMenu\Box2D\Dynamics\b2Fixture.cpp \
+		..\MainMenu\Box2D\Dynamics\b2Island.cpp \
+		..\MainMenu\Box2D\Dynamics\b2World.cpp \
+		..\MainMenu\Box2D\Dynamics\b2WorldCallbacks.cpp \
+		..\MainMenu\Box2D\Rope\b2Rope.cpp debug\qrc_images.cpp \
 		debug\moc_mainwindow.cpp \
 		debug\moc_levelselectwindow.cpp
 OBJECTS       = debug\main.obj \
 		debug\mainwindow.obj \
 		debug\levelselectwindow.obj \
 		debug\sfmlcanvas.obj \
+		debug\b2ChainShape.obj \
+		debug\b2CircleShape.obj \
+		debug\b2EdgeShape.obj \
+		debug\b2PolygonShape.obj \
+		debug\b2BroadPhase.obj \
+		debug\b2CollideCircle.obj \
+		debug\b2CollideEdge.obj \
+		debug\b2CollidePolygon.obj \
+		debug\b2Collision.obj \
+		debug\b2Distance.obj \
+		debug\b2DynamicTree.obj \
+		debug\b2TimeOfImpact.obj \
+		debug\b2BlockAllocator.obj \
+		debug\b2Draw.obj \
+		debug\b2Math.obj \
+		debug\b2Settings.obj \
+		debug\b2StackAllocator.obj \
+		debug\b2Timer.obj \
+		debug\b2ChainAndCircleContact.obj \
+		debug\b2ChainAndPolygonContact.obj \
+		debug\b2CircleContact.obj \
+		debug\b2Contact.obj \
+		debug\b2ContactSolver.obj \
+		debug\b2EdgeAndCircleContact.obj \
+		debug\b2EdgeAndPolygonContact.obj \
+		debug\b2PolygonAndCircleContact.obj \
+		debug\b2PolygonContact.obj \
+		debug\b2DistanceJoint.obj \
+		debug\b2FrictionJoint.obj \
+		debug\b2GearJoint.obj \
+		debug\b2Joint.obj \
+		debug\b2MotorJoint.obj \
+		debug\b2MouseJoint.obj \
+		debug\b2PrismaticJoint.obj \
+		debug\b2PulleyJoint.obj \
+		debug\b2RevoluteJoint.obj \
+		debug\b2RopeJoint.obj \
+		debug\b2WeldJoint.obj \
+		debug\b2WheelJoint.obj \
+		debug\b2Body.obj \
+		debug\b2ContactManager.obj \
+		debug\b2Fixture.obj \
+		debug\b2Island.obj \
+		debug\b2World.obj \
+		debug\b2WorldCallbacks.obj \
+		debug\b2Rope.obj \
 		debug\qrc_images.obj \
 		debug\moc_mainwindow.obj \
 		debug\moc_levelselectwindow.obj
 
 DIST          =  ..\MainMenu\mainwindow.h \
 		..\MainMenu\levelselectwindow.h \
-		..\MainMenu\sfmlcanvas.h ..\MainMenu\main.cpp \
+		..\MainMenu\sfmlcanvas.h \
+		..\MainMenu\include\rapidjson\error\en.h \
+		..\MainMenu\include\rapidjson\error\error.h \
+		..\MainMenu\include\rapidjson\internal\biginteger.h \
+		..\MainMenu\include\rapidjson\internal\diyfp.h \
+		..\MainMenu\include\rapidjson\internal\dtoa.h \
+		..\MainMenu\include\rapidjson\internal\ieee754.h \
+		..\MainMenu\include\rapidjson\internal\itoa.h \
+		..\MainMenu\include\rapidjson\internal\meta.h \
+		..\MainMenu\include\rapidjson\internal\pow10.h \
+		..\MainMenu\include\rapidjson\internal\stack.h \
+		..\MainMenu\include\rapidjson\internal\strfunc.h \
+		..\MainMenu\include\rapidjson\internal\strtod.h \
+		..\MainMenu\include\rapidjson\internal\swap.h \
+		..\MainMenu\include\rapidjson\msinttypes\inttypes.h \
+		..\MainMenu\include\rapidjson\msinttypes\stdint.h \
+		..\MainMenu\include\rapidjson\allocators.h \
+		..\MainMenu\include\rapidjson\document.h \
+		..\MainMenu\include\rapidjson\encodedstream.h \
+		..\MainMenu\include\rapidjson\encodings.h \
+		..\MainMenu\include\rapidjson\filereadstream.h \
+		..\MainMenu\include\rapidjson\filewritestream.h \
+		..\MainMenu\include\rapidjson\memorybuffer.h \
+		..\MainMenu\include\rapidjson\memorystream.h \
+		..\MainMenu\include\rapidjson\pointer.h \
+		..\MainMenu\include\rapidjson\prettywriter.h \
+		..\MainMenu\include\rapidjson\rapidjson.h \
+		..\MainMenu\include\rapidjson\reader.h \
+		..\MainMenu\include\rapidjson\stringbuffer.h \
+		..\MainMenu\include\rapidjson\writer.h \
+		..\MainMenu\Box2D\Collision\Shapes\b2ChainShape.h \
+		..\MainMenu\Box2D\Collision\Shapes\b2CircleShape.h \
+		..\MainMenu\Box2D\Collision\Shapes\b2EdgeShape.h \
+		..\MainMenu\Box2D\Collision\Shapes\b2PolygonShape.h \
+		..\MainMenu\Box2D\Collision\Shapes\b2Shape.h \
+		..\MainMenu\Box2D\Collision\b2BroadPhase.h \
+		..\MainMenu\Box2D\Collision\b2Collision.h \
+		..\MainMenu\Box2D\Collision\b2Distance.h \
+		..\MainMenu\Box2D\Collision\b2DynamicTree.h \
+		..\MainMenu\Box2D\Collision\b2TimeOfImpact.h \
+		..\MainMenu\Box2D\Common\b2BlockAllocator.h \
+		..\MainMenu\Box2D\Common\b2Draw.h \
+		..\MainMenu\Box2D\Common\b2GrowableStack.h \
+		..\MainMenu\Box2D\Common\b2Math.h \
+		..\MainMenu\Box2D\Common\b2Settings.h \
+		..\MainMenu\Box2D\Common\b2StackAllocator.h \
+		..\MainMenu\Box2D\Common\b2Timer.h \
+		..\MainMenu\Box2D\Dynamics\Contacts\b2ChainAndCircleContact.h \
+		..\MainMenu\Box2D\Dynamics\Contacts\b2ChainAndPolygonContact.h \
+		..\MainMenu\Box2D\Dynamics\Contacts\b2CircleContact.h \
+		..\MainMenu\Box2D\Dynamics\Contacts\b2Contact.h \
+		..\MainMenu\Box2D\Dynamics\Contacts\b2ContactSolver.h \
+		..\MainMenu\Box2D\Dynamics\Contacts\b2EdgeAndCircleContact.h \
+		..\MainMenu\Box2D\Dynamics\Contacts\b2EdgeAndPolygonContact.h \
+		..\MainMenu\Box2D\Dynamics\Contacts\b2PolygonAndCircleContact.h \
+		..\MainMenu\Box2D\Dynamics\Contacts\b2PolygonContact.h \
+		..\MainMenu\Box2D\Dynamics\Joints\b2DistanceJoint.h \
+		..\MainMenu\Box2D\Dynamics\Joints\b2FrictionJoint.h \
+		..\MainMenu\Box2D\Dynamics\Joints\b2GearJoint.h \
+		..\MainMenu\Box2D\Dynamics\Joints\b2Joint.h \
+		..\MainMenu\Box2D\Dynamics\Joints\b2MotorJoint.h \
+		..\MainMenu\Box2D\Dynamics\Joints\b2MouseJoint.h \
+		..\MainMenu\Box2D\Dynamics\Joints\b2PrismaticJoint.h \
+		..\MainMenu\Box2D\Dynamics\Joints\b2PulleyJoint.h \
+		..\MainMenu\Box2D\Dynamics\Joints\b2RevoluteJoint.h \
+		..\MainMenu\Box2D\Dynamics\Joints\b2RopeJoint.h \
+		..\MainMenu\Box2D\Dynamics\Joints\b2WeldJoint.h \
+		..\MainMenu\Box2D\Dynamics\Joints\b2WheelJoint.h \
+		..\MainMenu\Box2D\Dynamics\b2Body.h \
+		..\MainMenu\Box2D\Dynamics\b2ContactManager.h \
+		..\MainMenu\Box2D\Dynamics\b2Fixture.h \
+		..\MainMenu\Box2D\Dynamics\b2Island.h \
+		..\MainMenu\Box2D\Dynamics\b2TimeStep.h \
+		..\MainMenu\Box2D\Dynamics\b2World.h \
+		..\MainMenu\Box2D\Dynamics\b2WorldCallbacks.h \
+		..\MainMenu\Box2D\Rope\b2Rope.h \
+		..\MainMenu\Box2D\Box2D.h ..\MainMenu\main.cpp \
 		..\MainMenu\mainwindow.cpp \
 		..\MainMenu\levelselectwindow.cpp \
-		..\MainMenu\sfmlcanvas.cpp
+		..\MainMenu\sfmlcanvas.cpp \
+		..\MainMenu\Box2D\Collision\Shapes\b2ChainShape.cpp \
+		..\MainMenu\Box2D\Collision\Shapes\b2CircleShape.cpp \
+		..\MainMenu\Box2D\Collision\Shapes\b2EdgeShape.cpp \
+		..\MainMenu\Box2D\Collision\Shapes\b2PolygonShape.cpp \
+		..\MainMenu\Box2D\Collision\b2BroadPhase.cpp \
+		..\MainMenu\Box2D\Collision\b2CollideCircle.cpp \
+		..\MainMenu\Box2D\Collision\b2CollideEdge.cpp \
+		..\MainMenu\Box2D\Collision\b2CollidePolygon.cpp \
+		..\MainMenu\Box2D\Collision\b2Collision.cpp \
+		..\MainMenu\Box2D\Collision\b2Distance.cpp \
+		..\MainMenu\Box2D\Collision\b2DynamicTree.cpp \
+		..\MainMenu\Box2D\Collision\b2TimeOfImpact.cpp \
+		..\MainMenu\Box2D\Common\b2BlockAllocator.cpp \
+		..\MainMenu\Box2D\Common\b2Draw.cpp \
+		..\MainMenu\Box2D\Common\b2Math.cpp \
+		..\MainMenu\Box2D\Common\b2Settings.cpp \
+		..\MainMenu\Box2D\Common\b2StackAllocator.cpp \
+		..\MainMenu\Box2D\Common\b2Timer.cpp \
+		..\MainMenu\Box2D\Dynamics\Contacts\b2ChainAndCircleContact.cpp \
+		..\MainMenu\Box2D\Dynamics\Contacts\b2ChainAndPolygonContact.cpp \
+		..\MainMenu\Box2D\Dynamics\Contacts\b2CircleContact.cpp \
+		..\MainMenu\Box2D\Dynamics\Contacts\b2Contact.cpp \
+		..\MainMenu\Box2D\Dynamics\Contacts\b2ContactSolver.cpp \
+		..\MainMenu\Box2D\Dynamics\Contacts\b2EdgeAndCircleContact.cpp \
+		..\MainMenu\Box2D\Dynamics\Contacts\b2EdgeAndPolygonContact.cpp \
+		..\MainMenu\Box2D\Dynamics\Contacts\b2PolygonAndCircleContact.cpp \
+		..\MainMenu\Box2D\Dynamics\Contacts\b2PolygonContact.cpp \
+		..\MainMenu\Box2D\Dynamics\Joints\b2DistanceJoint.cpp \
+		..\MainMenu\Box2D\Dynamics\Joints\b2FrictionJoint.cpp \
+		..\MainMenu\Box2D\Dynamics\Joints\b2GearJoint.cpp \
+		..\MainMenu\Box2D\Dynamics\Joints\b2Joint.cpp \
+		..\MainMenu\Box2D\Dynamics\Joints\b2MotorJoint.cpp \
+		..\MainMenu\Box2D\Dynamics\Joints\b2MouseJoint.cpp \
+		..\MainMenu\Box2D\Dynamics\Joints\b2PrismaticJoint.cpp \
+		..\MainMenu\Box2D\Dynamics\Joints\b2PulleyJoint.cpp \
+		..\MainMenu\Box2D\Dynamics\Joints\b2RevoluteJoint.cpp \
+		..\MainMenu\Box2D\Dynamics\Joints\b2RopeJoint.cpp \
+		..\MainMenu\Box2D\Dynamics\Joints\b2WeldJoint.cpp \
+		..\MainMenu\Box2D\Dynamics\Joints\b2WheelJoint.cpp \
+		..\MainMenu\Box2D\Dynamics\b2Body.cpp \
+		..\MainMenu\Box2D\Dynamics\b2ContactManager.cpp \
+		..\MainMenu\Box2D\Dynamics\b2Fixture.cpp \
+		..\MainMenu\Box2D\Dynamics\b2Island.cpp \
+		..\MainMenu\Box2D\Dynamics\b2World.cpp \
+		..\MainMenu\Box2D\Dynamics\b2WorldCallbacks.cpp \
+		..\MainMenu\Box2D\Rope\b2Rope.cpp
 QMAKE_TARGET  = MainMenu
 DESTDIR        = debug\ #avoid trailing-slash linebreak
 TARGET         = MainMenu.exe
@@ -71,6 +285,46 @@ DESTDIR_TARGET = debug\MainMenu.exe
 ####### Implicit rules
 
 .SUFFIXES: .c .cpp .cc .cxx
+
+{..\MainMenu\Box2D\Collision}.cpp{debug\}.obj::
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -Fodebug\ @<<
+	$<
+<<
+
+{..\MainMenu\Box2D\Collision}.cc{debug\}.obj::
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -Fodebug\ @<<
+	$<
+<<
+
+{..\MainMenu\Box2D\Collision}.cxx{debug\}.obj::
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -Fodebug\ @<<
+	$<
+<<
+
+{..\MainMenu\Box2D\Collision}.c{debug\}.obj::
+	$(CC) -c $(CFLAGS) $(INCPATH) -Fodebug\ @<<
+	$<
+<<
+
+{..\MainMenu\Box2D\Dynamics\Joints}.cpp{debug\}.obj::
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -Fodebug\ @<<
+	$<
+<<
+
+{..\MainMenu\Box2D\Dynamics\Joints}.cc{debug\}.obj::
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -Fodebug\ @<<
+	$<
+<<
+
+{..\MainMenu\Box2D\Dynamics\Joints}.cxx{debug\}.obj::
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -Fodebug\ @<<
+	$<
+<<
+
+{..\MainMenu\Box2D\Dynamics\Joints}.c{debug\}.obj::
+	$(CC) -c $(CFLAGS) $(INCPATH) -Fodebug\ @<<
+	$<
+<<
 
 {debug}.cpp{debug\}.obj::
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -Fodebug\ @<<
@@ -88,6 +342,86 @@ DESTDIR_TARGET = debug\MainMenu.exe
 <<
 
 {debug}.c{debug\}.obj::
+	$(CC) -c $(CFLAGS) $(INCPATH) -Fodebug\ @<<
+	$<
+<<
+
+{..\MainMenu\Box2D\Dynamics}.cpp{debug\}.obj::
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -Fodebug\ @<<
+	$<
+<<
+
+{..\MainMenu\Box2D\Dynamics}.cc{debug\}.obj::
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -Fodebug\ @<<
+	$<
+<<
+
+{..\MainMenu\Box2D\Dynamics}.cxx{debug\}.obj::
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -Fodebug\ @<<
+	$<
+<<
+
+{..\MainMenu\Box2D\Dynamics}.c{debug\}.obj::
+	$(CC) -c $(CFLAGS) $(INCPATH) -Fodebug\ @<<
+	$<
+<<
+
+{..\MainMenu\Box2D\Dynamics\Contacts}.cpp{debug\}.obj::
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -Fodebug\ @<<
+	$<
+<<
+
+{..\MainMenu\Box2D\Dynamics\Contacts}.cc{debug\}.obj::
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -Fodebug\ @<<
+	$<
+<<
+
+{..\MainMenu\Box2D\Dynamics\Contacts}.cxx{debug\}.obj::
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -Fodebug\ @<<
+	$<
+<<
+
+{..\MainMenu\Box2D\Dynamics\Contacts}.c{debug\}.obj::
+	$(CC) -c $(CFLAGS) $(INCPATH) -Fodebug\ @<<
+	$<
+<<
+
+{..\MainMenu\Box2D\Collision\Shapes}.cpp{debug\}.obj::
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -Fodebug\ @<<
+	$<
+<<
+
+{..\MainMenu\Box2D\Collision\Shapes}.cc{debug\}.obj::
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -Fodebug\ @<<
+	$<
+<<
+
+{..\MainMenu\Box2D\Collision\Shapes}.cxx{debug\}.obj::
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -Fodebug\ @<<
+	$<
+<<
+
+{..\MainMenu\Box2D\Collision\Shapes}.c{debug\}.obj::
+	$(CC) -c $(CFLAGS) $(INCPATH) -Fodebug\ @<<
+	$<
+<<
+
+{..\MainMenu\Box2D\Common}.cpp{debug\}.obj::
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -Fodebug\ @<<
+	$<
+<<
+
+{..\MainMenu\Box2D\Common}.cc{debug\}.obj::
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -Fodebug\ @<<
+	$<
+<<
+
+{..\MainMenu\Box2D\Common}.cxx{debug\}.obj::
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -Fodebug\ @<<
+	$<
+<<
+
+{..\MainMenu\Box2D\Common}.c{debug\}.obj::
 	$(CC) -c $(CFLAGS) $(INCPATH) -Fodebug\ @<<
 	$<
 <<
@@ -132,6 +466,26 @@ DESTDIR_TARGET = debug\MainMenu.exe
 	$<
 <<
 
+{..\MainMenu\Box2D\Rope}.cpp{debug\}.obj::
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -Fodebug\ @<<
+	$<
+<<
+
+{..\MainMenu\Box2D\Rope}.cc{debug\}.obj::
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -Fodebug\ @<<
+	$<
+<<
+
+{..\MainMenu\Box2D\Rope}.cxx{debug\}.obj::
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -Fodebug\ @<<
+	$<
+<<
+
+{..\MainMenu\Box2D\Rope}.c{debug\}.obj::
+	$(CC) -c $(CFLAGS) $(INCPATH) -Fodebug\ @<<
+	$<
+<<
+
 ####### Build rules
 
 first: all
@@ -151,7 +505,7 @@ dist:
 	$(ZIP) MainMenu.zip $(SOURCES) $(DIST) ..\MainMenu\MainMenu.pro D:\Qt\5.5\msvc2013_64\mkspecs\features\spec_pre.prf D:\Qt\5.5\msvc2013_64\mkspecs\common\msvc-desktop.conf D:\Qt\5.5\msvc2013_64\mkspecs\qconfig.pri D:\Qt\5.5\msvc2013_64\mkspecs\modules\qt_lib_3dcollision.pri D:\Qt\5.5\msvc2013_64\mkspecs\modules\qt_lib_3dcollision_private.pri D:\Qt\5.5\msvc2013_64\mkspecs\modules\qt_lib_3dcore.pri D:\Qt\5.5\msvc2013_64\mkspecs\modules\qt_lib_3dcore_private.pri D:\Qt\5.5\msvc2013_64\mkspecs\modules\qt_lib_3dinput.pri D:\Qt\5.5\msvc2013_64\mkspecs\modules\qt_lib_3dinput_private.pri D:\Qt\5.5\msvc2013_64\mkspecs\modules\qt_lib_3dlogic.pri D:\Qt\5.5\msvc2013_64\mkspecs\modules\qt_lib_3dlogic_private.pri D:\Qt\5.5\msvc2013_64\mkspecs\modules\qt_lib_3dquick.pri D:\Qt\5.5\msvc2013_64\mkspecs\modules\qt_lib_3dquick_private.pri D:\Qt\5.5\msvc2013_64\mkspecs\modules\qt_lib_3dquickrenderer.pri D:\Qt\5.5\msvc2013_64\mkspecs\modules\qt_lib_3dquickrenderer_private.pri D:\Qt\5.5\msvc2013_64\mkspecs\modules\qt_lib_3drenderer.pri D:\Qt\5.5\msvc2013_64\mkspecs\modules\qt_lib_3drenderer_private.pri D:\Qt\5.5\msvc2013_64\mkspecs\modules\qt_lib_axbase.pri D:\Qt\5.5\msvc2013_64\mkspecs\modules\qt_lib_axbase_private.pri D:\Qt\5.5\msvc2013_64\mkspecs\modules\qt_lib_axcontainer.pri D:\Qt\5.5\msvc2013_64\mkspecs\modules\qt_lib_axcontainer_private.pri D:\Qt\5.5\msvc2013_64\mkspecs\modules\qt_lib_axserver.pri D:\Qt\5.5\msvc2013_64\mkspecs\modules\qt_lib_axserver_private.pri D:\Qt\5.5\msvc2013_64\mkspecs\modules\qt_lib_bluetooth.pri D:\Qt\5.5\msvc2013_64\mkspecs\modules\qt_lib_bluetooth_private.pri D:\Qt\5.5\msvc2013_64\mkspecs\modules\qt_lib_bootstrap_private.pri D:\Qt\5.5\msvc2013_64\mkspecs\modules\qt_lib_clucene_private.pri D:\Qt\5.5\msvc2013_64\mkspecs\modules\qt_lib_concurrent.pri D:\Qt\5.5\msvc2013_64\mkspecs\modules\qt_lib_concurrent_private.pri D:\Qt\5.5\msvc2013_64\mkspecs\modules\qt_lib_core.pri D:\Qt\5.5\msvc2013_64\mkspecs\modules\qt_lib_core_private.pri D:\Qt\5.5\msvc2013_64\mkspecs\modules\qt_lib_dbus.pri D:\Qt\5.5\msvc2013_64\mkspecs\modules\qt_lib_dbus_private.pri D:\Qt\5.5\msvc2013_64\mkspecs\modules\qt_lib_declarative.pri D:\Qt\5.5\msvc2013_64\mkspecs\modules\qt_lib_declarative_private.pri D:\Qt\5.5\msvc2013_64\mkspecs\modules\qt_lib_designer.pri D:\Qt\5.5\msvc2013_64\mkspecs\modules\qt_lib_designer_private.pri D:\Qt\5.5\msvc2013_64\mkspecs\modules\qt_lib_designercomponents_private.pri D:\Qt\5.5\msvc2013_64\mkspecs\modules\qt_lib_enginio.pri D:\Qt\5.5\msvc2013_64\mkspecs\modules\qt_lib_enginio_private.pri D:\Qt\5.5\msvc2013_64\mkspecs\modules\qt_lib_gui.pri D:\Qt\5.5\msvc2013_64\mkspecs\modules\qt_lib_gui_private.pri D:\Qt\5.5\msvc2013_64\mkspecs\modules\qt_lib_help.pri D:\Qt\5.5\msvc2013_64\mkspecs\modules\qt_lib_help_private.pri D:\Qt\5.5\msvc2013_64\mkspecs\modules\qt_lib_location.pri D:\Qt\5.5\msvc2013_64\mkspecs\modules\qt_lib_location_private.pri D:\Qt\5.5\msvc2013_64\mkspecs\modules\qt_lib_multimedia.pri D:\Qt\5.5\msvc2013_64\mkspecs\modules\qt_lib_multimedia_private.pri D:\Qt\5.5\msvc2013_64\mkspecs\modules\qt_lib_multimediawidgets.pri D:\Qt\5.5\msvc2013_64\mkspecs\modules\qt_lib_multimediawidgets_private.pri D:\Qt\5.5\msvc2013_64\mkspecs\modules\qt_lib_network.pri D:\Qt\5.5\msvc2013_64\mkspecs\modules\qt_lib_network_private.pri D:\Qt\5.5\msvc2013_64\mkspecs\modules\qt_lib_nfc.pri D:\Qt\5.5\msvc2013_64\mkspecs\modules\qt_lib_nfc_private.pri D:\Qt\5.5\msvc2013_64\mkspecs\modules\qt_lib_opengl.pri D:\Qt\5.5\msvc2013_64\mkspecs\modules\qt_lib_opengl_private.pri D:\Qt\5.5\msvc2013_64\mkspecs\modules\qt_lib_openglextensions.pri D:\Qt\5.5\msvc2013_64\mkspecs\modules\qt_lib_openglextensions_private.pri D:\Qt\5.5\msvc2013_64\mkspecs\modules\qt_lib_platformsupport_private.pri D:\Qt\5.5\msvc2013_64\mkspecs\modules\qt_lib_positioning.pri D:\Qt\5.5\msvc2013_64\mkspecs\modules\qt_lib_positioning_private.pri D:\Qt\5.5\msvc2013_64\mkspecs\modules\qt_lib_printsupport.pri D:\Qt\5.5\msvc2013_64\mkspecs\modules\qt_lib_printsupport_private.pri D:\Qt\5.5\msvc2013_64\mkspecs\modules\qt_lib_qml.pri D:\Qt\5.5\msvc2013_64\mkspecs\modules\qt_lib_qml_private.pri D:\Qt\5.5\msvc2013_64\mkspecs\modules\qt_lib_qmldevtools_private.pri D:\Qt\5.5\msvc2013_64\mkspecs\modules\qt_lib_qmltest.pri D:\Qt\5.5\msvc2013_64\mkspecs\modules\qt_lib_qmltest_private.pri D:\Qt\5.5\msvc2013_64\mkspecs\modules\qt_lib_qtmultimediaquicktools_private.pri D:\Qt\5.5\msvc2013_64\mkspecs\modules\qt_lib_quick.pri D:\Qt\5.5\msvc2013_64\mkspecs\modules\qt_lib_quick_private.pri D:\Qt\5.5\msvc2013_64\mkspecs\modules\qt_lib_quickparticles_private.pri D:\Qt\5.5\msvc2013_64\mkspecs\modules\qt_lib_quickwidgets.pri D:\Qt\5.5\msvc2013_64\mkspecs\modules\qt_lib_quickwidgets_private.pri D:\Qt\5.5\msvc2013_64\mkspecs\modules\qt_lib_script.pri D:\Qt\5.5\msvc2013_64\mkspecs\modules\qt_lib_script_private.pri D:\Qt\5.5\msvc2013_64\mkspecs\modules\qt_lib_scripttools.pri D:\Qt\5.5\msvc2013_64\mkspecs\modules\qt_lib_scripttools_private.pri D:\Qt\5.5\msvc2013_64\mkspecs\modules\qt_lib_sensors.pri D:\Qt\5.5\msvc2013_64\mkspecs\modules\qt_lib_sensors_private.pri D:\Qt\5.5\msvc2013_64\mkspecs\modules\qt_lib_serialport.pri D:\Qt\5.5\msvc2013_64\mkspecs\modules\qt_lib_serialport_private.pri D:\Qt\5.5\msvc2013_64\mkspecs\modules\qt_lib_sql.pri D:\Qt\5.5\msvc2013_64\mkspecs\modules\qt_lib_sql_private.pri D:\Qt\5.5\msvc2013_64\mkspecs\modules\qt_lib_svg.pri D:\Qt\5.5\msvc2013_64\mkspecs\modules\qt_lib_svg_private.pri D:\Qt\5.5\msvc2013_64\mkspecs\modules\qt_lib_testlib.pri D:\Qt\5.5\msvc2013_64\mkspecs\modules\qt_lib_testlib_private.pri D:\Qt\5.5\msvc2013_64\mkspecs\modules\qt_lib_uiplugin.pri D:\Qt\5.5\msvc2013_64\mkspecs\modules\qt_lib_uitools.pri D:\Qt\5.5\msvc2013_64\mkspecs\modules\qt_lib_uitools_private.pri D:\Qt\5.5\msvc2013_64\mkspecs\modules\qt_lib_webchannel.pri D:\Qt\5.5\msvc2013_64\mkspecs\modules\qt_lib_webchannel_private.pri D:\Qt\5.5\msvc2013_64\mkspecs\modules\qt_lib_webengine.pri D:\Qt\5.5\msvc2013_64\mkspecs\modules\qt_lib_webengine_private.pri D:\Qt\5.5\msvc2013_64\mkspecs\modules\qt_lib_webenginecore.pri D:\Qt\5.5\msvc2013_64\mkspecs\modules\qt_lib_webenginecore_private.pri D:\Qt\5.5\msvc2013_64\mkspecs\modules\qt_lib_webenginewidgets.pri D:\Qt\5.5\msvc2013_64\mkspecs\modules\qt_lib_webenginewidgets_private.pri D:\Qt\5.5\msvc2013_64\mkspecs\modules\qt_lib_webkit.pri D:\Qt\5.5\msvc2013_64\mkspecs\modules\qt_lib_webkit_private.pri D:\Qt\5.5\msvc2013_64\mkspecs\modules\qt_lib_webkitwidgets.pri D:\Qt\5.5\msvc2013_64\mkspecs\modules\qt_lib_webkitwidgets_private.pri D:\Qt\5.5\msvc2013_64\mkspecs\modules\qt_lib_websockets.pri D:\Qt\5.5\msvc2013_64\mkspecs\modules\qt_lib_websockets_private.pri D:\Qt\5.5\msvc2013_64\mkspecs\modules\qt_lib_widgets.pri D:\Qt\5.5\msvc2013_64\mkspecs\modules\qt_lib_widgets_private.pri D:\Qt\5.5\msvc2013_64\mkspecs\modules\qt_lib_winextras.pri D:\Qt\5.5\msvc2013_64\mkspecs\modules\qt_lib_winextras_private.pri D:\Qt\5.5\msvc2013_64\mkspecs\modules\qt_lib_xml.pri D:\Qt\5.5\msvc2013_64\mkspecs\modules\qt_lib_xml_private.pri D:\Qt\5.5\msvc2013_64\mkspecs\modules\qt_lib_xmlpatterns.pri D:\Qt\5.5\msvc2013_64\mkspecs\modules\qt_lib_xmlpatterns_private.pri D:\Qt\5.5\msvc2013_64\mkspecs\features\qt_functions.prf D:\Qt\5.5\msvc2013_64\mkspecs\features\qt_config.prf D:\Qt\5.5\msvc2013_64\mkspecs\features\win32\qt_config.prf D:\Qt\5.5\msvc2013_64\mkspecs\win32-msvc2013\qmake.conf D:\Qt\5.5\msvc2013_64\mkspecs\features\spec_post.prf D:\Qt\5.5\msvc2013_64\mkspecs\features\exclusive_builds.prf D:\Qt\5.5\msvc2013_64\mkspecs\features\default_pre.prf D:\Qt\5.5\msvc2013_64\mkspecs\features\win32\default_pre.prf D:\Qt\5.5\msvc2013_64\mkspecs\features\resolve_config.prf D:\Qt\5.5\msvc2013_64\mkspecs\features\exclusive_builds_post.prf D:\Qt\5.5\msvc2013_64\mkspecs\features\default_post.prf D:\Qt\5.5\msvc2013_64\mkspecs\features\build_pass.prf D:\Qt\5.5\msvc2013_64\mkspecs\features\win32\rtti.prf D:\Qt\5.5\msvc2013_64\mkspecs\features\c++11.prf D:\Qt\5.5\msvc2013_64\mkspecs\features\precompile_header.prf D:\Qt\5.5\msvc2013_64\mkspecs\features\warn_on.prf D:\Qt\5.5\msvc2013_64\mkspecs\features\qt.prf D:\Qt\5.5\msvc2013_64\mkspecs\features\resources.prf D:\Qt\5.5\msvc2013_64\mkspecs\features\moc.prf D:\Qt\5.5\msvc2013_64\mkspecs\features\win32\opengl.prf D:\Qt\5.5\msvc2013_64\mkspecs\features\uic.prf D:\Qt\5.5\msvc2013_64\mkspecs\features\win32\windows.prf D:\Qt\5.5\msvc2013_64\mkspecs\features\testcase_targets.prf D:\Qt\5.5\msvc2013_64\mkspecs\features\exceptions.prf D:\Qt\5.5\msvc2013_64\mkspecs\features\yacc.prf D:\Qt\5.5\msvc2013_64\mkspecs\features\lex.prf ..\MainMenu\MainMenu.pro ..\MainMenu\images.qrc D:/Qt/5.5/msvc2013_64/lib/qtmaind.prl D:/Qt/5.5/msvc2013_64/lib/Qt5Widgetsd.prl D:/Qt/5.5/msvc2013_64/lib/Qt5Guid.prl D:/Qt/5.5/msvc2013_64/lib/Qt5Cored.prl  NO_PCH_SOURCES RESOURCES HEADERS SOURCES OBJECTIVE_SOURCES FORMS YACCSOURCES YACCSOURCES LEXSOURCES 
 
 clean: compiler_clean 
-	-$(DEL_FILE) debug\main.obj debug\mainwindow.obj debug\levelselectwindow.obj debug\sfmlcanvas.obj debug\qrc_images.obj debug\moc_mainwindow.obj debug\moc_levelselectwindow.obj
+	-$(DEL_FILE) debug\main.obj debug\mainwindow.obj debug\levelselectwindow.obj debug\sfmlcanvas.obj debug\b2ChainShape.obj debug\b2CircleShape.obj debug\b2EdgeShape.obj debug\b2PolygonShape.obj debug\b2BroadPhase.obj debug\b2CollideCircle.obj debug\b2CollideEdge.obj debug\b2CollidePolygon.obj debug\b2Collision.obj debug\b2Distance.obj debug\b2DynamicTree.obj debug\b2TimeOfImpact.obj debug\b2BlockAllocator.obj debug\b2Draw.obj debug\b2Math.obj debug\b2Settings.obj debug\b2StackAllocator.obj debug\b2Timer.obj debug\b2ChainAndCircleContact.obj debug\b2ChainAndPolygonContact.obj debug\b2CircleContact.obj debug\b2Contact.obj debug\b2ContactSolver.obj debug\b2EdgeAndCircleContact.obj debug\b2EdgeAndPolygonContact.obj debug\b2PolygonAndCircleContact.obj debug\b2PolygonContact.obj debug\b2DistanceJoint.obj debug\b2FrictionJoint.obj debug\b2GearJoint.obj debug\b2Joint.obj debug\b2MotorJoint.obj debug\b2MouseJoint.obj debug\b2PrismaticJoint.obj debug\b2PulleyJoint.obj debug\b2RevoluteJoint.obj debug\b2RopeJoint.obj debug\b2WeldJoint.obj debug\b2WheelJoint.obj debug\b2Body.obj debug\b2ContactManager.obj debug\b2Fixture.obj debug\b2Island.obj debug\b2World.obj debug\b2WorldCallbacks.obj debug\b2Rope.obj debug\qrc_images.obj debug\moc_mainwindow.obj debug\moc_levelselectwindow.obj
 	-$(DEL_FILE) debug\MainMenu.exp debug\MainMenu.ilk debug\MainMenu.idb
 
 distclean: clean 
@@ -979,30 +1333,79 @@ debug\mainwindow.obj: ..\MainMenu\mainwindow.cpp ../MainMenu/mainwindow.h \
 		D:\Qt\5.5\msvc2013_64\include\QtCore\qtimer.h \
 		D:\Qt\5.5\msvc2013_64\include\QtCore\qbasictimer.h \
 		ui_mainwindow.h \
+		D:\Qt\5.5\msvc2013_64\include\QtCore\QVariant \
+		D:\Qt\5.5\msvc2013_64\include\QtWidgets\QAction \
+		D:\Qt\5.5\msvc2013_64\include\QtWidgets\qaction.h \
+		D:\Qt\5.5\msvc2013_64\include\QtWidgets\qactiongroup.h \
+		D:\Qt\5.5\msvc2013_64\include\QtWidgets\QApplication \
+		D:\Qt\5.5\msvc2013_64\include\QtWidgets\qapplication.h \
+		D:\Qt\5.5\msvc2013_64\include\QtCore\qcoreapplication.h \
+		D:\Qt\5.5\msvc2013_64\include\QtCore\qeventloop.h \
+		D:\Qt\5.5\msvc2013_64\include\QtWidgets\qdesktopwidget.h \
+		D:\Qt\5.5\msvc2013_64\include\QtGui\qguiapplication.h \
+		D:\Qt\5.5\msvc2013_64\include\QtGui\qinputmethod.h \
+		D:\Qt\5.5\msvc2013_64\include\QtWidgets\QButtonGroup \
+		D:\Qt\5.5\msvc2013_64\include\QtWidgets\qbuttongroup.h \
+		D:\Qt\5.5\msvc2013_64\include\QtWidgets\QHeaderView \
+		D:\Qt\5.5\msvc2013_64\include\QtWidgets\qheaderview.h \
+		D:\Qt\5.5\msvc2013_64\include\QtWidgets\qabstractitemview.h \
+		D:\Qt\5.5\msvc2013_64\include\QtWidgets\qabstractscrollarea.h \
+		D:\Qt\5.5\msvc2013_64\include\QtWidgets\qframe.h \
+		D:\Qt\5.5\msvc2013_64\include\QtCore\qabstractitemmodel.h \
+		D:\Qt\5.5\msvc2013_64\include\QtCore\qitemselectionmodel.h \
+		D:\Qt\5.5\msvc2013_64\include\QtWidgets\qabstractitemdelegate.h \
+		D:\Qt\5.5\msvc2013_64\include\QtWidgets\qstyleoption.h \
+		D:\Qt\5.5\msvc2013_64\include\QtWidgets\qabstractspinbox.h \
+		D:\Qt\5.5\msvc2013_64\include\QtGui\qvalidator.h \
+		D:\Qt\5.5\msvc2013_64\include\QtCore\qregularexpression.h \
+		D:\Qt\5.5\msvc2013_64\include\QtWidgets\qslider.h \
+		D:\Qt\5.5\msvc2013_64\include\QtWidgets\qabstractslider.h \
+		D:\Qt\5.5\msvc2013_64\include\QtWidgets\qstyle.h \
+		D:\Qt\5.5\msvc2013_64\include\QtWidgets\qtabbar.h \
+		D:\Qt\5.5\msvc2013_64\include\QtWidgets\qrubberband.h \
+		D:\Qt\5.5\msvc2013_64\include\QtWidgets\QLabel \
+		D:\Qt\5.5\msvc2013_64\include\QtWidgets\qlabel.h \
+		D:\Qt\5.5\msvc2013_64\include\QtWidgets\QMenuBar \
+		D:\Qt\5.5\msvc2013_64\include\QtWidgets\qmenubar.h \
+		D:\Qt\5.5\msvc2013_64\include\QtWidgets\qmenu.h \
+		D:\Qt\5.5\msvc2013_64\include\QtWidgets\QPushButton \
+		D:\Qt\5.5\msvc2013_64\include\QtWidgets\qpushbutton.h \
+		D:\Qt\5.5\msvc2013_64\include\QtWidgets\qabstractbutton.h \
+		D:\Qt\5.5\msvc2013_64\include\QtWidgets\QStatusBar \
+		D:\Qt\5.5\msvc2013_64\include\QtWidgets\qstatusbar.h \
+		D:\Qt\5.5\msvc2013_64\include\QtWidgets\QTextEdit \
+		D:\Qt\5.5\msvc2013_64\include\QtWidgets\qtextedit.h \
+		D:\Qt\5.5\msvc2013_64\include\QtGui\qtextdocument.h \
+		D:\Qt\5.5\msvc2013_64\include\QtGui\qtextoption.h \
+		D:\Qt\5.5\msvc2013_64\include\QtGui\qtextcursor.h \
+		D:\Qt\5.5\msvc2013_64\include\QtGui\qtextformat.h \
+		D:\Qt\5.5\msvc2013_64\include\QtGui\qpen.h \
+		D:\Qt\5.5\msvc2013_64\include\QtWidgets\QToolBar \
+		D:\Qt\5.5\msvc2013_64\include\QtWidgets\qtoolbar.h \
 		D:\Qt\5.5\msvc2013_64\include\QtWidgets\QMessageBox \
 		D:\Qt\5.5\msvc2013_64\include\QtWidgets\qmessagebox.h \
 		D:\Qt\5.5\msvc2013_64\include\QtWidgets\qdialog.h \
-		..\MainMenu\include\rapidjson\document.h \
-		..\MainMenu\include\rapidjson\reader.h \
-		..\MainMenu\include\rapidjson\rapidjson.h \
-		..\MainMenu\include\rapidjson\msinttypes\stdint.h \
-		..\MainMenu\include\rapidjson\msinttypes\inttypes.h \
-		..\MainMenu\include\rapidjson\allocators.h \
-		..\MainMenu\include\rapidjson\encodings.h \
-		..\MainMenu\include\rapidjson\internal\meta.h \
-		..\MainMenu\include\rapidjson\internal\stack.h \
-		..\MainMenu\include\rapidjson\internal\swap.h \
-		..\MainMenu\include\rapidjson\internal\strtod.h \
-		..\MainMenu\include\rapidjson\internal\ieee754.h \
-		..\MainMenu\include\rapidjson\internal\biginteger.h \
-		..\MainMenu\include\rapidjson\internal\diyfp.h \
-		..\MainMenu\include\rapidjson\internal\pow10.h \
-		..\MainMenu\include\rapidjson\error\error.h \
-		..\MainMenu\include\rapidjson\internal\strfunc.h \
-		..\MainMenu\include\rapidjson\stringbuffer.h \
-		..\MainMenu\include\rapidjson\writer.h \
-		..\MainMenu\include\rapidjson\internal\dtoa.h \
-		..\MainMenu\include\rapidjson\internal\itoa.h \
+		../MainMenu/include/rapidjson/document.h \
+		../MainMenu/include/rapidjson/reader.h \
+		../MainMenu/include/rapidjson/rapidjson.h \
+		../MainMenu/include/rapidjson/msinttypes/stdint.h \
+		../MainMenu/include/rapidjson/msinttypes/inttypes.h \
+		../MainMenu/include/rapidjson/allocators.h \
+		../MainMenu/include/rapidjson/encodings.h \
+		../MainMenu/include/rapidjson/internal/meta.h \
+		../MainMenu/include/rapidjson/internal/stack.h \
+		../MainMenu/include/rapidjson/internal/swap.h \
+		../MainMenu/include/rapidjson/internal/strtod.h \
+		../MainMenu/include/rapidjson/internal/ieee754.h \
+		../MainMenu/include/rapidjson/internal/biginteger.h \
+		../MainMenu/include/rapidjson/internal/diyfp.h \
+		../MainMenu/include/rapidjson/internal/pow10.h \
+		../MainMenu/include/rapidjson/error/error.h \
+		../MainMenu/include/rapidjson/internal/strfunc.h \
+		../MainMenu/include/rapidjson/stringbuffer.h \
+		../MainMenu/include/rapidjson/writer.h \
+		../MainMenu/include/rapidjson/internal/dtoa.h \
+		../MainMenu/include/rapidjson/internal/itoa.h \
 		D:\Qt\5.5\msvc2013_64\include\QtCore\QDebug
 
 debug\levelselectwindow.obj: ..\MainMenu\levelselectwindow.cpp ../MainMenu/levelselectwindow.h \
@@ -1183,7 +1586,44 @@ debug\levelselectwindow.obj: ..\MainMenu\levelselectwindow.cpp ../MainMenu/level
 		D:\Qt\5.5\msvc2013_64\include\QtCore\QTimer \
 		D:\Qt\5.5\msvc2013_64\include\QtCore\qtimer.h \
 		D:\Qt\5.5\msvc2013_64\include\QtCore\qbasictimer.h \
-		ui_levelselectwindow.h
+		ui_levelselectwindow.h \
+		D:\Qt\5.5\msvc2013_64\include\QtCore\QVariant \
+		D:\Qt\5.5\msvc2013_64\include\QtWidgets\QAction \
+		D:\Qt\5.5\msvc2013_64\include\QtWidgets\qaction.h \
+		D:\Qt\5.5\msvc2013_64\include\QtGui\qicon.h \
+		D:\Qt\5.5\msvc2013_64\include\QtWidgets\qactiongroup.h \
+		D:\Qt\5.5\msvc2013_64\include\QtWidgets\QApplication \
+		D:\Qt\5.5\msvc2013_64\include\QtWidgets\qapplication.h \
+		D:\Qt\5.5\msvc2013_64\include\QtCore\qcoreapplication.h \
+		D:\Qt\5.5\msvc2013_64\include\QtCore\qeventloop.h \
+		D:\Qt\5.5\msvc2013_64\include\QtWidgets\qdesktopwidget.h \
+		D:\Qt\5.5\msvc2013_64\include\QtGui\qguiapplication.h \
+		D:\Qt\5.5\msvc2013_64\include\QtGui\qinputmethod.h \
+		D:\Qt\5.5\msvc2013_64\include\QtWidgets\QButtonGroup \
+		D:\Qt\5.5\msvc2013_64\include\QtWidgets\qbuttongroup.h \
+		D:\Qt\5.5\msvc2013_64\include\QtWidgets\QHeaderView \
+		D:\Qt\5.5\msvc2013_64\include\QtWidgets\qheaderview.h \
+		D:\Qt\5.5\msvc2013_64\include\QtWidgets\qabstractitemview.h \
+		D:\Qt\5.5\msvc2013_64\include\QtWidgets\qabstractscrollarea.h \
+		D:\Qt\5.5\msvc2013_64\include\QtWidgets\qframe.h \
+		D:\Qt\5.5\msvc2013_64\include\QtCore\qabstractitemmodel.h \
+		D:\Qt\5.5\msvc2013_64\include\QtCore\qitemselectionmodel.h \
+		D:\Qt\5.5\msvc2013_64\include\QtWidgets\qabstractitemdelegate.h \
+		D:\Qt\5.5\msvc2013_64\include\QtWidgets\qstyleoption.h \
+		D:\Qt\5.5\msvc2013_64\include\QtWidgets\qabstractspinbox.h \
+		D:\Qt\5.5\msvc2013_64\include\QtGui\qvalidator.h \
+		D:\Qt\5.5\msvc2013_64\include\QtCore\qregularexpression.h \
+		D:\Qt\5.5\msvc2013_64\include\QtWidgets\qslider.h \
+		D:\Qt\5.5\msvc2013_64\include\QtWidgets\qabstractslider.h \
+		D:\Qt\5.5\msvc2013_64\include\QtWidgets\qstyle.h \
+		D:\Qt\5.5\msvc2013_64\include\QtWidgets\qtabbar.h \
+		D:\Qt\5.5\msvc2013_64\include\QtWidgets\qtabwidget.h \
+		D:\Qt\5.5\msvc2013_64\include\QtWidgets\qrubberband.h \
+		D:\Qt\5.5\msvc2013_64\include\QtWidgets\QLabel \
+		D:\Qt\5.5\msvc2013_64\include\QtWidgets\qlabel.h \
+		D:\Qt\5.5\msvc2013_64\include\QtWidgets\QPushButton \
+		D:\Qt\5.5\msvc2013_64\include\QtWidgets\qpushbutton.h \
+		D:\Qt\5.5\msvc2013_64\include\QtWidgets\qabstractbutton.h
 
 debug\sfmlcanvas.obj: ..\MainMenu\sfmlcanvas.cpp ../MainMenu/sfmlcanvas.h \
 		D:\Qt\5.5\msvc2013_64\include\QtWidgets\QWidget \
@@ -1362,6 +1802,500 @@ debug\sfmlcanvas.obj: ..\MainMenu\sfmlcanvas.cpp ../MainMenu/sfmlcanvas.h \
 		D:\Qt\5.5\msvc2013_64\include\QtCore\QTimer \
 		D:\Qt\5.5\msvc2013_64\include\QtCore\qtimer.h \
 		D:\Qt\5.5\msvc2013_64\include\QtCore\qbasictimer.h
+
+debug\b2ChainShape.obj: ..\MainMenu\Box2D\Collision\Shapes\b2ChainShape.cpp ../MainMenu/Box2D/Collision/Shapes/b2ChainShape.h \
+		../MainMenu/Box2D/Collision/Shapes/b2Shape.h \
+		../MainMenu/Box2D/Common/b2BlockAllocator.h \
+		../MainMenu/Box2D/Common/b2Settings.h \
+		../MainMenu/Box2D/Common/b2Math.h \
+		../MainMenu/Box2D/Collision/b2Collision.h \
+		../MainMenu/Box2D/Collision/Shapes/b2EdgeShape.h
+
+debug\b2CircleShape.obj: ..\MainMenu\Box2D\Collision\Shapes\b2CircleShape.cpp ../MainMenu/Box2D/Collision/Shapes/b2CircleShape.h \
+		../MainMenu/Box2D/Collision/Shapes/b2Shape.h \
+		../MainMenu/Box2D/Common/b2BlockAllocator.h \
+		../MainMenu/Box2D/Common/b2Settings.h \
+		../MainMenu/Box2D/Common/b2Math.h \
+		../MainMenu/Box2D/Collision/b2Collision.h
+
+debug\b2EdgeShape.obj: ..\MainMenu\Box2D\Collision\Shapes\b2EdgeShape.cpp ../MainMenu/Box2D/Collision/Shapes/b2EdgeShape.h \
+		../MainMenu/Box2D/Collision/Shapes/b2Shape.h \
+		../MainMenu/Box2D/Common/b2BlockAllocator.h \
+		../MainMenu/Box2D/Common/b2Settings.h \
+		../MainMenu/Box2D/Common/b2Math.h \
+		../MainMenu/Box2D/Collision/b2Collision.h
+
+debug\b2PolygonShape.obj: ..\MainMenu\Box2D\Collision\Shapes\b2PolygonShape.cpp ../MainMenu/Box2D/Collision/Shapes/b2PolygonShape.h \
+		../MainMenu/Box2D/Collision/Shapes/b2Shape.h \
+		../MainMenu/Box2D/Common/b2BlockAllocator.h \
+		../MainMenu/Box2D/Common/b2Settings.h \
+		../MainMenu/Box2D/Common/b2Math.h \
+		../MainMenu/Box2D/Collision/b2Collision.h
+
+debug\b2BroadPhase.obj: ..\MainMenu\Box2D\Collision\b2BroadPhase.cpp ../MainMenu/Box2D/Collision/b2BroadPhase.h \
+		../MainMenu/Box2D/Common/b2Settings.h \
+		../MainMenu/Box2D/Collision/b2Collision.h \
+		../MainMenu/Box2D/Common/b2Math.h \
+		../MainMenu/Box2D/Collision/b2DynamicTree.h \
+		../MainMenu/Box2D/Common/b2GrowableStack.h
+
+debug\b2CollideCircle.obj: ..\MainMenu\Box2D\Collision\b2CollideCircle.cpp ../MainMenu/Box2D/Collision/b2Collision.h \
+		../MainMenu/Box2D/Common/b2Math.h \
+		../MainMenu/Box2D/Common/b2Settings.h \
+		../MainMenu/Box2D/Collision/Shapes/b2CircleShape.h \
+		../MainMenu/Box2D/Collision/Shapes/b2Shape.h \
+		../MainMenu/Box2D/Common/b2BlockAllocator.h \
+		../MainMenu/Box2D/Collision/Shapes/b2PolygonShape.h
+
+debug\b2CollideEdge.obj: ..\MainMenu\Box2D\Collision\b2CollideEdge.cpp ../MainMenu/Box2D/Collision/b2Collision.h \
+		../MainMenu/Box2D/Common/b2Math.h \
+		../MainMenu/Box2D/Common/b2Settings.h \
+		../MainMenu/Box2D/Collision/Shapes/b2CircleShape.h \
+		../MainMenu/Box2D/Collision/Shapes/b2Shape.h \
+		../MainMenu/Box2D/Common/b2BlockAllocator.h \
+		../MainMenu/Box2D/Collision/Shapes/b2EdgeShape.h \
+		../MainMenu/Box2D/Collision/Shapes/b2PolygonShape.h
+
+debug\b2CollidePolygon.obj: ..\MainMenu\Box2D\Collision\b2CollidePolygon.cpp ../MainMenu/Box2D/Collision/b2Collision.h \
+		../MainMenu/Box2D/Common/b2Math.h \
+		../MainMenu/Box2D/Common/b2Settings.h \
+		../MainMenu/Box2D/Collision/Shapes/b2PolygonShape.h \
+		../MainMenu/Box2D/Collision/Shapes/b2Shape.h \
+		../MainMenu/Box2D/Common/b2BlockAllocator.h
+
+debug\b2Collision.obj: ..\MainMenu\Box2D\Collision\b2Collision.cpp ../MainMenu/Box2D/Collision/b2Collision.h \
+		../MainMenu/Box2D/Common/b2Math.h \
+		../MainMenu/Box2D/Common/b2Settings.h \
+		../MainMenu/Box2D/Collision/b2Distance.h
+
+debug\b2Distance.obj: ..\MainMenu\Box2D\Collision\b2Distance.cpp ../MainMenu/Box2D/Collision/b2Distance.h \
+		../MainMenu/Box2D/Common/b2Math.h \
+		../MainMenu/Box2D/Common/b2Settings.h \
+		../MainMenu/Box2D/Collision/Shapes/b2CircleShape.h \
+		../MainMenu/Box2D/Collision/Shapes/b2Shape.h \
+		../MainMenu/Box2D/Common/b2BlockAllocator.h \
+		../MainMenu/Box2D/Collision/b2Collision.h \
+		../MainMenu/Box2D/Collision/Shapes/b2EdgeShape.h \
+		../MainMenu/Box2D/Collision/Shapes/b2ChainShape.h \
+		../MainMenu/Box2D/Collision/Shapes/b2PolygonShape.h
+
+debug\b2DynamicTree.obj: ..\MainMenu\Box2D\Collision\b2DynamicTree.cpp ../MainMenu/Box2D/Collision/b2DynamicTree.h \
+		../MainMenu/Box2D/Collision/b2Collision.h \
+		../MainMenu/Box2D/Common/b2Math.h \
+		../MainMenu/Box2D/Common/b2Settings.h \
+		../MainMenu/Box2D/Common/b2GrowableStack.h
+
+debug\b2TimeOfImpact.obj: ..\MainMenu\Box2D\Collision\b2TimeOfImpact.cpp ../MainMenu/Box2D/Collision/b2Collision.h \
+		../MainMenu/Box2D/Common/b2Math.h \
+		../MainMenu/Box2D/Common/b2Settings.h \
+		../MainMenu/Box2D/Collision/b2Distance.h \
+		../MainMenu/Box2D/Collision/b2TimeOfImpact.h \
+		../MainMenu/Box2D/Collision/Shapes/b2CircleShape.h \
+		../MainMenu/Box2D/Collision/Shapes/b2Shape.h \
+		../MainMenu/Box2D/Common/b2BlockAllocator.h \
+		../MainMenu/Box2D/Collision/Shapes/b2PolygonShape.h \
+		../MainMenu/Box2D/Common/b2Timer.h
+
+debug\b2BlockAllocator.obj: ..\MainMenu\Box2D\Common\b2BlockAllocator.cpp ../MainMenu/Box2D/Common/b2BlockAllocator.h \
+		../MainMenu/Box2D/Common/b2Settings.h
+
+debug\b2Draw.obj: ..\MainMenu\Box2D\Common\b2Draw.cpp ../MainMenu/Box2D/Common/b2Draw.h \
+		../MainMenu/Box2D/Common/b2Math.h \
+		../MainMenu/Box2D/Common/b2Settings.h
+
+debug\b2Math.obj: ..\MainMenu\Box2D\Common\b2Math.cpp ../MainMenu/Box2D/Common/b2Math.h \
+		../MainMenu/Box2D/Common/b2Settings.h
+
+debug\b2Settings.obj: ..\MainMenu\Box2D\Common\b2Settings.cpp ../MainMenu/Box2D/Common/b2Settings.h
+
+debug\b2StackAllocator.obj: ..\MainMenu\Box2D\Common\b2StackAllocator.cpp ../MainMenu/Box2D/Common/b2StackAllocator.h \
+		../MainMenu/Box2D/Common/b2Settings.h \
+		../MainMenu/Box2D/Common/b2Math.h
+
+debug\b2Timer.obj: ..\MainMenu\Box2D\Common\b2Timer.cpp ../MainMenu/Box2D/Common/b2Timer.h \
+		../MainMenu/Box2D/Common/b2Settings.h
+
+debug\b2ChainAndCircleContact.obj: ..\MainMenu\Box2D\Dynamics\Contacts\b2ChainAndCircleContact.cpp ../MainMenu/Box2D/Dynamics/Contacts/b2ChainAndCircleContact.h \
+		../MainMenu/Box2D/Dynamics/Contacts/b2Contact.h \
+		../MainMenu/Box2D/Common/b2Math.h \
+		../MainMenu/Box2D/Common/b2Settings.h \
+		../MainMenu/Box2D/Collision/b2Collision.h \
+		../MainMenu/Box2D/Collision/Shapes/b2Shape.h \
+		../MainMenu/Box2D/Common/b2BlockAllocator.h \
+		../MainMenu/Box2D/Dynamics/b2Fixture.h \
+		../MainMenu/Box2D/Dynamics/b2Body.h \
+		../MainMenu/Box2D/Collision/Shapes/b2ChainShape.h \
+		../MainMenu/Box2D/Collision/Shapes/b2EdgeShape.h
+
+debug\b2ChainAndPolygonContact.obj: ..\MainMenu\Box2D\Dynamics\Contacts\b2ChainAndPolygonContact.cpp ../MainMenu/Box2D/Dynamics/Contacts/b2ChainAndPolygonContact.h \
+		../MainMenu/Box2D/Dynamics/Contacts/b2Contact.h \
+		../MainMenu/Box2D/Common/b2Math.h \
+		../MainMenu/Box2D/Common/b2Settings.h \
+		../MainMenu/Box2D/Collision/b2Collision.h \
+		../MainMenu/Box2D/Collision/Shapes/b2Shape.h \
+		../MainMenu/Box2D/Common/b2BlockAllocator.h \
+		../MainMenu/Box2D/Dynamics/b2Fixture.h \
+		../MainMenu/Box2D/Dynamics/b2Body.h \
+		../MainMenu/Box2D/Collision/Shapes/b2ChainShape.h \
+		../MainMenu/Box2D/Collision/Shapes/b2EdgeShape.h
+
+debug\b2CircleContact.obj: ..\MainMenu\Box2D\Dynamics\Contacts\b2CircleContact.cpp ../MainMenu/Box2D/Dynamics/Contacts/b2CircleContact.h \
+		../MainMenu/Box2D/Dynamics/Contacts/b2Contact.h \
+		../MainMenu/Box2D/Common/b2Math.h \
+		../MainMenu/Box2D/Common/b2Settings.h \
+		../MainMenu/Box2D/Collision/b2Collision.h \
+		../MainMenu/Box2D/Collision/Shapes/b2Shape.h \
+		../MainMenu/Box2D/Common/b2BlockAllocator.h \
+		../MainMenu/Box2D/Dynamics/b2Fixture.h \
+		../MainMenu/Box2D/Dynamics/b2Body.h \
+		../MainMenu/Box2D/Dynamics/b2WorldCallbacks.h \
+		../MainMenu/Box2D/Collision/b2TimeOfImpact.h \
+		../MainMenu/Box2D/Collision/b2Distance.h
+
+debug\b2Contact.obj: ..\MainMenu\Box2D\Dynamics\Contacts\b2Contact.cpp ../MainMenu/Box2D/Dynamics/Contacts/b2Contact.h \
+		../MainMenu/Box2D/Common/b2Math.h \
+		../MainMenu/Box2D/Common/b2Settings.h \
+		../MainMenu/Box2D/Collision/b2Collision.h \
+		../MainMenu/Box2D/Collision/Shapes/b2Shape.h \
+		../MainMenu/Box2D/Common/b2BlockAllocator.h \
+		../MainMenu/Box2D/Dynamics/b2Fixture.h \
+		../MainMenu/Box2D/Dynamics/b2Body.h \
+		../MainMenu/Box2D/Dynamics/Contacts/b2CircleContact.h \
+		../MainMenu/Box2D/Dynamics/Contacts/b2PolygonAndCircleContact.h \
+		../MainMenu/Box2D/Dynamics/Contacts/b2PolygonContact.h \
+		../MainMenu/Box2D/Dynamics/Contacts/b2EdgeAndCircleContact.h \
+		../MainMenu/Box2D/Dynamics/Contacts/b2EdgeAndPolygonContact.h \
+		../MainMenu/Box2D/Dynamics/Contacts/b2ChainAndCircleContact.h \
+		../MainMenu/Box2D/Dynamics/Contacts/b2ChainAndPolygonContact.h \
+		../MainMenu/Box2D/Dynamics/Contacts/b2ContactSolver.h \
+		../MainMenu/Box2D/Dynamics/b2TimeStep.h \
+		../MainMenu/Box2D/Collision/b2TimeOfImpact.h \
+		../MainMenu/Box2D/Collision/b2Distance.h \
+		../MainMenu/Box2D/Dynamics/b2World.h \
+		../MainMenu/Box2D/Common/b2StackAllocator.h \
+		../MainMenu/Box2D/Dynamics/b2ContactManager.h \
+		../MainMenu/Box2D/Collision/b2BroadPhase.h \
+		../MainMenu/Box2D/Collision/b2DynamicTree.h \
+		../MainMenu/Box2D/Common/b2GrowableStack.h \
+		../MainMenu/Box2D/Dynamics/b2WorldCallbacks.h
+
+debug\b2ContactSolver.obj: ..\MainMenu\Box2D\Dynamics\Contacts\b2ContactSolver.cpp ../MainMenu/Box2D/Dynamics/Contacts/b2ContactSolver.h \
+		../MainMenu/Box2D/Common/b2Math.h \
+		../MainMenu/Box2D/Common/b2Settings.h \
+		../MainMenu/Box2D/Collision/b2Collision.h \
+		../MainMenu/Box2D/Dynamics/b2TimeStep.h \
+		../MainMenu/Box2D/Dynamics/Contacts/b2Contact.h \
+		../MainMenu/Box2D/Collision/Shapes/b2Shape.h \
+		../MainMenu/Box2D/Common/b2BlockAllocator.h \
+		../MainMenu/Box2D/Dynamics/b2Fixture.h \
+		../MainMenu/Box2D/Dynamics/b2Body.h \
+		../MainMenu/Box2D/Dynamics/b2World.h \
+		../MainMenu/Box2D/Common/b2StackAllocator.h \
+		../MainMenu/Box2D/Dynamics/b2ContactManager.h \
+		../MainMenu/Box2D/Collision/b2BroadPhase.h \
+		../MainMenu/Box2D/Collision/b2DynamicTree.h \
+		../MainMenu/Box2D/Common/b2GrowableStack.h \
+		../MainMenu/Box2D/Dynamics/b2WorldCallbacks.h
+
+debug\b2EdgeAndCircleContact.obj: ..\MainMenu\Box2D\Dynamics\Contacts\b2EdgeAndCircleContact.cpp ../MainMenu/Box2D/Dynamics/Contacts/b2EdgeAndCircleContact.h \
+		../MainMenu/Box2D/Dynamics/Contacts/b2Contact.h \
+		../MainMenu/Box2D/Common/b2Math.h \
+		../MainMenu/Box2D/Common/b2Settings.h \
+		../MainMenu/Box2D/Collision/b2Collision.h \
+		../MainMenu/Box2D/Collision/Shapes/b2Shape.h \
+		../MainMenu/Box2D/Common/b2BlockAllocator.h \
+		../MainMenu/Box2D/Dynamics/b2Fixture.h \
+		../MainMenu/Box2D/Dynamics/b2Body.h
+
+debug\b2EdgeAndPolygonContact.obj: ..\MainMenu\Box2D\Dynamics\Contacts\b2EdgeAndPolygonContact.cpp ../MainMenu/Box2D/Dynamics/Contacts/b2EdgeAndPolygonContact.h \
+		../MainMenu/Box2D/Dynamics/Contacts/b2Contact.h \
+		../MainMenu/Box2D/Common/b2Math.h \
+		../MainMenu/Box2D/Common/b2Settings.h \
+		../MainMenu/Box2D/Collision/b2Collision.h \
+		../MainMenu/Box2D/Collision/Shapes/b2Shape.h \
+		../MainMenu/Box2D/Common/b2BlockAllocator.h \
+		../MainMenu/Box2D/Dynamics/b2Fixture.h \
+		../MainMenu/Box2D/Dynamics/b2Body.h
+
+debug\b2PolygonAndCircleContact.obj: ..\MainMenu\Box2D\Dynamics\Contacts\b2PolygonAndCircleContact.cpp ../MainMenu/Box2D/Dynamics/Contacts/b2PolygonAndCircleContact.h \
+		../MainMenu/Box2D/Dynamics/Contacts/b2Contact.h \
+		../MainMenu/Box2D/Common/b2Math.h \
+		../MainMenu/Box2D/Common/b2Settings.h \
+		../MainMenu/Box2D/Collision/b2Collision.h \
+		../MainMenu/Box2D/Collision/Shapes/b2Shape.h \
+		../MainMenu/Box2D/Common/b2BlockAllocator.h \
+		../MainMenu/Box2D/Dynamics/b2Fixture.h \
+		../MainMenu/Box2D/Dynamics/b2Body.h
+
+debug\b2PolygonContact.obj: ..\MainMenu\Box2D\Dynamics\Contacts\b2PolygonContact.cpp ../MainMenu/Box2D/Dynamics/Contacts/b2PolygonContact.h \
+		../MainMenu/Box2D/Dynamics/Contacts/b2Contact.h \
+		../MainMenu/Box2D/Common/b2Math.h \
+		../MainMenu/Box2D/Common/b2Settings.h \
+		../MainMenu/Box2D/Collision/b2Collision.h \
+		../MainMenu/Box2D/Collision/Shapes/b2Shape.h \
+		../MainMenu/Box2D/Common/b2BlockAllocator.h \
+		../MainMenu/Box2D/Dynamics/b2Fixture.h \
+		../MainMenu/Box2D/Dynamics/b2Body.h \
+		../MainMenu/Box2D/Collision/b2TimeOfImpact.h \
+		../MainMenu/Box2D/Collision/b2Distance.h \
+		../MainMenu/Box2D/Dynamics/b2WorldCallbacks.h
+
+debug\b2DistanceJoint.obj: ..\MainMenu\Box2D\Dynamics\Joints\b2DistanceJoint.cpp ../MainMenu/Box2D/Dynamics/Joints/b2DistanceJoint.h \
+		../MainMenu/Box2D/Dynamics/Joints/b2Joint.h \
+		../MainMenu/Box2D/Common/b2Math.h \
+		../MainMenu/Box2D/Common/b2Settings.h \
+		../MainMenu/Box2D/Dynamics/b2Body.h \
+		../MainMenu/Box2D/Collision/Shapes/b2Shape.h \
+		../MainMenu/Box2D/Common/b2BlockAllocator.h \
+		../MainMenu/Box2D/Collision/b2Collision.h \
+		../MainMenu/Box2D/Dynamics/b2TimeStep.h
+
+debug\b2FrictionJoint.obj: ..\MainMenu\Box2D\Dynamics\Joints\b2FrictionJoint.cpp ../MainMenu/Box2D/Dynamics/Joints/b2FrictionJoint.h \
+		../MainMenu/Box2D/Dynamics/Joints/b2Joint.h \
+		../MainMenu/Box2D/Common/b2Math.h \
+		../MainMenu/Box2D/Common/b2Settings.h \
+		../MainMenu/Box2D/Dynamics/b2Body.h \
+		../MainMenu/Box2D/Collision/Shapes/b2Shape.h \
+		../MainMenu/Box2D/Common/b2BlockAllocator.h \
+		../MainMenu/Box2D/Collision/b2Collision.h \
+		../MainMenu/Box2D/Dynamics/b2TimeStep.h
+
+debug\b2GearJoint.obj: ..\MainMenu\Box2D\Dynamics\Joints\b2GearJoint.cpp ../MainMenu/Box2D/Dynamics/Joints/b2GearJoint.h \
+		../MainMenu/Box2D/Dynamics/Joints/b2Joint.h \
+		../MainMenu/Box2D/Common/b2Math.h \
+		../MainMenu/Box2D/Common/b2Settings.h \
+		../MainMenu/Box2D/Dynamics/Joints/b2RevoluteJoint.h \
+		../MainMenu/Box2D/Dynamics/Joints/b2PrismaticJoint.h \
+		../MainMenu/Box2D/Dynamics/b2Body.h \
+		../MainMenu/Box2D/Collision/Shapes/b2Shape.h \
+		../MainMenu/Box2D/Common/b2BlockAllocator.h \
+		../MainMenu/Box2D/Collision/b2Collision.h \
+		../MainMenu/Box2D/Dynamics/b2TimeStep.h
+
+debug\b2Joint.obj: ..\MainMenu\Box2D\Dynamics\Joints\b2Joint.cpp ../MainMenu/Box2D/Dynamics/Joints/b2Joint.h \
+		../MainMenu/Box2D/Common/b2Math.h \
+		../MainMenu/Box2D/Common/b2Settings.h \
+		../MainMenu/Box2D/Dynamics/Joints/b2DistanceJoint.h \
+		../MainMenu/Box2D/Dynamics/Joints/b2WheelJoint.h \
+		../MainMenu/Box2D/Dynamics/Joints/b2MouseJoint.h \
+		../MainMenu/Box2D/Dynamics/Joints/b2RevoluteJoint.h \
+		../MainMenu/Box2D/Dynamics/Joints/b2PrismaticJoint.h \
+		../MainMenu/Box2D/Dynamics/Joints/b2PulleyJoint.h \
+		../MainMenu/Box2D/Dynamics/Joints/b2GearJoint.h \
+		../MainMenu/Box2D/Dynamics/Joints/b2WeldJoint.h \
+		../MainMenu/Box2D/Dynamics/Joints/b2FrictionJoint.h \
+		../MainMenu/Box2D/Dynamics/Joints/b2RopeJoint.h \
+		../MainMenu/Box2D/Dynamics/Joints/b2MotorJoint.h \
+		../MainMenu/Box2D/Dynamics/b2Body.h \
+		../MainMenu/Box2D/Collision/Shapes/b2Shape.h \
+		../MainMenu/Box2D/Common/b2BlockAllocator.h \
+		../MainMenu/Box2D/Collision/b2Collision.h \
+		../MainMenu/Box2D/Dynamics/b2World.h \
+		../MainMenu/Box2D/Common/b2StackAllocator.h \
+		../MainMenu/Box2D/Dynamics/b2ContactManager.h \
+		../MainMenu/Box2D/Collision/b2BroadPhase.h \
+		../MainMenu/Box2D/Collision/b2DynamicTree.h \
+		../MainMenu/Box2D/Common/b2GrowableStack.h \
+		../MainMenu/Box2D/Dynamics/b2WorldCallbacks.h \
+		../MainMenu/Box2D/Dynamics/b2TimeStep.h
+
+debug\b2MotorJoint.obj: ..\MainMenu\Box2D\Dynamics\Joints\b2MotorJoint.cpp ../MainMenu/Box2D/Dynamics/Joints/b2MotorJoint.h \
+		../MainMenu/Box2D/Dynamics/Joints/b2Joint.h \
+		../MainMenu/Box2D/Common/b2Math.h \
+		../MainMenu/Box2D/Common/b2Settings.h \
+		../MainMenu/Box2D/Dynamics/b2Body.h \
+		../MainMenu/Box2D/Collision/Shapes/b2Shape.h \
+		../MainMenu/Box2D/Common/b2BlockAllocator.h \
+		../MainMenu/Box2D/Collision/b2Collision.h \
+		../MainMenu/Box2D/Dynamics/b2TimeStep.h
+
+debug\b2MouseJoint.obj: ..\MainMenu\Box2D\Dynamics\Joints\b2MouseJoint.cpp ../MainMenu/Box2D/Dynamics/Joints/b2MouseJoint.h \
+		../MainMenu/Box2D/Dynamics/Joints/b2Joint.h \
+		../MainMenu/Box2D/Common/b2Math.h \
+		../MainMenu/Box2D/Common/b2Settings.h \
+		../MainMenu/Box2D/Dynamics/b2Body.h \
+		../MainMenu/Box2D/Collision/Shapes/b2Shape.h \
+		../MainMenu/Box2D/Common/b2BlockAllocator.h \
+		../MainMenu/Box2D/Collision/b2Collision.h \
+		../MainMenu/Box2D/Dynamics/b2TimeStep.h
+
+debug\b2PrismaticJoint.obj: ..\MainMenu\Box2D\Dynamics\Joints\b2PrismaticJoint.cpp ../MainMenu/Box2D/Dynamics/Joints/b2PrismaticJoint.h \
+		../MainMenu/Box2D/Dynamics/Joints/b2Joint.h \
+		../MainMenu/Box2D/Common/b2Math.h \
+		../MainMenu/Box2D/Common/b2Settings.h \
+		../MainMenu/Box2D/Dynamics/b2Body.h \
+		../MainMenu/Box2D/Collision/Shapes/b2Shape.h \
+		../MainMenu/Box2D/Common/b2BlockAllocator.h \
+		../MainMenu/Box2D/Collision/b2Collision.h \
+		../MainMenu/Box2D/Dynamics/b2TimeStep.h
+
+debug\b2PulleyJoint.obj: ..\MainMenu\Box2D\Dynamics\Joints\b2PulleyJoint.cpp ../MainMenu/Box2D/Dynamics/Joints/b2PulleyJoint.h \
+		../MainMenu/Box2D/Dynamics/Joints/b2Joint.h \
+		../MainMenu/Box2D/Common/b2Math.h \
+		../MainMenu/Box2D/Common/b2Settings.h \
+		../MainMenu/Box2D/Dynamics/b2Body.h \
+		../MainMenu/Box2D/Collision/Shapes/b2Shape.h \
+		../MainMenu/Box2D/Common/b2BlockAllocator.h \
+		../MainMenu/Box2D/Collision/b2Collision.h \
+		../MainMenu/Box2D/Dynamics/b2TimeStep.h
+
+debug\b2RevoluteJoint.obj: ..\MainMenu\Box2D\Dynamics\Joints\b2RevoluteJoint.cpp ../MainMenu/Box2D/Dynamics/Joints/b2RevoluteJoint.h \
+		../MainMenu/Box2D/Dynamics/Joints/b2Joint.h \
+		../MainMenu/Box2D/Common/b2Math.h \
+		../MainMenu/Box2D/Common/b2Settings.h \
+		../MainMenu/Box2D/Dynamics/b2Body.h \
+		../MainMenu/Box2D/Collision/Shapes/b2Shape.h \
+		../MainMenu/Box2D/Common/b2BlockAllocator.h \
+		../MainMenu/Box2D/Collision/b2Collision.h \
+		../MainMenu/Box2D/Dynamics/b2TimeStep.h
+
+debug\b2RopeJoint.obj: ..\MainMenu\Box2D\Dynamics\Joints\b2RopeJoint.cpp ../MainMenu/Box2D/Dynamics/Joints/b2RopeJoint.h \
+		../MainMenu/Box2D/Dynamics/Joints/b2Joint.h \
+		../MainMenu/Box2D/Common/b2Math.h \
+		../MainMenu/Box2D/Common/b2Settings.h \
+		../MainMenu/Box2D/Dynamics/b2Body.h \
+		../MainMenu/Box2D/Collision/Shapes/b2Shape.h \
+		../MainMenu/Box2D/Common/b2BlockAllocator.h \
+		../MainMenu/Box2D/Collision/b2Collision.h \
+		../MainMenu/Box2D/Dynamics/b2TimeStep.h
+
+debug\b2WeldJoint.obj: ..\MainMenu\Box2D\Dynamics\Joints\b2WeldJoint.cpp ../MainMenu/Box2D/Dynamics/Joints/b2WeldJoint.h \
+		../MainMenu/Box2D/Dynamics/Joints/b2Joint.h \
+		../MainMenu/Box2D/Common/b2Math.h \
+		../MainMenu/Box2D/Common/b2Settings.h \
+		../MainMenu/Box2D/Dynamics/b2Body.h \
+		../MainMenu/Box2D/Collision/Shapes/b2Shape.h \
+		../MainMenu/Box2D/Common/b2BlockAllocator.h \
+		../MainMenu/Box2D/Collision/b2Collision.h \
+		../MainMenu/Box2D/Dynamics/b2TimeStep.h
+
+debug\b2WheelJoint.obj: ..\MainMenu\Box2D\Dynamics\Joints\b2WheelJoint.cpp ../MainMenu/Box2D/Dynamics/Joints/b2WheelJoint.h \
+		../MainMenu/Box2D/Dynamics/Joints/b2Joint.h \
+		../MainMenu/Box2D/Common/b2Math.h \
+		../MainMenu/Box2D/Common/b2Settings.h \
+		../MainMenu/Box2D/Dynamics/b2Body.h \
+		../MainMenu/Box2D/Collision/Shapes/b2Shape.h \
+		../MainMenu/Box2D/Common/b2BlockAllocator.h \
+		../MainMenu/Box2D/Collision/b2Collision.h \
+		../MainMenu/Box2D/Dynamics/b2TimeStep.h
+
+debug\b2Body.obj: ..\MainMenu\Box2D\Dynamics\b2Body.cpp ../MainMenu/Box2D/Dynamics/b2Body.h \
+		../MainMenu/Box2D/Common/b2Math.h \
+		../MainMenu/Box2D/Common/b2Settings.h \
+		../MainMenu/Box2D/Collision/Shapes/b2Shape.h \
+		../MainMenu/Box2D/Common/b2BlockAllocator.h \
+		../MainMenu/Box2D/Collision/b2Collision.h \
+		../MainMenu/Box2D/Dynamics/b2Fixture.h \
+		../MainMenu/Box2D/Dynamics/b2World.h \
+		../MainMenu/Box2D/Common/b2StackAllocator.h \
+		../MainMenu/Box2D/Dynamics/b2ContactManager.h \
+		../MainMenu/Box2D/Collision/b2BroadPhase.h \
+		../MainMenu/Box2D/Collision/b2DynamicTree.h \
+		../MainMenu/Box2D/Common/b2GrowableStack.h \
+		../MainMenu/Box2D/Dynamics/b2WorldCallbacks.h \
+		../MainMenu/Box2D/Dynamics/b2TimeStep.h \
+		../MainMenu/Box2D/Dynamics/Contacts/b2Contact.h \
+		../MainMenu/Box2D/Dynamics/Joints/b2Joint.h
+
+debug\b2ContactManager.obj: ..\MainMenu\Box2D\Dynamics\b2ContactManager.cpp ../MainMenu/Box2D/Dynamics/b2ContactManager.h \
+		../MainMenu/Box2D/Collision/b2BroadPhase.h \
+		../MainMenu/Box2D/Common/b2Settings.h \
+		../MainMenu/Box2D/Collision/b2Collision.h \
+		../MainMenu/Box2D/Common/b2Math.h \
+		../MainMenu/Box2D/Collision/b2DynamicTree.h \
+		../MainMenu/Box2D/Common/b2GrowableStack.h \
+		../MainMenu/Box2D/Dynamics/b2Body.h \
+		../MainMenu/Box2D/Collision/Shapes/b2Shape.h \
+		../MainMenu/Box2D/Common/b2BlockAllocator.h \
+		../MainMenu/Box2D/Dynamics/b2Fixture.h \
+		../MainMenu/Box2D/Dynamics/b2WorldCallbacks.h \
+		../MainMenu/Box2D/Dynamics/Contacts/b2Contact.h
+
+debug\b2Fixture.obj: ..\MainMenu\Box2D\Dynamics\b2Fixture.cpp ../MainMenu/Box2D/Dynamics/b2Fixture.h \
+		../MainMenu/Box2D/Dynamics/b2Body.h \
+		../MainMenu/Box2D/Common/b2Math.h \
+		../MainMenu/Box2D/Common/b2Settings.h \
+		../MainMenu/Box2D/Collision/Shapes/b2Shape.h \
+		../MainMenu/Box2D/Common/b2BlockAllocator.h \
+		../MainMenu/Box2D/Collision/b2Collision.h \
+		../MainMenu/Box2D/Dynamics/Contacts/b2Contact.h \
+		../MainMenu/Box2D/Dynamics/b2World.h \
+		../MainMenu/Box2D/Common/b2StackAllocator.h \
+		../MainMenu/Box2D/Dynamics/b2ContactManager.h \
+		../MainMenu/Box2D/Collision/b2BroadPhase.h \
+		../MainMenu/Box2D/Collision/b2DynamicTree.h \
+		../MainMenu/Box2D/Common/b2GrowableStack.h \
+		../MainMenu/Box2D/Dynamics/b2WorldCallbacks.h \
+		../MainMenu/Box2D/Dynamics/b2TimeStep.h \
+		../MainMenu/Box2D/Collision/Shapes/b2CircleShape.h \
+		../MainMenu/Box2D/Collision/Shapes/b2EdgeShape.h \
+		../MainMenu/Box2D/Collision/Shapes/b2PolygonShape.h \
+		../MainMenu/Box2D/Collision/Shapes/b2ChainShape.h
+
+debug\b2Island.obj: ..\MainMenu\Box2D\Dynamics\b2Island.cpp ../MainMenu/Box2D/Collision/b2Distance.h \
+		../MainMenu/Box2D/Common/b2Math.h \
+		../MainMenu/Box2D/Common/b2Settings.h \
+		../MainMenu/Box2D/Dynamics/b2Island.h \
+		../MainMenu/Box2D/Dynamics/b2Body.h \
+		../MainMenu/Box2D/Collision/Shapes/b2Shape.h \
+		../MainMenu/Box2D/Common/b2BlockAllocator.h \
+		../MainMenu/Box2D/Collision/b2Collision.h \
+		../MainMenu/Box2D/Dynamics/b2TimeStep.h \
+		../MainMenu/Box2D/Dynamics/b2Fixture.h \
+		../MainMenu/Box2D/Dynamics/b2World.h \
+		../MainMenu/Box2D/Common/b2StackAllocator.h \
+		../MainMenu/Box2D/Dynamics/b2ContactManager.h \
+		../MainMenu/Box2D/Collision/b2BroadPhase.h \
+		../MainMenu/Box2D/Collision/b2DynamicTree.h \
+		../MainMenu/Box2D/Common/b2GrowableStack.h \
+		../MainMenu/Box2D/Dynamics/b2WorldCallbacks.h \
+		../MainMenu/Box2D/Dynamics/Contacts/b2Contact.h \
+		../MainMenu/Box2D/Dynamics/Contacts/b2ContactSolver.h \
+		../MainMenu/Box2D/Dynamics/Joints/b2Joint.h \
+		../MainMenu/Box2D/Common/b2Timer.h
+
+debug\b2World.obj: ..\MainMenu\Box2D\Dynamics\b2World.cpp ../MainMenu/Box2D/Dynamics/b2World.h \
+		../MainMenu/Box2D/Common/b2Math.h \
+		../MainMenu/Box2D/Common/b2Settings.h \
+		../MainMenu/Box2D/Common/b2BlockAllocator.h \
+		../MainMenu/Box2D/Common/b2StackAllocator.h \
+		../MainMenu/Box2D/Dynamics/b2ContactManager.h \
+		../MainMenu/Box2D/Collision/b2BroadPhase.h \
+		../MainMenu/Box2D/Collision/b2Collision.h \
+		../MainMenu/Box2D/Collision/b2DynamicTree.h \
+		../MainMenu/Box2D/Common/b2GrowableStack.h \
+		../MainMenu/Box2D/Dynamics/b2WorldCallbacks.h \
+		../MainMenu/Box2D/Dynamics/b2TimeStep.h \
+		../MainMenu/Box2D/Dynamics/b2Body.h \
+		../MainMenu/Box2D/Collision/Shapes/b2Shape.h \
+		../MainMenu/Box2D/Dynamics/b2Fixture.h \
+		../MainMenu/Box2D/Dynamics/b2Island.h \
+		../MainMenu/Box2D/Dynamics/Joints/b2PulleyJoint.h \
+		../MainMenu/Box2D/Dynamics/Joints/b2Joint.h \
+		../MainMenu/Box2D/Dynamics/Contacts/b2Contact.h \
+		../MainMenu/Box2D/Dynamics/Contacts/b2ContactSolver.h \
+		../MainMenu/Box2D/Collision/Shapes/b2CircleShape.h \
+		../MainMenu/Box2D/Collision/Shapes/b2EdgeShape.h \
+		../MainMenu/Box2D/Collision/Shapes/b2ChainShape.h \
+		../MainMenu/Box2D/Collision/Shapes/b2PolygonShape.h \
+		../MainMenu/Box2D/Collision/b2TimeOfImpact.h \
+		../MainMenu/Box2D/Collision/b2Distance.h \
+		../MainMenu/Box2D/Common/b2Draw.h \
+		../MainMenu/Box2D/Common/b2Timer.h
+
+debug\b2WorldCallbacks.obj: ..\MainMenu\Box2D\Dynamics\b2WorldCallbacks.cpp ../MainMenu/Box2D/Dynamics/b2WorldCallbacks.h \
+		../MainMenu/Box2D/Common/b2Settings.h \
+		../MainMenu/Box2D/Dynamics/b2Fixture.h \
+		../MainMenu/Box2D/Dynamics/b2Body.h \
+		../MainMenu/Box2D/Common/b2Math.h \
+		../MainMenu/Box2D/Collision/Shapes/b2Shape.h \
+		../MainMenu/Box2D/Common/b2BlockAllocator.h \
+		../MainMenu/Box2D/Collision/b2Collision.h
+
+debug\b2Rope.obj: ..\MainMenu\Box2D\Rope\b2Rope.cpp ../MainMenu/Box2D/Rope/b2Rope.h \
+		../MainMenu/Box2D/Common/b2Math.h \
+		../MainMenu/Box2D/Common/b2Settings.h \
+		../MainMenu/Box2D/Common/b2Draw.h
 
 debug\qrc_images.obj: debug\qrc_images.cpp 
 

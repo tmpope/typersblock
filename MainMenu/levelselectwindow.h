@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include "sfmlcanvas.h"
+#include "Box2D/Box2D.h"
 
 namespace Ui {
 class LevelSelectWindow;

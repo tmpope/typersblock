@@ -2,7 +2,7 @@
 #include "SFML/Graphics.hpp"
 #include "SFML/Window.hpp"
 #include "qdebug.h"
-
+#include "Box2D/Box2D.h"
 SFMLCanvas::SFMLCanvas(QWidget* parent, const QPoint& position, const QSize& size, int frameTime) : QWidget(parent), initialized(false)
 {
 	//Allow rendering into the widget
@@ -16,6 +16,8 @@ SFMLCanvas::SFMLCanvas(QWidget* parent, const QPoint& position, const QSize& siz
 	resize(size);
 	//Set timer interval
 	timer.setInterval(frameTime);
+    //gravity = new b2Vec2(0.0f, -10.0f);
+    //world = new b2World(*gravity);
 }
 
 SFMLCanvas::~SFMLCanvas()

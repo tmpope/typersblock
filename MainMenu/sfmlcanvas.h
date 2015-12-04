@@ -3,6 +3,7 @@
 #include <QWidget>
 #include <SFML/Graphics.hpp>
 #include <QTimer>
+#include <Box2D/Box2D.h>
 
 class SFMLCanvas : public QWidget, public sf::RenderWindow
 {
@@ -21,5 +22,7 @@ private:
 	sf::Texture texture;
 	sf::Sprite sprite;
 	bool initialized;
+    b2Vec2* gravity;
+    b2World* world;
 };
 #endif SFML_CANVAS_H
