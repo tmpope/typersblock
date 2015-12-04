@@ -20,9 +20,15 @@ private:
 	QTimer timer;
 	sf::Clock clock;
 	sf::Texture texture;
+    sf::Texture ground;
+    sf::Texture box;
 	sf::Sprite sprite;
 	bool initialized;
     b2Vec2* gravity;
     b2World* world;
+    void makeGround(int x, int y);
+    void makeBox(int x, int y);
+private slots:
+    void keyPressEvent(QKeyEvent *);
 };
 #endif SFML_CANVAS_H
