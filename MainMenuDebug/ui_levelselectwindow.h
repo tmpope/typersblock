@@ -15,6 +15,7 @@
 #include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
+#include <QtWidgets/QPushButton>
 #include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -24,6 +25,7 @@ class Ui_LevelSelectWindow
 public:
     QWidget *centralWidget;
     QLabel *label;
+    QPushButton *pushButton;
 
     void setupUi(QWidget *LevelSelectWindow)
     {
@@ -36,12 +38,20 @@ public:
         centralWidget->setStyleSheet(QStringLiteral("background-image: url(:/new/images/levelSelectBackground.jpg);"));
         label = new QLabel(centralWidget);
         label->setObjectName(QStringLiteral("label"));
-        label->setGeometry(QRect(560, 30, 181, 51));
+        label->setGeometry(QRect(60, 40, 501, 91));
         QFont font;
         font.setPointSize(24);
         label->setFont(font);
         label->setStyleSheet(QLatin1String("color: white;\n"
 "background-image: url(:/new/images/alpha.png);"));
+        pushButton = new QPushButton(centralWidget);
+        pushButton->setObjectName(QStringLiteral("pushButton"));
+        pushButton->setGeometry(QRect(10, 700, 101, 51));
+        QFont font1;
+        font1.setPointSize(16);
+        pushButton->setFont(font1);
+        pushButton->setStyleSheet(QLatin1String("color: white;\n"
+"background-color: black;"));
 
         retranslateUi(LevelSelectWindow);
 
@@ -52,6 +62,7 @@ public:
     {
         LevelSelectWindow->setWindowTitle(QApplication::translate("LevelSelectWindow", "Form", 0));
         label->setText(QApplication::translate("LevelSelectWindow", "Level Select", 0));
+        pushButton->setText(QApplication::translate("LevelSelectWindow", "Log Out", 0));
     } // retranslateUi
 
 };

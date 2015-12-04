@@ -3,8 +3,6 @@
 
 #include <QMainWindow>
 #include <SFML/Network.hpp>
-#include <simpleJSON/JSON.h>
-#include <simpleJSON/JSONValue.h>
 #include <levelselectwindow.h>
 
 namespace Ui {
@@ -29,10 +27,9 @@ private:
     bool sendPacket(std::string dataString, sf::TcpSocket& socket);
     //Receives a packet, turns in into a string, and returns it.
     std::string receivePacket(sf::TcpSocket& socket);
-    //Converts a JSONObject to a string, which can then be sent over a socket.
-    std::string convertJSONtoString(JSONObject data);
     LevelSelectWindow* levelSelectWindow;
     sf::Socket::Status connectToServer(sf::TcpSocket& socket);
+    void enterGame(std::string response);
 };
 
 #endif // MAINWINDOW_H

@@ -28,10 +28,10 @@
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>560</x>
-      <y>30</y>
-      <width>181</width>
-      <height>51</height>
+      <x>60</x>
+      <y>40</y>
+      <width>501</width>
+      <height>91</height>
      </rect>
     </property>
     <property name="font">
@@ -45,6 +45,28 @@ background-image: url(:/new/images/alpha.png);</string>
     </property>
     <property name="text">
      <string>Level Select</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>700</y>
+      <width>101</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>16</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: white;
+background-color: black;</string>
+    </property>
+    <property name="text">
+     <string>Log Out</string>
     </property>
    </widget>
   </widget>

@@ -2,8 +2,10 @@
 #include "ui_mainwindow.h"
 #include <QMessageBox>
 #include <SFML/Network.hpp>
-#include <simpleJSON/JSON.h>
-#include <simpleJSON/JSONValue.h>
+#include <rapidjson/document.h>
+#include <rapidjson/stringbuffer.h>
+#include <rapidjson/writer.h>
+
 #include <QDebug>
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -19,76 +21,44 @@ MainWindow::MainWindow(QWidget *parent) :
 MainWindow::~MainWindow()
 {
     delete ui;
-    qDebug() << "Deleting levelSelectWindow.";
     delete levelSelectWindow;
 }
-/*
- * Socket must be conneceted before calling this method... may change architecture in a bit.
- */
+
+/* Sends a packet with the provided data, over the provided slot. Will pop up an error
+ * if the server can't be contacted. */
 bool MainWindow::sendPacket(std::string dataString, sf::TcpSocket& socket)
 {
     qDebug() << "Sending:" << QString::fromStdString(dataString);
     sf::Packet packet;
-    packet.append(dataString.c_str(), dataString.length());
+    packet << dataString;
     //Send the packet
-    qDebug() << "Packet configured, sending data now.";
     if (socket.send(packet) != sf::Socket::Done)
     {
          QMessageBox::critical(this, "Error", "Couldn't contact the server. Try again later.");
          return false;
     }
+
     return true;
 }
-/*
- * Listens for a response from the server on the provided socket.
- */
+
+/* Listens for a response from the server on the provided socket. */
 std::string MainWindow::receivePacket(sf::TcpSocket& socket)
 {
-
-    sf::SocketSelector selector;
-    selector.add(socket);
-
-    //Variables to store information for the response from the server.
-    char buffer[512];
-    size_t responseSize;
-
-    if (selector.wait(sf::seconds(10)))
+    //Store received data here.
+    sf::Packet data;
+    if (socket.receive(data) != sf::Socket::Done)
     {
-        socket.receive(buffer, 512, responseSize);
-        return std::string(buffer, responseSize);
+        QMessageBox::critical(this, "Error", "No response from server.");
     }
-    else
-    {
-        qDebug() << "Couldn't receive any information from the server.";
-        return "";
-        socket.disconnect();
-    }
+    std::string msg;
+    data >> msg;
+    qDebug() << "Message received: " << QString::fromStdString(msg);
+    socket.disconnect();
+    return msg;
 }
 
-/*
- * Converts the JSONObject into a formatted string containing all the information, in JSON.
- */
-std::string MainWindow::convertJSONtoString(JSONObject data)
-{
-    //Value to be sent over
-    JSONValue* val = new JSONValue(data);
-    data.clear();
-
-    //Convert from JSONValue to wstring
-    std::wstring wideDataString = val->Stringify();
-    delete val;
-
-    //Convert from wstring to string
-    std::string dataString;
-    dataString.assign(wideDataString.begin(), wideDataString.end());
-    //Send the data
-    return dataString;
-}
-
-/*
- * Called when the user clicks on the login button. Pulls information from the text fields and attempts to
- * contact the server, providing login information.
- */
+/* Called when the user clicks on the login button. Pulls information from the text fields and attempts to
+ * contact the server, providing login information. */
 void MainWindow::login()
 {
     if (ui->userLoginText->toPlainText() == "" || ui->passLoginText->toPlainText() == "")
@@ -101,36 +71,35 @@ void MainWindow::login()
     sf::TcpSocket socket;
     sf::Socket::Status status = connectToServer(socket);
 
-    //Pull information the user entered, wrap it in a JSONObject.
-    JSONObject data;
-    data[L"action"] = new JSONValue(L"0");
-    data[L"username"] = new JSONValue(ui->userLoginText->toPlainText().toStdWString());
-    data[L"password"] = new JSONValue(ui->passLoginText->toPlainText().toStdWString());
+    rapidjson::StringBuffer s;
+    rapidjson::Writer<rapidjson::StringBuffer> writer(s);
 
-    //Send the packet, after converting the JSON object back to a sendable, properly formatted string.
-    if (sendPacket(convertJSONtoString(data), socket))
+    //Assemble the JSON to send over.
+    writer.StartObject();
+    writer.String("action");
+    writer.Uint(0);
+    writer.String("user");
+    writer.String(ui->userLoginText->toPlainText().toStdString().c_str());
+    writer.String("password");
+    writer.String(ui->passLoginText->toPlainText().toStdString().c_str());
+    writer.EndObject();
+
+    if (sendPacket(s.GetString(), socket))
     {
-        qDebug() << "Packet sent, await response.";
-        //Get a response from the server.
-        std::string response = receivePacket(socket);
-        qDebug() << QString::fromStdString(response);
-        //Do something with the response
+        enterGame(receivePacket(socket));
     }
-    levelSelectWindow = new LevelSelectWindow();
-    levelSelectWindow->show();
-    qDebug() << "Closing main window.";
-    this->close();
+
+    //"{\"action\":0,\"user\":\"newUser\",\"password\":\"notAndre\"}"    <-- example packet
 }
 
-/*
- * Called when the user clicks on the new account button. Using all the text fields, attempts to contact the server
- * in order to create a new account with the given information.
- */
+/* Called when the user clicks on the new account button. Using all the text fields, attempts to contact the server
+ * in order to create a new account with the given information. */
+
 void MainWindow::createAccount()
 {
-    //If fields are blank, or the password is less than 8 characters long, print out an error.
+    //If fields are blank, print out an error.
     if (ui->firstNameText->toPlainText() == "" || ui->lastNameText->toPlainText() == ""
-            || ui->userCreateText->toPlainText() == "" || ui->passCreateText->toPlainText().length() < 8 || ui->classText->toPlainText() == "")
+            || ui->userCreateText->toPlainText() == "" || ui->passCreateText->toPlainText() == "" || ui->classText->toPlainText() == "")
     {
         //Ask for all information
         QMessageBox::critical(this, "Error", "All fields required to create an account. Passwords must be 8 characters or longer.");
@@ -139,26 +108,54 @@ void MainWindow::createAccount()
 
     sf::TcpSocket socket;
     sf::Socket::Status status = connectToServer(socket);
-    //Going to store all our JSON information in here.
-    JSONObject data;
 
-    data[L"action"] = new JSONValue(L"1");
-    data[L"username"] = new JSONValue(ui->userCreateText->toPlainText().toStdWString());
-    data[L"password"] = new JSONValue(ui->passCreateText->toPlainText().toStdWString());
-    data[L"firstname"] = new JSONValue(ui->firstNameText->toPlainText().toStdWString());
-    data[L"lastname"] = new JSONValue(ui->lastNameText->toPlainText().toStdWString());
-    data[L"class"] = new JSONValue(ui->classText->toPlainText().toStdWString());
+    rapidjson::StringBuffer s;
+    rapidjson::Writer<rapidjson::StringBuffer> writer(s);
 
-    if (sendPacket(convertJSONtoString(data), socket))
+    //Assemble the JSON to send over.
+    writer.StartObject();
+    writer.String("action");
+    writer.Uint(0);
+    writer.String("user");
+    writer.String(ui->userCreateText->toPlainText().toStdString().c_str());
+    writer.String("password");
+    writer.String(ui->passCreateText->toPlainText().toStdString().c_str());
+    writer.String("first");
+    writer.String(ui->firstNameText->toPlainText().toStdString().c_str());
+    writer.String("last");
+    writer.String(ui->lastNameText->toPlainText().toStdString().c_str());
+    writer.String("className");
+    writer.String(ui->classText->toPlainText().toStdString().c_str());
+    writer.EndObject();
+
+    if (sendPacket(s.GetString(), socket))
     {
-        //Get a response from the server.
-        std::string response = receivePacket(socket);
-        qDebug() << QString::fromStdString(response);
-        //Do something with the response
+        enterGame(receivePacket(socket));
     }
 }
 
 sf::Socket::Status MainWindow::connectToServer(sf::TcpSocket& socket)
 {
     return socket.connect("waihoilaf.duckdns.org", 53000);
+}
+
+void MainWindow::enterGame(std::string response)
+{
+    rapidjson::Document doc;
+    if (doc.Parse(response.c_str()).HasParseError())
+    {
+        QMessageBox::critical(this, "Error", "Server response corrupted.");
+        return;
+    }
+    if (doc["type"].GetString() == "failure")
+    {
+        //Not authenticated correctly.
+        QMessageBox::critical(this, "Error", QString::fromStdString(doc["message"].GetString()));
+        return;
+    }
+
+    //Been successful up to this point. Launch level select.
+    levelSelectWindow = new LevelSelectWindow(doc["user"].GetString());
+    levelSelectWindow->show();
+    this->hide();
 }
