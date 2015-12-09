@@ -4,6 +4,8 @@
 #include <SFML/Graphics.hpp>
 #include <QTimer>
 #include <Box2D/Box2D.h>
+#include <SFML/Graphics/Text.hpp>
+#include <SFML/System/String.hpp>
 
 class SFMLCanvas : public QWidget, public sf::RenderWindow
 {
@@ -19,15 +21,29 @@ public:
 private:
 	QTimer timer;
 	sf::Clock clock;
-	sf::Texture texture;
+    //sf::Texture texture;
     sf::Texture ground;
     sf::Texture box;
-	sf::Sprite sprite;
+
+    int numMistakes;
+    int lessonNum;
+
+    sf::String TextString;
+    sf::String DisplayString;
+    sf::Font Font;
+    sf::Text DisplayText;
+    sf::Text Text;
+    size_t index;
+
+    //sf::Sprite sprite;
 	bool initialized;
     b2Vec2* gravity;
     b2World* world;
     void makeGround(int x, int y);
     void makeBox(int x, int y);
+
+    sf::String getNextLesson(int);
+
 private slots:
     void keyPressEvent(QKeyEvent *);
 };
