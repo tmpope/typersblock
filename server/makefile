@@ -4,10 +4,10 @@ test: test.cpp
 	g++ -c test.cpp
 
 server: server-o
-	g++ server.o -o server -lsfml-graphics -lsfml-window -lsfml-system -lsfml-network -lmysqlcppconn -std=c++11
+	g++ -std=c++11 server.o -o server -lsfml-graphics -lsfml-window -lsfml-system -lsfml-network -lmysqlcppconn
 
 server-o: server.cpp
-	g++ server.cpp -I ../include/rapidjson/ -c -std=c++11
+	g++  -std=c++11 server.cpp -I ../include/rapidjson/ -c
 
 client: client-o
 	g++ demoClient.o -o client -lsfml-graphics -lsfml-window -lsfml-system -lsfml-network
