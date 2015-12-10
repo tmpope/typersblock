@@ -3,7 +3,7 @@
 #include <iostream>
 
 #include <vector>
-
+#include <string>
 #include "writer.h"
 #include "stringbuffer.h"
 #include "reader.h"
@@ -56,7 +56,6 @@ sql::ResultSet* runSqlQuery(std::string query)
         return res;
     }
 }
-
 int insertNewUser(std::string user, std::string pass, std::string first, std::string last, std::string className)
 {
     sql::ResultSet *res;
@@ -81,9 +80,25 @@ bool validate(std::string user, std::string pass)
     return result;
 }
 
-int getScore(std::string user, int level) 
+int* getScores(std::string user) 
 {
-    return 3;
+  std::string query = "SELECT score FROM scores_table WHERE user='" + user + "'";
+
+  sql::ResultSet *res = runSqlQuery(query);
+  
+  // NOTE: We're assuming there's only three levels!
+  int* scores = new int[3];
+  for(int i = 0; i < 3; i++)
+    scores[i] = 0;
+
+  int counter = 0;
+  while(res->next()){
+    int score = res->getInt(1);
+    std::cout << "Got a score: " << score << std::endl;
+    scores[counter++] = score;
+  }
+
+  return scores;
 }
 
 void insertScore(std::string user, std::string pass, int level, int wpm, int mistakes, int score) {
@@ -123,6 +138,7 @@ std::string generateResponse(std::string error)
  */
 std::string generateResponse(std::string user, std::string pass)
 {
+  // TODO: Ensure that we get all of this figured out
     rapidjson::StringBuffer s;
     rapidjson::Writer<rapidjson::StringBuffer> writer(s);
 
@@ -139,8 +155,12 @@ std::string generateResponse(std::string user, std::string pass)
         writer.Uint(0);
         writer.String("scores");
         writer.StartArray();
-        for (unsigned i = 0; i < 3; i++)
-            writer.Uint(getScore(user, i));
+
+	// We're assuming three scores right now. That may change in the future!
+	int* scores = getScores(user);
+        for (int i = 0; i < 3; i++)
+            writer.Uint(scores[i]);
+
         writer.EndArray();
         writer.EndObject();
         return s.GetString();//"Valid login for user " + user;
