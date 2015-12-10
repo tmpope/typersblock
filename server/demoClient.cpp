@@ -14,6 +14,7 @@ int main(int, char const**)
     // outPacket << "{\"action\":0,\"user\":\"tpope\",\"password\":\"wrongPass\"}";
     // outPacket << "{\"action\":1,\"user\":\"newUser\",\"password\":\"notAndre\",\"first\":\"Andre\",\"last\":\"LaFleur\",\"className\":\"admin\"}";
     outPacket << "{\"action\":0,\"user\":\"newUser\",\"password\":\"notAndre\"}";
+    // outPacket << "{\"action\":3,\"user\":\"newUser\",\"password\":\"notAndre\",\"level\":1,\"wpm\":100,\"mistakes\":2,\"score\":98}";
     // outPacket << "{\"action\":2,\"user\":\"tpope\",\"password\":\"pass123\"}";
     socket.send(outPacket);
 	if (socket.receive(data) != sf::Socket::Done)
