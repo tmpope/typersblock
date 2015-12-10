@@ -1,3 +1,11 @@
+#define _USE_MATH_DEFINES
+#define SCALE 30
+#define FONTSIZE 26
+#define START 1
+#define PLAY 2
+#define PAUSE 3
+#define END 4
+
 #include "sfmlcanvas.h"
 #include "SFML/Graphics.hpp"
 #include "SFML/Window.hpp"
@@ -10,7 +18,7 @@
 #include <SFML/Graphics/Text.hpp>
 #include <fstream>
 #include <iostream>
-#define SCALE 30
+#include <math.h>
 
 SFMLCanvas::SFMLCanvas(QWidget* parent, const QPoint& position, const QSize& size, int frameTime) : QWidget(parent), initialized(false)
 {
@@ -37,7 +45,7 @@ SFMLCanvas::SFMLCanvas(QWidget* parent, const QPoint& position, const QSize& siz
     gravity = new b2Vec2(1.0f, 10.0f);
     world = new b2World(*gravity);
     makeGround(300, 700);
-    makeBox(300, 100);
+    makeDynamicBody(300, 100);
 
     //Set quit button properties
     quitButton.adjustSize();
@@ -83,18 +91,22 @@ void SFMLCanvas::paintEvent(QPaintEvent*)
 
 void SFMLCanvas::initialize()
 {
-    if(!ground.loadFromFile("../MainMenu/ground.png"))
+    //Load relevant textures.
+    if(!ground.loadFromFile("../MainMenu/Images/ground.png"))
     {
         qDebug() << "Couldn't find ground texture file.";
     }
-    if(!box.loadFromFile("../MainMenu/box.png"))
-    {
-        qDebug() << "Couldn't find box texture file.";
-    }
-
-    if(!pauseTexture.loadFromFile("../MainMenu/pause.png"))
+    if(!pauseTexture.loadFromFile("../MainMenu/Images/pause.png"))
     {
         qDebug() << "Couldn't find pause texture file.";
+    }
+    if(!playTexture.loadFromFile("../MainMenu/Images/play.png"))
+    {
+        qDebug() << "Couldn't find play texture file.";
+    }
+    if(!backgroundTexture.loadFromFile("../MainMenu/Images/background.png"))
+    {
+        qDebug() << "Couldn't find background texture file.";
     }
 
     index = 0;
@@ -103,41 +115,42 @@ void SFMLCanvas::initialize()
 
     TextString = "";
     DisplayString = getNextLesson(lessonNum);
-    if (!Font.loadFromFile("../MainMenu/arial.ttf"))
+    if (!Font.loadFromFile("../MainMenu/Fonts/GALACTIC_VANGUARDIAN_NCV.ttf"))
     {
         throw std::invalid_argument("Could not find font file");
     }
 
     //Set up the text for displaying lessons
-    DisplayText.setString(DisplayString);
-    DisplayText.setFont(Font);
-    DisplayText.setPosition(200, 200);
-    DisplayText.setColor(sf::Color(255, 255, 255));
-    DisplayText.setCharacterSize(36);
+    displayText.setString(DisplayString);
+    displayText.setFont(Font);
+    displayText.setPosition(200, 200);
+    displayText.setColor(sf::Color(255, 255, 255));
+    displayText.setCharacterSize(FONTSIZE);
 
     //Set up string for taking user input
-    Text.setString(TextString);
-    Text.setFont(Font);
-    Text.setPosition(200, 300);
-    Text.setColor(sf::Color(255, 255, 255));
-    Text.setCharacterSize(36);
+    text.setString(TextString);
+    text.setFont(Font);
+    text.setPosition(200, 300);
+    text.setColor(sf::Color(255, 255, 255));
+    text.setCharacterSize(FONTSIZE);
 }
 
 void SFMLCanvas::update()
 {
     //clear the window
     RenderWindow::clear(sf::Color(0, 0, 0));
+
+    //Draw background image
+    sf::Sprite background;
+    background.setTexture(backgroundTexture);
+    draw(background);
+
     //Draw box2D stuff
     world->Step(1/60.f, 8, 3);
     for (b2Body* bodyIt = world->GetBodyList(); bodyIt != 0; bodyIt = bodyIt->GetNext())
     {
         if (bodyIt->GetType() == b2_dynamicBody)
         {
-            /*sf::Sprite boxSprite;
-            boxSprite.setTexture(box);
-            boxSprite.setOrigin(16.f, 16.f);
-            boxSprite.setPosition(bodyIt->GetPosition().x * SCALE, bodyIt->GetPosition().y * SCALE);
-            boxSprite.setRotation(bodyIt->GetAngle() * 180/b2_pi);*/
             sf::Text boxText;
             boxText.setFont(Font);
             boxText.setString(DisplayString);
@@ -145,10 +158,10 @@ void SFMLCanvas::update()
             boxText.setOrigin(16.f, 16.f);
             boxText.setPosition(bodyIt->GetPosition().x * SCALE, bodyIt->GetPosition().y * SCALE);
             boxText.setRotation(bodyIt->GetAngle() * 180/b2_pi);
-            boxText.setCharacterSize(36);
-            RenderWindow::draw(boxText);
+            boxText.setCharacterSize(FONTSIZE);
+            draw(boxText);
         }
-        else
+        /*else
         {
             sf::Sprite groundSprite;
             groundSprite.setTexture(ground);
@@ -156,18 +169,30 @@ void SFMLCanvas::update()
             groundSprite.setPosition(bodyIt->GetPosition().x * SCALE, bodyIt->GetPosition().y * SCALE);
             groundSprite.setRotation(180/b2_pi * bodyIt->GetAngle());
             RenderWindow::draw(groundSprite);
-        }
+        }*/
     }
+
     //Draw pause icon when paused
-    if (paused)
+    if (state == PAUSE)
     {
         sf::Sprite pauseSprite;
         pauseSprite.setTexture(pauseTexture);
-        pauseSprite.setPosition(583, 309);
+        //Dynamically position the pause texture in the middle of the screen.
+        pauseSprite.setPosition(((this->size().rwidth()/2) - pauseTexture.getSize().x/2), ((this->size().rheight()/2) - pauseTexture.getSize().y/2));
         draw(pauseSprite);
     }
-    RenderWindow::draw(DisplayText);
-    RenderWindow::draw(Text);
+    //Draw play icon while playing
+    else if (state == PLAY)
+    {
+        sf::Sprite playSprite;
+        playSprite.setTexture(playTexture);
+        playSprite.setPosition(10, (this->size().rheight() - playTexture.getSize().x) - 10);
+        draw(playSprite);
+    }
+
+    //Draw typing text on top, since it's the most important
+    draw(displayText);
+    draw(text);
 
 	//Reset clock variable
 	clock.restart();
@@ -175,21 +200,27 @@ void SFMLCanvas::update()
 
 void SFMLCanvas::keyPressEvent(QKeyEvent* event)
 {
-    //Exit the program when escape is pressed
+    //Pause or unpause when escape is pressed.
     if (event->key() == Qt::Key_Escape)
     {
-        paused = !paused;
-        if (paused)
+        switch(state)
         {
+        case START:
+            //begin
+            break;
+        case PLAY:
             pause();
-        }
-        else
-        {
+            break;
+        case PAUSE:
             play();
+            break;
+        case END:
+            //finish game
+            break;
         }
     }
 
-    if (!paused)
+    if (state == PLAY)
     {
         //When a key is entered...
         if (event->text().at(0).unicode() < static_cast<ushort>(127) && event->text().at(0).unicode() > static_cast<ushort>(31))
@@ -211,7 +242,6 @@ void SFMLCanvas::keyPressEvent(QKeyEvent* event)
         //Reaching the end of the line and hitting return will pull the next lesson
         else if (event->key() == Qt::Key_Return)
         {
-            //TextString += "\n";
             if (index == DisplayString.getSize())
             {
                 for (b2Body* bodyIt = world->GetBodyList(); bodyIt != 0; bodyIt = bodyIt->GetNext())
@@ -219,17 +249,29 @@ void SFMLCanvas::keyPressEvent(QKeyEvent* event)
                     if (bodyIt->GetType() == b2_dynamicBody)
                     {
                         world->DestroyBody(bodyIt);
-                        makeBox(200, 300);
-                        qDebug() << "How many in world body list " << world->GetBodyCount();
+                        makeDynamicBody(text.getPosition().x, text.getPosition().y);
+                    }
+                }
+                for (b2Body* bodyIt = world->GetBodyList(); bodyIt != 0; bodyIt = bodyIt->GetNext())
+                {
+                    if (bodyIt->GetType() == b2_dynamicBody)
+                    {
+                        bodyIt->SetFixedRotation(false);
+                        //Apply torque in a random angle from -45 degrees to 45 degrees
+                        srand(time(NULL));
+                        int temp = rand() % 137 + (-68);
+                        double angle = temp*M_PI/180;
+                        bodyIt->ApplyAngularImpulse(angle, true);
+                        //Give it a little upward push - not sure this does anything
+                        //bodyIt->ApplyLinearImpulse(b2Vec2(0, 10), bodyIt->GetWorldCenter(), true);
                     }
                 }
                 lessonNum++;
                 DisplayString = getNextLesson(lessonNum);
                 index = 0;
                 TextString = "";
-                Text.setString(TextString);
-                DisplayText.setString(DisplayString);
-
+                text.setString(TextString);
+                displayText.setString(DisplayString);
             }
         }
     }
@@ -256,7 +298,7 @@ void SFMLCanvas::keyPressEvent(QKeyEvent* event)
         index--;
     }*/
 
-    Text.setString(TextString);
+    text.setString(TextString);
     update();
 }
 
@@ -275,7 +317,7 @@ void SFMLCanvas::makeGround(int x, int y)
     body->CreateFixture(&fixtureDef);
 }
 
-void SFMLCanvas::makeBox(int x, int y)
+void SFMLCanvas::makeDynamicBody(int x, int y)
 {
     b2BodyDef bodyDef;
     bodyDef.position = b2Vec2(x/SCALE, y/SCALE);
@@ -294,7 +336,7 @@ void SFMLCanvas::makeBox(int x, int y)
 sf::String SFMLCanvas::getNextLesson(int indexOfLesson)
 {
     std::string line;
-    std::ifstream myfile("../MainMenu/lesson.txt");
+    std::ifstream myfile("../MainMenu/Lessons/lesson.txt");
     if (myfile.is_open())
     {
         for (int lineno = 0; getline(myfile, line) && lineno < 1000; lineno++)
@@ -314,9 +356,11 @@ sf::String SFMLCanvas::getNextLesson(int indexOfLesson)
 void SFMLCanvas::pause()
 {
     gameTimer.stop();
+    state = PAUSE;
 }
 
 void SFMLCanvas::play()
 {
     gameTimer.start();
+    state = PLAY;
 }

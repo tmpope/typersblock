@@ -27,8 +27,9 @@ private:
 
 	sf::Clock clock;
     sf::Texture pauseTexture;
+    sf::Texture playTexture;
+    sf::Texture backgroundTexture;
     sf::Texture ground;
-    sf::Texture box;
 
     int numMistakes;
     int lessonNum;
@@ -36,17 +37,17 @@ private:
     sf::String TextString;
     sf::String DisplayString;
     sf::Font Font;
-    sf::Text DisplayText;
-    sf::Text Text;
+    sf::Text displayText;
+    sf::Text text;
     size_t index;
 
-    //sf::Sprite sprite;
+    int state = 2;
 	bool initialized;
     bool paused = false;
     b2Vec2* gravity;
     b2World* world;
     void makeGround(int x, int y);
-    void makeBox(int x, int y);
+    void makeDynamicBody(int x, int y);
     void pause();
     void play();
 
