@@ -15,7 +15,6 @@
 #include <cppconn/resultset.h>
 #include <cppconn/statement.h>
 
-int mySQLexample(void);
 sql::ResultSet* runSqlQuery(std::string query)
 {
     sql::ResultSet *res;
@@ -87,6 +86,35 @@ int getScore(std::string user, int level)
     return 3;
 }
 
+void insertScore(std::string user, std::string pass, int level, int wpm, int mistakes, int score) {
+    sql::ResultSet *res;
+    std::string query = "INSERT INTO scores_table values('" + user
+        + "', " + std::to_string(level) + ", " + std::to_string(wpm) + ", " 
+        + std::to_string(mistakes) + ", " + std::to_string(score) + ")";
+    std::cout << query << std::endl;
+    runSqlQuery(query);
+    return;
+}
+
+/**
+ * Error
+ * @param  user [description]
+ * @param  pass [description]
+ * @return      [description]
+ */
+std::string generateResponse(std::string error)
+{
+    rapidjson::StringBuffer s;
+    rapidjson::Writer<rapidjson::StringBuffer> writer(s);
+    writer.StartObject();
+    writer.String("type");
+    writer.String("error");
+    writer.String("message");
+    writer.String(error.c_str());
+    writer.EndObject();
+    return s.GetString();
+}
+
 /**
  * Login
  * @param  user [description]
@@ -142,11 +170,8 @@ std::string generateResponse(std::string user, std::string pass)
 std::string generateResponse(std::string user, std::string pass, std::string first, std::string last, std::string className)
 {
     insertNewUser(user, pass, first, last, className);
-    //TODO actually do what it should
     rapidjson::StringBuffer s;
     rapidjson::Writer<rapidjson::StringBuffer> writer(s);
-
-    mySQLexample();
     
     if (validate(user, pass))
     {
@@ -167,24 +192,67 @@ std::string generateResponse(std::string user, std::string pass, std::string fir
     return s.GetString();
 }
 
+/**
+ * Update score
+ * @param  user      [description]
+ * @param  pass      [description]
+ * @param  first     [description]
+ * @param  last      [description]
+ * @param  className [description]
+ * @return           [description]
+ */
+std::string generateResponse(std::string user, std::string pass, int level, int wpm, int mistakes, int score)
+{
+    rapidjson::StringBuffer s;
+    rapidjson::Writer<rapidjson::StringBuffer> writer(s);
+    
+    if (validate(user, pass))
+    {
+        insertScore(user, pass, level, wpm, mistakes, score);
+        //return login result
+        writer.StartObject();
+        writer.String("type");
+        writer.String("success");
+        writer.String("user");
+        writer.String(user.c_str());
+        writer.EndObject();
+        return s.GetString();
+    }
+    else
+    {
+        return "Invalid username password combination";
+    }
+    return s.GetString();
+}
+
 void process(std::string msg, sf::TcpSocket* client) {
     std::cout << "Processing..." << std::endl;
     rapidjson::Document document;
-    if (document.Parse(msg.c_str()).HasParseError())
+    sf::Packet packet;
+    if (document.Parse(msg.c_str()).HasParseError() || !document.HasMember("action"))
     {
-        std::cout << "JSON ERROR" << std::endl;
+        packet << generateResponse("Invalid JSON");
+        if (client->send(packet) != sf::Socket::Done)
+        {
+            std::cout << "Error occurred while sending a packet." << std::endl;
+        }
         return;
     }
     int action = document["action"].GetInt();
-    std::string user;
-    std::string pass;
-    std::string first;
-    std::string last;
-    std::string className;
+    std::string user, pass, first, last, className;
+    int level, wpm, mistakes, score;
     std::cout << "action : " << action << std::endl;
-    sf::Packet packet;
     switch(action){
         case 0  : //login
+            if (!document.HasMember("user") || !document.HasMember("password"))
+            {
+                packet << generateResponse("Invalid JSON for login");
+                if (client->send(packet) != sf::Socket::Done)
+                {
+                    std::cout << "Error occurred while sending a packet." << std::endl;
+                }
+                return;
+            }
             user = document["user"].GetString();
             pass = document["password"].GetString();
             std::cout << "user : " << user << std::endl;
@@ -193,8 +261,19 @@ void process(std::string msg, sf::TcpSocket* client) {
             {
                 std::cout << "Error occurred while sending a packet." << std::endl;
             }
-            break;
+            return;
         case 1  : //create user
+            if (!document.HasMember("user") || !document.HasMember("password")
+                 || !document.HasMember("first")  || !document.HasMember("last")
+                  || !document.HasMember("className"))
+            {
+                packet << generateResponse("Invalid JSON for user creation");
+                if (client->send(packet) != sf::Socket::Done)
+                {
+                    std::cout << "Error occurred while sending a packet." << std::endl;
+                }
+                return;
+            }
             user = document["user"].GetString();
             pass = document["password"].GetString();
             first = document["first"].GetString();
@@ -206,64 +285,43 @@ void process(std::string msg, sf::TcpSocket* client) {
             {
                 std::cout << "Error occurred while sending a packet." << std::endl;
             }
-            break;
+            return;
         case 2  : //get key mapping
             std::cout << "Keymapping" << std::endl;
-            break;
+            return;
+        case 3  : //set score
+            if (!document.HasMember("user") || !document.HasMember("password")
+                 || !document.HasMember("level") || !document.HasMember("wpm") 
+                 || !document.HasMember("mistakes") || !document.HasMember("score"))
+            {
+                packet << generateResponse("Invalid JSON for score update");
+                if (client->send(packet) != sf::Socket::Done)
+                {
+                    std::cout << "Error occurred while sending a packet." << std::endl;
+                }
+                return;
+            }
+            user = document["user"].GetString();
+            pass = document["password"].GetString();
+            level = document["level"].GetInt();
+            wpm = document["wpm"].GetInt();
+            mistakes = document["mistakes"].GetInt();
+            score = document["score"].GetInt();
+            std::cout << "user : " << user << std::endl;
+            packet << generateResponse(user, pass, level, wpm, mistakes, score);
+            if (client->send(packet) != sf::Socket::Done)
+            {
+                std::cout << "Error occurred while sending a packet." << std::endl;
+            }
+            return;
         default : //any other action
             packet << "Invalid Action";
             if (client->send(packet) != sf::Socket::Done)
             {
                 std::cout << "Error occurred while sending a packet." << std::endl;
             }
-            break;
+            return;
     }
-}
-
-int mySQLexample(void)
-{
-std::cout << std::endl;
-std::cout << "Running 'SELECT 'Hello World!' AS _message'..." << std::endl;
-
-try {
-  sql::Driver *driver;
-  sql::Connection *con;
-  sql::Statement *stmt;
-  sql::ResultSet *res;
-
-  /* Create a connection */
-  driver = get_driver_instance();
-  con = driver->connect("waihoilaf.duckdns.org", "typerblock", "TyPeRbL0(k");
-  /* Connect to the MySQL test database */
-  stmt = con->createStatement();
-  stmt->execute("USE TyperBlock");
-  res = stmt->executeQuery("SELECT * FROM user_table");
-  std::cout << "Done." << std::endl;
-
-  while (res->next()) {
-    std::cout << "Got some stuff.";
-    /* Access column data by alias or column name */
-    //std::cout << res->getString("_message") << std::endl;
-    //std::cout << "\t... MySQL says it again: ";
-    /* Access column fata by numeric offset, 1 is the first column */
-    //std::cout << res->getString(1) << std::endl;
-  }
-  delete res;
-  delete stmt;
-  delete con;
-
-} catch (sql::SQLException &e) {
-  std::cout << "# ERR: SQLException in " << __FILE__;
-  std::cout << "(" << __FUNCTION__ << ") on line "
-     << __LINE__ << std::endl;
-  std::cout << "# ERR: " << e.what();
-  std::cout << " (MySQL error code: " << e.getErrorCode();
-  std::cout << ", SQLState: " << e.getSQLState() << " )" << std::endl;
-}
-
-std::cout << std::endl;
-
-return EXIT_SUCCESS;
 }
 
 int main(int, char const**)
