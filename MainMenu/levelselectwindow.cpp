@@ -17,6 +17,7 @@ LevelSelectWindow::LevelSelectWindow(std::string user, QWidget* previous, QWidge
 LevelSelectWindow::~LevelSelectWindow()
 {
     delete ui;
+    delete canvas;
 }
 
 void LevelSelectWindow::logOut()

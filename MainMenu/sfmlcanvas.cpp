@@ -18,6 +18,7 @@
 #include <SFML/Graphics/Text.hpp>
 #include <fstream>
 #include <iostream>
+#include <sstream>
 #include <math.h>
 
 SFMLCanvas::SFMLCanvas(QWidget* parent, const QPoint& position, const QSize& size, int frameTime) : QWidget(parent), initialized(false)
@@ -44,17 +45,15 @@ SFMLCanvas::SFMLCanvas(QWidget* parent, const QPoint& position, const QSize& siz
     //Set up some basic Box2D stuff
     gravity = new b2Vec2(1.0f, 10.0f);
     world = new b2World(*gravity);
-    makeGround(300, 700);
+    makeGround(650, 900);
     makeDynamicBody(300, 100);
-
-    //Set quit button properties
-    quitButton.adjustSize();
-
 }
 
 SFMLCanvas::~SFMLCanvas()
 {
-
+    //Delete anything we "new'd" here:
+    delete world;
+    delete gravity;
 }
 
 /* This code is run when SFMLCanvas::show is called.
@@ -63,16 +62,17 @@ void SFMLCanvas::showEvent(QShowEvent*)
 {
 	if (!initialized)
 	{
+        //Create the actual render window - have to use reinterpret cast since the compiler gets confused using multiple libraries here.
         sf::RenderWindow::create(reinterpret_cast<sf::WindowHandle>(this->winId()));
         //Set up textures and such.
 		initialize();
-        //Allow the user to begin typing immediately, without having to click in the window to begin.
+        //Allow the user to begin typing immediately, without having to click in the window to begin (focuses the window).
         this->setFocus();
-
         connect(&repaintTimer, SIGNAL(timeout()), this, SLOT(repaint()));
-
+        connect(&gameTimer, SIGNAL(timeout()), this, SLOT(updateGameTime()));
+        //Start timer
         repaintTimer.start();
-        gameTimer.start();
+        gameTimer.start(10);
         initialized = true;
 	}
 }
@@ -89,52 +89,60 @@ void SFMLCanvas::paintEvent(QPaintEvent*)
 	RenderWindow::display();
 }
 
+/* Initializes all textures and fonts to be used.
+ * Most of this code is just reading from files and setting up Text objects. */
 void SFMLCanvas::initialize()
 {
-    //Load relevant textures.
-    if(!ground.loadFromFile("../MainMenu/Images/ground.png"))
-    {
-        qDebug() << "Couldn't find ground texture file.";
-    }
     if(!pauseTexture.loadFromFile("../MainMenu/Images/pause.png"))
     {
-        qDebug() << "Couldn't find pause texture file.";
+        throw std::invalid_argument("Couldn't find pause image.");
     }
     if(!playTexture.loadFromFile("../MainMenu/Images/play.png"))
     {
-        qDebug() << "Couldn't find play texture file.";
+        throw std::invalid_argument("Couldn't find play image.");
     }
     if(!backgroundTexture.loadFromFile("../MainMenu/Images/background.png"))
     {
-        qDebug() << "Couldn't find background texture file.";
+        throw std::invalid_argument("Couldn't find background image.");
     }
 
+    //Some vars used for loading lessons.
     index = 0;
     numMistakes = 0;
     lessonNum = 0;
 
-    TextString = "";
-    DisplayString = getNextLesson(lessonNum);
-    if (!Font.loadFromFile("../MainMenu/Fonts/GALACTIC_VANGUARDIAN_NCV.ttf"))
+    textString = "";
+    displayString = getNextLesson(lessonNum);
+
+    //Load relevant fonts
+    if (!textFont.loadFromFile("../MainMenu/Fonts/GALACTIC_VANGUARDIAN_NCV.ttf"))
     {
-        throw std::invalid_argument("Could not find font file");
+        throw std::invalid_argument("Could not find font file.");
+    }
+
+    if(!numberFont.loadFromFile(("../MainMenu/Fonts/JLSDataGothicR_NC.otf")))
+    {
+        throw std::invalid_argument("Couldn't find number font file.");
     }
 
     //Set up the text for displaying lessons
-    displayText.setString(DisplayString);
-    displayText.setFont(Font);
-    displayText.setPosition(200, 200);
-    displayText.setColor(sf::Color(255, 255, 255));
-    displayText.setCharacterSize(FONTSIZE);
+    initializeText(displayText, 200, 100, displayString.toAnsiString().c_str());
 
     //Set up string for taking user input
-    text.setString(TextString);
-    text.setFont(Font);
-    text.setPosition(200, 300);
-    text.setColor(sf::Color(255, 255, 255));
-    text.setCharacterSize(FONTSIZE);
+    initializeText(userText, 200, 200, textString.toAnsiString().c_str());
+
+    //Set up text for the timer
+    initializeText(timerText, 20, 150, "00:00");
+    timerText.setFont(numberFont);
+
+    //Text to display the number of mistakes made.
+    initializeText(mistakeText, 20, 500, "0");
+
+
 }
 
+/* Draws all relevant information to the screen,
+ * while "stepping" the Box2D world. */
 void SFMLCanvas::update()
 {
     //clear the window
@@ -146,14 +154,17 @@ void SFMLCanvas::update()
     draw(background);
 
     //Draw box2D stuff
-    world->Step(1/60.f, 8, 3);
+    if (state == PLAY)
+    {
+        world->Step(1/60.f, 8, 3);
+    }
     for (b2Body* bodyIt = world->GetBodyList(); bodyIt != 0; bodyIt = bodyIt->GetNext())
     {
         if (bodyIt->GetType() == b2_dynamicBody)
         {
             sf::Text boxText;
-            boxText.setFont(Font);
-            boxText.setString(DisplayString);
+            boxText.setFont(textFont);
+            boxText.setString(displayString);
             boxText.setColor(sf::Color(0, 255, 0));
             boxText.setOrigin(16.f, 16.f);
             boxText.setPosition(bodyIt->GetPosition().x * SCALE, bodyIt->GetPosition().y * SCALE);
@@ -161,15 +172,6 @@ void SFMLCanvas::update()
             boxText.setCharacterSize(FONTSIZE);
             draw(boxText);
         }
-        /*else
-        {
-            sf::Sprite groundSprite;
-            groundSprite.setTexture(ground);
-            groundSprite.setOrigin(400.f, 8.f);
-            groundSprite.setPosition(bodyIt->GetPosition().x * SCALE, bodyIt->GetPosition().y * SCALE);
-            groundSprite.setRotation(180/b2_pi * bodyIt->GetAngle());
-            RenderWindow::draw(groundSprite);
-        }*/
     }
 
     //Draw pause icon when paused
@@ -190,14 +192,17 @@ void SFMLCanvas::update()
         draw(playSprite);
     }
 
-    //Draw typing text on top, since it's the most important
+    //Draw text on top, since it's the most important
+    draw(timerText);
     draw(displayText);
-    draw(text);
+    draw(userText);
 
 	//Reset clock variable
 	clock.restart();
 }
 
+/* How Qt intercepts key events.
+ * Handles all of the text required interactions. */
 void SFMLCanvas::keyPressEvent(QKeyEvent* event)
 {
     //Pause or unpause when escape is pressed.
@@ -220,16 +225,17 @@ void SFMLCanvas::keyPressEvent(QKeyEvent* event)
         }
     }
 
+    //When the game is being played, check for user input.
     if (state == PLAY)
     {
         //When a key is entered...
         if (event->text().at(0).unicode() < static_cast<ushort>(127) && event->text().at(0).unicode() > static_cast<ushort>(31))
         {
             //If the key matches the one in the lesson string move to the next char
-            if (event->text().toStdString().at(0) == DisplayString[index])
+            if (event->text().toStdString().at(0) == displayString[index])
             {
                 //stringBuild += (static_cast<char>(event.text.unicode));
-                TextString += event->text().toStdString().at(0);
+                textString += event->text().toStdString().at(0);
                 index++;
             }
             //If it's not a match add it as a mistake
@@ -242,14 +248,14 @@ void SFMLCanvas::keyPressEvent(QKeyEvent* event)
         //Reaching the end of the line and hitting return will pull the next lesson
         else if (event->key() == Qt::Key_Return)
         {
-            if (index == DisplayString.getSize())
+            if (index == displayString.getSize())
             {
                 for (b2Body* bodyIt = world->GetBodyList(); bodyIt != 0; bodyIt = bodyIt->GetNext())
                 {
                     if (bodyIt->GetType() == b2_dynamicBody)
                     {
                         world->DestroyBody(bodyIt);
-                        makeDynamicBody(text.getPosition().x, text.getPosition().y);
+                        makeDynamicBody(userText.getPosition().x, userText.getPosition().y);
                     }
                 }
                 for (b2Body* bodyIt = world->GetBodyList(); bodyIt != 0; bodyIt = bodyIt->GetNext())
@@ -267,11 +273,11 @@ void SFMLCanvas::keyPressEvent(QKeyEvent* event)
                     }
                 }
                 lessonNum++;
-                DisplayString = getNextLesson(lessonNum);
+                displayString = getNextLesson(lessonNum);
                 index = 0;
-                TextString = "";
-                text.setString(TextString);
-                displayText.setString(DisplayString);
+                textString = "";
+                userText.setString(textString);
+                displayText.setString(displayString);
             }
         }
     }
@@ -298,10 +304,11 @@ void SFMLCanvas::keyPressEvent(QKeyEvent* event)
         index--;
     }*/
 
-    text.setString(TextString);
+    userText.setString(textString);
     update();
 }
 
+/* Creates the ground for Box2D at the given x,y location. */
 void SFMLCanvas::makeGround(int x, int y)
 {
     //Create ground
@@ -310,13 +317,15 @@ void SFMLCanvas::makeGround(int x, int y)
     bodyDef.type = b2_staticBody;
     b2Body* body = world->CreateBody(&bodyDef);
     b2PolygonShape shape;
-    shape.SetAsBox(400.f/SCALE, 8.f/SCALE);
+    shape.SetAsBox(800.f/SCALE, 8.f/SCALE);
     b2FixtureDef fixtureDef;
     fixtureDef.density = 0.f;
     fixtureDef.shape = &shape;
     body->CreateFixture(&fixtureDef);
 }
 
+/* Creates a dynamic body at the given x,y location.
+ * Basic properties are set up, such as density and friction. */
 void SFMLCanvas::makeDynamicBody(int x, int y)
 {
     b2BodyDef bodyDef;
@@ -353,14 +362,44 @@ sf::String SFMLCanvas::getNextLesson(int indexOfLesson)
     return "";
 }
 
+/* Sets the game to the paused state, stops the timer (used for WPM). */
 void SFMLCanvas::pause()
 {
     gameTimer.stop();
     state = PAUSE;
 }
 
+/* Sets the game to the play state, starts the timer (used for WPM). */
 void SFMLCanvas::play()
 {
     gameTimer.start();
     state = PLAY;
+}
+
+/* Initializes the passed in text variable, giving it a font, char size, color, etc.
+ * Makes use of the other variables for position and the starting string. */
+void SFMLCanvas::initializeText(sf::Text& text, int x, int y, const char* string)
+{
+    text.setString(string);
+    //Default font. Can always be changed outside of the method when needed.
+    text.setFont(textFont);
+    text.setPosition(x, y);
+    //Default color, can also be changed whenever.
+    text.setColor(sf::Color(255, 255, 255));
+    text.setCharacterSize(FONTSIZE);
+}
+
+/* Updates the game timer. This is called roughly every 10 milliseconds, if Qt doesn't mess up.
+ * Will also update the timerText's string, so it is ready to draw at all times. */
+void SFMLCanvas::updateGameTime()
+{
+    gameTime += 10;
+    //Break game time into hundreth seconds, seconds, and minutes.
+    int hs = (gameTime/10)%100;
+    int s = (gameTime/1000)%60;
+    int m = (gameTime/60000)%60;
+    std::ostringstream temp;
+    temp << m << ":" << s << ":" << hs;
+    //Compose a timer string matching the minute:second:hundredth second format.
+    timerText.setString(temp.str());
 }
