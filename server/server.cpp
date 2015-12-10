@@ -88,6 +88,25 @@ int getScore(std::string user, int level)
 }
 
 /**
+ * Error
+ * @param  user [description]
+ * @param  pass [description]
+ * @return      [description]
+ */
+std::string generateResponse(std::string error)
+{
+    rapidjson::StringBuffer s;
+    rapidjson::Writer<rapidjson::StringBuffer> writer(s);
+    writer.StartObject();
+    writer.String("type");
+    writer.String("error");
+    writer.String("message");
+    writer.String(error.c_str());
+    writer.EndObject();
+    return s.GetString();
+}
+
+/**
  * Login
  * @param  user [description]
  * @param  pass [description]
@@ -170,9 +189,14 @@ std::string generateResponse(std::string user, std::string pass, std::string fir
 void process(std::string msg, sf::TcpSocket* client) {
     std::cout << "Processing..." << std::endl;
     rapidjson::Document document;
-    if (document.Parse(msg.c_str()).HasParseError())
+    sf::Packet packet;
+    if (document.Parse(msg.c_str()).HasParseError() || !document.HasMember("action"))
     {
-        std::cout << "JSON ERROR" << std::endl;
+        packet << generateResponse("Invalid JSON");
+        if (client->send(packet) != sf::Socket::Done)
+        {
+            std::cout << "Error occurred while sending a packet." << std::endl;
+        }
         return;
     }
     int action = document["action"].GetInt();
@@ -182,9 +206,17 @@ void process(std::string msg, sf::TcpSocket* client) {
     std::string last;
     std::string className;
     std::cout << "action : " << action << std::endl;
-    sf::Packet packet;
     switch(action){
         case 0  : //login
+            if (!document.HasMember("user") || !document.HasMember("password"))
+            {
+                packet << generateResponse("Invalid JSON for login");
+                if (client->send(packet) != sf::Socket::Done)
+                {
+                    std::cout << "Error occurred while sending a packet." << std::endl;
+                }
+                return;
+            }
             user = document["user"].GetString();
             pass = document["password"].GetString();
             std::cout << "user : " << user << std::endl;
@@ -193,8 +225,19 @@ void process(std::string msg, sf::TcpSocket* client) {
             {
                 std::cout << "Error occurred while sending a packet." << std::endl;
             }
-            break;
+            return;
         case 1  : //create user
+            if (!document.HasMember("user") || !document.HasMember("password")
+                 || !document.HasMember("first")  || !document.HasMember("last")
+                  || !document.HasMember("className"))
+            {
+                packet << generateResponse("Invalid JSON for user creation");
+                if (client->send(packet) != sf::Socket::Done)
+                {
+                    std::cout << "Error occurred while sending a packet." << std::endl;
+                }
+                return;
+            }
             user = document["user"].GetString();
             pass = document["password"].GetString();
             first = document["first"].GetString();
@@ -206,17 +249,17 @@ void process(std::string msg, sf::TcpSocket* client) {
             {
                 std::cout << "Error occurred while sending a packet." << std::endl;
             }
-            break;
+            return;
         case 2  : //get key mapping
             std::cout << "Keymapping" << std::endl;
-            break;
+            return;
         default : //any other action
             packet << "Invalid Action";
             if (client->send(packet) != sf::Socket::Done)
             {
                 std::cout << "Error occurred while sending a packet." << std::endl;
             }
-            break;
+            return;
     }
 }
 
