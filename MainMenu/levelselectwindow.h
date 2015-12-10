@@ -18,7 +18,8 @@ public:
     ~LevelSelectWindow();
 
 private slots:
-    void on_pushButton_clicked();
+    void logOut();
+    void startGame();
 
 private:
     Ui::LevelSelectWindow *ui;

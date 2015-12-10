@@ -728,8 +728,45 @@ debug\moc_mainwindow.cpp: D:\Qt\5.5\msvc2013_64\include\QtWidgets\QMainWindow \
 		D:\Qt\5.5\msvc2013_64\include\QtCore\QTimer \
 		D:\Qt\5.5\msvc2013_64\include\QtCore\qtimer.h \
 		D:\Qt\5.5\msvc2013_64\include\QtCore\qbasictimer.h \
+		..\MainMenu\Box2D\Box2D.h \
+		..\MainMenu\Box2D\Common\b2Settings.h \
+		..\MainMenu\Box2D\Common\b2Draw.h \
+		..\MainMenu\Box2D\Common\b2Math.h \
+		..\MainMenu\Box2D\Common\b2Timer.h \
+		..\MainMenu\Box2D\Collision\Shapes\b2CircleShape.h \
+		..\MainMenu\Box2D\Collision\Shapes\b2Shape.h \
+		..\MainMenu\Box2D\Common\b2BlockAllocator.h \
+		..\MainMenu\Box2D\Collision\b2Collision.h \
+		..\MainMenu\Box2D\Collision\Shapes\b2EdgeShape.h \
+		..\MainMenu\Box2D\Collision\Shapes\b2ChainShape.h \
+		..\MainMenu\Box2D\Collision\Shapes\b2PolygonShape.h \
+		..\MainMenu\Box2D\Collision\b2BroadPhase.h \
+		..\MainMenu\Box2D\Collision\b2DynamicTree.h \
+		..\MainMenu\Box2D\Common\b2GrowableStack.h \
+		..\MainMenu\Box2D\Collision\b2Distance.h \
+		..\MainMenu\Box2D\Collision\b2TimeOfImpact.h \
+		..\MainMenu\Box2D\Dynamics\b2Body.h \
+		..\MainMenu\Box2D\Dynamics\b2Fixture.h \
+		..\MainMenu\Box2D\Dynamics\b2WorldCallbacks.h \
+		..\MainMenu\Box2D\Dynamics\b2TimeStep.h \
+		..\MainMenu\Box2D\Dynamics\b2World.h \
+		..\MainMenu\Box2D\Common\b2StackAllocator.h \
+		..\MainMenu\Box2D\Dynamics\b2ContactManager.h \
+		..\MainMenu\Box2D\Dynamics\Contacts\b2Contact.h \
+		..\MainMenu\Box2D\Dynamics\Joints\b2DistanceJoint.h \
+		..\MainMenu\Box2D\Dynamics\Joints\b2Joint.h \
+		..\MainMenu\Box2D\Dynamics\Joints\b2FrictionJoint.h \
+		..\MainMenu\Box2D\Dynamics\Joints\b2GearJoint.h \
+		..\MainMenu\Box2D\Dynamics\Joints\b2MotorJoint.h \
+		..\MainMenu\Box2D\Dynamics\Joints\b2MouseJoint.h \
+		..\MainMenu\Box2D\Dynamics\Joints\b2PrismaticJoint.h \
+		..\MainMenu\Box2D\Dynamics\Joints\b2PulleyJoint.h \
+		..\MainMenu\Box2D\Dynamics\Joints\b2RevoluteJoint.h \
+		..\MainMenu\Box2D\Dynamics\Joints\b2RopeJoint.h \
+		..\MainMenu\Box2D\Dynamics\Joints\b2WeldJoint.h \
+		..\MainMenu\Box2D\Dynamics\Joints\b2WheelJoint.h \
 		..\MainMenu\mainwindow.h
-	D:\Qt\5.5\msvc2013_64\bin\moc.exe $(DEFINES) -D_MSC_VER=1800 -D_WIN32 -D_WIN64 -ID:/Qt/5.5/msvc2013_64/mkspecs/win32-msvc2013 -IC:/Users/ryant_000/Downloads/typersblock/MainMenu -IC:/Users/ryant_000/Downloads/typersblock/SFML/include -IC:/Users/ryant_000/Downloads/typersblock/MainMenu/include -ID:/Qt/5.5/msvc2013_64/include -ID:/Qt/5.5/msvc2013_64/include/QtWidgets -ID:/Qt/5.5/msvc2013_64/include/QtGui -ID:/Qt/5.5/msvc2013_64/include/QtANGLE -ID:/Qt/5.5/msvc2013_64/include/QtCore -I. ..\MainMenu\mainwindow.h -o debug\moc_mainwindow.cpp
+	D:\Qt\5.5\msvc2013_64\bin\moc.exe $(DEFINES) -D_MSC_VER=1800 -D_WIN32 -D_WIN64 -ID:/Qt/5.5/msvc2013_64/mkspecs/win32-msvc2013 -IC:/Users/ryant_000/Desktop/typersblock/MainMenu -IC:/Users/ryant_000/Desktop/typersblock/SFML/include -IC:/Users/ryant_000/Desktop/typersblock/MainMenu/include -ID:/Qt/5.5/msvc2013_64/include -ID:/Qt/5.5/msvc2013_64/include/QtWidgets -ID:/Qt/5.5/msvc2013_64/include/QtGui -ID:/Qt/5.5/msvc2013_64/include/QtANGLE -ID:/Qt/5.5/msvc2013_64/include/QtCore -I. ..\MainMenu\mainwindow.h -o debug\moc_mainwindow.cpp
 
 debug\moc_levelselectwindow.cpp: D:\Qt\5.5\msvc2013_64\include\QtWidgets\QWidget \
 		D:\Qt\5.5\msvc2013_64\include\QtWidgets\qwidget.h \
@@ -908,8 +945,45 @@ debug\moc_levelselectwindow.cpp: D:\Qt\5.5\msvc2013_64\include\QtWidgets\QWidget
 		D:\Qt\5.5\msvc2013_64\include\QtCore\QTimer \
 		D:\Qt\5.5\msvc2013_64\include\QtCore\qtimer.h \
 		D:\Qt\5.5\msvc2013_64\include\QtCore\qbasictimer.h \
+		..\MainMenu\Box2D\Box2D.h \
+		..\MainMenu\Box2D\Common\b2Settings.h \
+		..\MainMenu\Box2D\Common\b2Draw.h \
+		..\MainMenu\Box2D\Common\b2Math.h \
+		..\MainMenu\Box2D\Common\b2Timer.h \
+		..\MainMenu\Box2D\Collision\Shapes\b2CircleShape.h \
+		..\MainMenu\Box2D\Collision\Shapes\b2Shape.h \
+		..\MainMenu\Box2D\Common\b2BlockAllocator.h \
+		..\MainMenu\Box2D\Collision\b2Collision.h \
+		..\MainMenu\Box2D\Collision\Shapes\b2EdgeShape.h \
+		..\MainMenu\Box2D\Collision\Shapes\b2ChainShape.h \
+		..\MainMenu\Box2D\Collision\Shapes\b2PolygonShape.h \
+		..\MainMenu\Box2D\Collision\b2BroadPhase.h \
+		..\MainMenu\Box2D\Collision\b2DynamicTree.h \
+		..\MainMenu\Box2D\Common\b2GrowableStack.h \
+		..\MainMenu\Box2D\Collision\b2Distance.h \
+		..\MainMenu\Box2D\Collision\b2TimeOfImpact.h \
+		..\MainMenu\Box2D\Dynamics\b2Body.h \
+		..\MainMenu\Box2D\Dynamics\b2Fixture.h \
+		..\MainMenu\Box2D\Dynamics\b2WorldCallbacks.h \
+		..\MainMenu\Box2D\Dynamics\b2TimeStep.h \
+		..\MainMenu\Box2D\Dynamics\b2World.h \
+		..\MainMenu\Box2D\Common\b2StackAllocator.h \
+		..\MainMenu\Box2D\Dynamics\b2ContactManager.h \
+		..\MainMenu\Box2D\Dynamics\Contacts\b2Contact.h \
+		..\MainMenu\Box2D\Dynamics\Joints\b2DistanceJoint.h \
+		..\MainMenu\Box2D\Dynamics\Joints\b2Joint.h \
+		..\MainMenu\Box2D\Dynamics\Joints\b2FrictionJoint.h \
+		..\MainMenu\Box2D\Dynamics\Joints\b2GearJoint.h \
+		..\MainMenu\Box2D\Dynamics\Joints\b2MotorJoint.h \
+		..\MainMenu\Box2D\Dynamics\Joints\b2MouseJoint.h \
+		..\MainMenu\Box2D\Dynamics\Joints\b2PrismaticJoint.h \
+		..\MainMenu\Box2D\Dynamics\Joints\b2PulleyJoint.h \
+		..\MainMenu\Box2D\Dynamics\Joints\b2RevoluteJoint.h \
+		..\MainMenu\Box2D\Dynamics\Joints\b2RopeJoint.h \
+		..\MainMenu\Box2D\Dynamics\Joints\b2WeldJoint.h \
+		..\MainMenu\Box2D\Dynamics\Joints\b2WheelJoint.h \
 		..\MainMenu\levelselectwindow.h
-	D:\Qt\5.5\msvc2013_64\bin\moc.exe $(DEFINES) -D_MSC_VER=1800 -D_WIN32 -D_WIN64 -ID:/Qt/5.5/msvc2013_64/mkspecs/win32-msvc2013 -IC:/Users/ryant_000/Downloads/typersblock/MainMenu -IC:/Users/ryant_000/Downloads/typersblock/SFML/include -IC:/Users/ryant_000/Downloads/typersblock/MainMenu/include -ID:/Qt/5.5/msvc2013_64/include -ID:/Qt/5.5/msvc2013_64/include/QtWidgets -ID:/Qt/5.5/msvc2013_64/include/QtGui -ID:/Qt/5.5/msvc2013_64/include/QtANGLE -ID:/Qt/5.5/msvc2013_64/include/QtCore -I. ..\MainMenu\levelselectwindow.h -o debug\moc_levelselectwindow.cpp
+	D:\Qt\5.5\msvc2013_64\bin\moc.exe $(DEFINES) -D_MSC_VER=1800 -D_WIN32 -D_WIN64 -ID:/Qt/5.5/msvc2013_64/mkspecs/win32-msvc2013 -IC:/Users/ryant_000/Desktop/typersblock/MainMenu -IC:/Users/ryant_000/Desktop/typersblock/SFML/include -IC:/Users/ryant_000/Desktop/typersblock/MainMenu/include -ID:/Qt/5.5/msvc2013_64/include -ID:/Qt/5.5/msvc2013_64/include/QtWidgets -ID:/Qt/5.5/msvc2013_64/include/QtGui -ID:/Qt/5.5/msvc2013_64/include/QtANGLE -ID:/Qt/5.5/msvc2013_64/include/QtCore -I. ..\MainMenu\levelselectwindow.h -o debug\moc_levelselectwindow.cpp
 
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
@@ -1129,6 +1203,43 @@ debug\main.obj: ..\MainMenu\main.cpp ../MainMenu/mainwindow.h \
 		D:\Qt\5.5\msvc2013_64\include\QtCore\QTimer \
 		D:\Qt\5.5\msvc2013_64\include\QtCore\qtimer.h \
 		D:\Qt\5.5\msvc2013_64\include\QtCore\qbasictimer.h \
+		../MainMenu/Box2D/Box2D.h \
+		../MainMenu/Box2D/Common/b2Settings.h \
+		../MainMenu/Box2D/Common/b2Draw.h \
+		../MainMenu/Box2D/Common/b2Math.h \
+		../MainMenu/Box2D/Common/b2Timer.h \
+		../MainMenu/Box2D/Collision/Shapes/b2CircleShape.h \
+		../MainMenu/Box2D/Collision/Shapes/b2Shape.h \
+		../MainMenu/Box2D/Common/b2BlockAllocator.h \
+		../MainMenu/Box2D/Collision/b2Collision.h \
+		../MainMenu/Box2D/Collision/Shapes/b2EdgeShape.h \
+		../MainMenu/Box2D/Collision/Shapes/b2ChainShape.h \
+		../MainMenu/Box2D/Collision/Shapes/b2PolygonShape.h \
+		../MainMenu/Box2D/Collision/b2BroadPhase.h \
+		../MainMenu/Box2D/Collision/b2DynamicTree.h \
+		../MainMenu/Box2D/Common/b2GrowableStack.h \
+		../MainMenu/Box2D/Collision/b2Distance.h \
+		../MainMenu/Box2D/Collision/b2TimeOfImpact.h \
+		../MainMenu/Box2D/Dynamics/b2Body.h \
+		../MainMenu/Box2D/Dynamics/b2Fixture.h \
+		../MainMenu/Box2D/Dynamics/b2WorldCallbacks.h \
+		../MainMenu/Box2D/Dynamics/b2TimeStep.h \
+		../MainMenu/Box2D/Dynamics/b2World.h \
+		../MainMenu/Box2D/Common/b2StackAllocator.h \
+		../MainMenu/Box2D/Dynamics/b2ContactManager.h \
+		../MainMenu/Box2D/Dynamics/Contacts/b2Contact.h \
+		../MainMenu/Box2D/Dynamics/Joints/b2DistanceJoint.h \
+		../MainMenu/Box2D/Dynamics/Joints/b2Joint.h \
+		../MainMenu/Box2D/Dynamics/Joints/b2FrictionJoint.h \
+		../MainMenu/Box2D/Dynamics/Joints/b2GearJoint.h \
+		../MainMenu/Box2D/Dynamics/Joints/b2MotorJoint.h \
+		../MainMenu/Box2D/Dynamics/Joints/b2MouseJoint.h \
+		../MainMenu/Box2D/Dynamics/Joints/b2PrismaticJoint.h \
+		../MainMenu/Box2D/Dynamics/Joints/b2PulleyJoint.h \
+		../MainMenu/Box2D/Dynamics/Joints/b2RevoluteJoint.h \
+		../MainMenu/Box2D/Dynamics/Joints/b2RopeJoint.h \
+		../MainMenu/Box2D/Dynamics/Joints/b2WeldJoint.h \
+		../MainMenu/Box2D/Dynamics/Joints/b2WheelJoint.h \
 		D:\Qt\5.5\msvc2013_64\include\QtWidgets\QApplication \
 		D:\Qt\5.5\msvc2013_64\include\QtWidgets\qapplication.h \
 		D:\Qt\5.5\msvc2013_64\include\QtCore\qcoreapplication.h \
@@ -1332,56 +1443,44 @@ debug\mainwindow.obj: ..\MainMenu\mainwindow.cpp ../MainMenu/mainwindow.h \
 		D:\Qt\5.5\msvc2013_64\include\QtCore\QTimer \
 		D:\Qt\5.5\msvc2013_64\include\QtCore\qtimer.h \
 		D:\Qt\5.5\msvc2013_64\include\QtCore\qbasictimer.h \
+		../MainMenu/Box2D/Box2D.h \
+		../MainMenu/Box2D/Common/b2Settings.h \
+		../MainMenu/Box2D/Common/b2Draw.h \
+		../MainMenu/Box2D/Common/b2Math.h \
+		../MainMenu/Box2D/Common/b2Timer.h \
+		../MainMenu/Box2D/Collision/Shapes/b2CircleShape.h \
+		../MainMenu/Box2D/Collision/Shapes/b2Shape.h \
+		../MainMenu/Box2D/Common/b2BlockAllocator.h \
+		../MainMenu/Box2D/Collision/b2Collision.h \
+		../MainMenu/Box2D/Collision/Shapes/b2EdgeShape.h \
+		../MainMenu/Box2D/Collision/Shapes/b2ChainShape.h \
+		../MainMenu/Box2D/Collision/Shapes/b2PolygonShape.h \
+		../MainMenu/Box2D/Collision/b2BroadPhase.h \
+		../MainMenu/Box2D/Collision/b2DynamicTree.h \
+		../MainMenu/Box2D/Common/b2GrowableStack.h \
+		../MainMenu/Box2D/Collision/b2Distance.h \
+		../MainMenu/Box2D/Collision/b2TimeOfImpact.h \
+		../MainMenu/Box2D/Dynamics/b2Body.h \
+		../MainMenu/Box2D/Dynamics/b2Fixture.h \
+		../MainMenu/Box2D/Dynamics/b2WorldCallbacks.h \
+		../MainMenu/Box2D/Dynamics/b2TimeStep.h \
+		../MainMenu/Box2D/Dynamics/b2World.h \
+		../MainMenu/Box2D/Common/b2StackAllocator.h \
+		../MainMenu/Box2D/Dynamics/b2ContactManager.h \
+		../MainMenu/Box2D/Dynamics/Contacts/b2Contact.h \
+		../MainMenu/Box2D/Dynamics/Joints/b2DistanceJoint.h \
+		../MainMenu/Box2D/Dynamics/Joints/b2Joint.h \
+		../MainMenu/Box2D/Dynamics/Joints/b2FrictionJoint.h \
+		../MainMenu/Box2D/Dynamics/Joints/b2GearJoint.h \
+		../MainMenu/Box2D/Dynamics/Joints/b2MotorJoint.h \
+		../MainMenu/Box2D/Dynamics/Joints/b2MouseJoint.h \
+		../MainMenu/Box2D/Dynamics/Joints/b2PrismaticJoint.h \
+		../MainMenu/Box2D/Dynamics/Joints/b2PulleyJoint.h \
+		../MainMenu/Box2D/Dynamics/Joints/b2RevoluteJoint.h \
+		../MainMenu/Box2D/Dynamics/Joints/b2RopeJoint.h \
+		../MainMenu/Box2D/Dynamics/Joints/b2WeldJoint.h \
+		../MainMenu/Box2D/Dynamics/Joints/b2WheelJoint.h \
 		ui_mainwindow.h \
-		D:\Qt\5.5\msvc2013_64\include\QtCore\QVariant \
-		D:\Qt\5.5\msvc2013_64\include\QtWidgets\QAction \
-		D:\Qt\5.5\msvc2013_64\include\QtWidgets\qaction.h \
-		D:\Qt\5.5\msvc2013_64\include\QtWidgets\qactiongroup.h \
-		D:\Qt\5.5\msvc2013_64\include\QtWidgets\QApplication \
-		D:\Qt\5.5\msvc2013_64\include\QtWidgets\qapplication.h \
-		D:\Qt\5.5\msvc2013_64\include\QtCore\qcoreapplication.h \
-		D:\Qt\5.5\msvc2013_64\include\QtCore\qeventloop.h \
-		D:\Qt\5.5\msvc2013_64\include\QtWidgets\qdesktopwidget.h \
-		D:\Qt\5.5\msvc2013_64\include\QtGui\qguiapplication.h \
-		D:\Qt\5.5\msvc2013_64\include\QtGui\qinputmethod.h \
-		D:\Qt\5.5\msvc2013_64\include\QtWidgets\QButtonGroup \
-		D:\Qt\5.5\msvc2013_64\include\QtWidgets\qbuttongroup.h \
-		D:\Qt\5.5\msvc2013_64\include\QtWidgets\QHeaderView \
-		D:\Qt\5.5\msvc2013_64\include\QtWidgets\qheaderview.h \
-		D:\Qt\5.5\msvc2013_64\include\QtWidgets\qabstractitemview.h \
-		D:\Qt\5.5\msvc2013_64\include\QtWidgets\qabstractscrollarea.h \
-		D:\Qt\5.5\msvc2013_64\include\QtWidgets\qframe.h \
-		D:\Qt\5.5\msvc2013_64\include\QtCore\qabstractitemmodel.h \
-		D:\Qt\5.5\msvc2013_64\include\QtCore\qitemselectionmodel.h \
-		D:\Qt\5.5\msvc2013_64\include\QtWidgets\qabstractitemdelegate.h \
-		D:\Qt\5.5\msvc2013_64\include\QtWidgets\qstyleoption.h \
-		D:\Qt\5.5\msvc2013_64\include\QtWidgets\qabstractspinbox.h \
-		D:\Qt\5.5\msvc2013_64\include\QtGui\qvalidator.h \
-		D:\Qt\5.5\msvc2013_64\include\QtCore\qregularexpression.h \
-		D:\Qt\5.5\msvc2013_64\include\QtWidgets\qslider.h \
-		D:\Qt\5.5\msvc2013_64\include\QtWidgets\qabstractslider.h \
-		D:\Qt\5.5\msvc2013_64\include\QtWidgets\qstyle.h \
-		D:\Qt\5.5\msvc2013_64\include\QtWidgets\qtabbar.h \
-		D:\Qt\5.5\msvc2013_64\include\QtWidgets\qrubberband.h \
-		D:\Qt\5.5\msvc2013_64\include\QtWidgets\QLabel \
-		D:\Qt\5.5\msvc2013_64\include\QtWidgets\qlabel.h \
-		D:\Qt\5.5\msvc2013_64\include\QtWidgets\QMenuBar \
-		D:\Qt\5.5\msvc2013_64\include\QtWidgets\qmenubar.h \
-		D:\Qt\5.5\msvc2013_64\include\QtWidgets\qmenu.h \
-		D:\Qt\5.5\msvc2013_64\include\QtWidgets\QPushButton \
-		D:\Qt\5.5\msvc2013_64\include\QtWidgets\qpushbutton.h \
-		D:\Qt\5.5\msvc2013_64\include\QtWidgets\qabstractbutton.h \
-		D:\Qt\5.5\msvc2013_64\include\QtWidgets\QStatusBar \
-		D:\Qt\5.5\msvc2013_64\include\QtWidgets\qstatusbar.h \
-		D:\Qt\5.5\msvc2013_64\include\QtWidgets\QTextEdit \
-		D:\Qt\5.5\msvc2013_64\include\QtWidgets\qtextedit.h \
-		D:\Qt\5.5\msvc2013_64\include\QtGui\qtextdocument.h \
-		D:\Qt\5.5\msvc2013_64\include\QtGui\qtextoption.h \
-		D:\Qt\5.5\msvc2013_64\include\QtGui\qtextcursor.h \
-		D:\Qt\5.5\msvc2013_64\include\QtGui\qtextformat.h \
-		D:\Qt\5.5\msvc2013_64\include\QtGui\qpen.h \
-		D:\Qt\5.5\msvc2013_64\include\QtWidgets\QToolBar \
-		D:\Qt\5.5\msvc2013_64\include\QtWidgets\qtoolbar.h \
 		D:\Qt\5.5\msvc2013_64\include\QtWidgets\QMessageBox \
 		D:\Qt\5.5\msvc2013_64\include\QtWidgets\qmessagebox.h \
 		D:\Qt\5.5\msvc2013_64\include\QtWidgets\qdialog.h \
@@ -1586,44 +1685,44 @@ debug\levelselectwindow.obj: ..\MainMenu\levelselectwindow.cpp ../MainMenu/level
 		D:\Qt\5.5\msvc2013_64\include\QtCore\QTimer \
 		D:\Qt\5.5\msvc2013_64\include\QtCore\qtimer.h \
 		D:\Qt\5.5\msvc2013_64\include\QtCore\qbasictimer.h \
-		ui_levelselectwindow.h \
-		D:\Qt\5.5\msvc2013_64\include\QtCore\QVariant \
-		D:\Qt\5.5\msvc2013_64\include\QtWidgets\QAction \
-		D:\Qt\5.5\msvc2013_64\include\QtWidgets\qaction.h \
-		D:\Qt\5.5\msvc2013_64\include\QtGui\qicon.h \
-		D:\Qt\5.5\msvc2013_64\include\QtWidgets\qactiongroup.h \
-		D:\Qt\5.5\msvc2013_64\include\QtWidgets\QApplication \
-		D:\Qt\5.5\msvc2013_64\include\QtWidgets\qapplication.h \
-		D:\Qt\5.5\msvc2013_64\include\QtCore\qcoreapplication.h \
-		D:\Qt\5.5\msvc2013_64\include\QtCore\qeventloop.h \
-		D:\Qt\5.5\msvc2013_64\include\QtWidgets\qdesktopwidget.h \
-		D:\Qt\5.5\msvc2013_64\include\QtGui\qguiapplication.h \
-		D:\Qt\5.5\msvc2013_64\include\QtGui\qinputmethod.h \
-		D:\Qt\5.5\msvc2013_64\include\QtWidgets\QButtonGroup \
-		D:\Qt\5.5\msvc2013_64\include\QtWidgets\qbuttongroup.h \
-		D:\Qt\5.5\msvc2013_64\include\QtWidgets\QHeaderView \
-		D:\Qt\5.5\msvc2013_64\include\QtWidgets\qheaderview.h \
-		D:\Qt\5.5\msvc2013_64\include\QtWidgets\qabstractitemview.h \
-		D:\Qt\5.5\msvc2013_64\include\QtWidgets\qabstractscrollarea.h \
-		D:\Qt\5.5\msvc2013_64\include\QtWidgets\qframe.h \
-		D:\Qt\5.5\msvc2013_64\include\QtCore\qabstractitemmodel.h \
-		D:\Qt\5.5\msvc2013_64\include\QtCore\qitemselectionmodel.h \
-		D:\Qt\5.5\msvc2013_64\include\QtWidgets\qabstractitemdelegate.h \
-		D:\Qt\5.5\msvc2013_64\include\QtWidgets\qstyleoption.h \
-		D:\Qt\5.5\msvc2013_64\include\QtWidgets\qabstractspinbox.h \
-		D:\Qt\5.5\msvc2013_64\include\QtGui\qvalidator.h \
-		D:\Qt\5.5\msvc2013_64\include\QtCore\qregularexpression.h \
-		D:\Qt\5.5\msvc2013_64\include\QtWidgets\qslider.h \
-		D:\Qt\5.5\msvc2013_64\include\QtWidgets\qabstractslider.h \
-		D:\Qt\5.5\msvc2013_64\include\QtWidgets\qstyle.h \
-		D:\Qt\5.5\msvc2013_64\include\QtWidgets\qtabbar.h \
-		D:\Qt\5.5\msvc2013_64\include\QtWidgets\qtabwidget.h \
-		D:\Qt\5.5\msvc2013_64\include\QtWidgets\qrubberband.h \
-		D:\Qt\5.5\msvc2013_64\include\QtWidgets\QLabel \
-		D:\Qt\5.5\msvc2013_64\include\QtWidgets\qlabel.h \
-		D:\Qt\5.5\msvc2013_64\include\QtWidgets\QPushButton \
-		D:\Qt\5.5\msvc2013_64\include\QtWidgets\qpushbutton.h \
-		D:\Qt\5.5\msvc2013_64\include\QtWidgets\qabstractbutton.h
+		../MainMenu/Box2D/Box2D.h \
+		../MainMenu/Box2D/Common/b2Settings.h \
+		../MainMenu/Box2D/Common/b2Draw.h \
+		../MainMenu/Box2D/Common/b2Math.h \
+		../MainMenu/Box2D/Common/b2Timer.h \
+		../MainMenu/Box2D/Collision/Shapes/b2CircleShape.h \
+		../MainMenu/Box2D/Collision/Shapes/b2Shape.h \
+		../MainMenu/Box2D/Common/b2BlockAllocator.h \
+		../MainMenu/Box2D/Collision/b2Collision.h \
+		../MainMenu/Box2D/Collision/Shapes/b2EdgeShape.h \
+		../MainMenu/Box2D/Collision/Shapes/b2ChainShape.h \
+		../MainMenu/Box2D/Collision/Shapes/b2PolygonShape.h \
+		../MainMenu/Box2D/Collision/b2BroadPhase.h \
+		../MainMenu/Box2D/Collision/b2DynamicTree.h \
+		../MainMenu/Box2D/Common/b2GrowableStack.h \
+		../MainMenu/Box2D/Collision/b2Distance.h \
+		../MainMenu/Box2D/Collision/b2TimeOfImpact.h \
+		../MainMenu/Box2D/Dynamics/b2Body.h \
+		../MainMenu/Box2D/Dynamics/b2Fixture.h \
+		../MainMenu/Box2D/Dynamics/b2WorldCallbacks.h \
+		../MainMenu/Box2D/Dynamics/b2TimeStep.h \
+		../MainMenu/Box2D/Dynamics/b2World.h \
+		../MainMenu/Box2D/Common/b2StackAllocator.h \
+		../MainMenu/Box2D/Dynamics/b2ContactManager.h \
+		../MainMenu/Box2D/Dynamics/Contacts/b2Contact.h \
+		../MainMenu/Box2D/Dynamics/Joints/b2DistanceJoint.h \
+		../MainMenu/Box2D/Dynamics/Joints/b2Joint.h \
+		../MainMenu/Box2D/Dynamics/Joints/b2FrictionJoint.h \
+		../MainMenu/Box2D/Dynamics/Joints/b2GearJoint.h \
+		../MainMenu/Box2D/Dynamics/Joints/b2MotorJoint.h \
+		../MainMenu/Box2D/Dynamics/Joints/b2MouseJoint.h \
+		../MainMenu/Box2D/Dynamics/Joints/b2PrismaticJoint.h \
+		../MainMenu/Box2D/Dynamics/Joints/b2PulleyJoint.h \
+		../MainMenu/Box2D/Dynamics/Joints/b2RevoluteJoint.h \
+		../MainMenu/Box2D/Dynamics/Joints/b2RopeJoint.h \
+		../MainMenu/Box2D/Dynamics/Joints/b2WeldJoint.h \
+		../MainMenu/Box2D/Dynamics/Joints/b2WheelJoint.h \
+		ui_levelselectwindow.h
 
 debug\sfmlcanvas.obj: ..\MainMenu\sfmlcanvas.cpp ../MainMenu/sfmlcanvas.h \
 		D:\Qt\5.5\msvc2013_64\include\QtWidgets\QWidget \
@@ -1801,7 +1900,45 @@ debug\sfmlcanvas.obj: ..\MainMenu\sfmlcanvas.cpp ../MainMenu/sfmlcanvas.h \
 		..\SFML\include\SFML\Graphics\Text.hpp \
 		D:\Qt\5.5\msvc2013_64\include\QtCore\QTimer \
 		D:\Qt\5.5\msvc2013_64\include\QtCore\qtimer.h \
-		D:\Qt\5.5\msvc2013_64\include\QtCore\qbasictimer.h
+		D:\Qt\5.5\msvc2013_64\include\QtCore\qbasictimer.h \
+		../MainMenu/Box2D/Box2D.h \
+		../MainMenu/Box2D/Common/b2Settings.h \
+		../MainMenu/Box2D/Common/b2Draw.h \
+		../MainMenu/Box2D/Common/b2Math.h \
+		../MainMenu/Box2D/Common/b2Timer.h \
+		../MainMenu/Box2D/Collision/Shapes/b2CircleShape.h \
+		../MainMenu/Box2D/Collision/Shapes/b2Shape.h \
+		../MainMenu/Box2D/Common/b2BlockAllocator.h \
+		../MainMenu/Box2D/Collision/b2Collision.h \
+		../MainMenu/Box2D/Collision/Shapes/b2EdgeShape.h \
+		../MainMenu/Box2D/Collision/Shapes/b2ChainShape.h \
+		../MainMenu/Box2D/Collision/Shapes/b2PolygonShape.h \
+		../MainMenu/Box2D/Collision/b2BroadPhase.h \
+		../MainMenu/Box2D/Collision/b2DynamicTree.h \
+		../MainMenu/Box2D/Common/b2GrowableStack.h \
+		../MainMenu/Box2D/Collision/b2Distance.h \
+		../MainMenu/Box2D/Collision/b2TimeOfImpact.h \
+		../MainMenu/Box2D/Dynamics/b2Body.h \
+		../MainMenu/Box2D/Dynamics/b2Fixture.h \
+		../MainMenu/Box2D/Dynamics/b2WorldCallbacks.h \
+		../MainMenu/Box2D/Dynamics/b2TimeStep.h \
+		../MainMenu/Box2D/Dynamics/b2World.h \
+		../MainMenu/Box2D/Common/b2StackAllocator.h \
+		../MainMenu/Box2D/Dynamics/b2ContactManager.h \
+		../MainMenu/Box2D/Dynamics/Contacts/b2Contact.h \
+		../MainMenu/Box2D/Dynamics/Joints/b2DistanceJoint.h \
+		../MainMenu/Box2D/Dynamics/Joints/b2Joint.h \
+		../MainMenu/Box2D/Dynamics/Joints/b2FrictionJoint.h \
+		../MainMenu/Box2D/Dynamics/Joints/b2GearJoint.h \
+		../MainMenu/Box2D/Dynamics/Joints/b2MotorJoint.h \
+		../MainMenu/Box2D/Dynamics/Joints/b2MouseJoint.h \
+		../MainMenu/Box2D/Dynamics/Joints/b2PrismaticJoint.h \
+		../MainMenu/Box2D/Dynamics/Joints/b2PulleyJoint.h \
+		../MainMenu/Box2D/Dynamics/Joints/b2RevoluteJoint.h \
+		../MainMenu/Box2D/Dynamics/Joints/b2RopeJoint.h \
+		../MainMenu/Box2D/Dynamics/Joints/b2WeldJoint.h \
+		../MainMenu/Box2D/Dynamics/Joints/b2WheelJoint.h \
+		D:\Qt\5.5\msvc2013_64\include\QtGui\QKeyEvent
 
 debug\b2ChainShape.obj: ..\MainMenu\Box2D\Collision\Shapes\b2ChainShape.cpp ../MainMenu/Box2D/Collision/Shapes/b2ChainShape.h \
 		../MainMenu/Box2D/Collision/Shapes/b2Shape.h \

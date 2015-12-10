@@ -6,12 +6,13 @@
 #include <Box2D/Box2D.h>
 #include <SFML/Graphics/Text.hpp>
 #include <SFML/System/String.hpp>
+#include <QPushButton>
 
 class SFMLCanvas : public QWidget, public sf::RenderWindow
 {
 	//Q_OBJECT
 public:
-	SFMLCanvas(QWidget * parent, const QPoint& position, const QSize& size, int frameTime = 0);
+    SFMLCanvas(QWidget * parent, const QPoint& position, const QSize& size, int frameTime = 0);
 	virtual void showEvent(QShowEvent*);
 	virtual QPaintEngine* paintEngine() const;
 	virtual void paintEvent(QPaintEvent*);
@@ -19,9 +20,13 @@ public:
 	virtual void initialize();
 	virtual void update();
 private:
-	QTimer timer;
+    QTimer repaintTimer;
+    QTimer gameTimer;
+    QWidget* prev;
+    QPushButton quitButton;
+
 	sf::Clock clock;
-    //sf::Texture texture;
+    sf::Texture pauseTexture;
     sf::Texture ground;
     sf::Texture box;
 
@@ -37,12 +42,16 @@ private:
 
     //sf::Sprite sprite;
 	bool initialized;
+    bool paused = false;
     b2Vec2* gravity;
     b2World* world;
     void makeGround(int x, int y);
     void makeBox(int x, int y);
+    void pause();
+    void play();
 
     sf::String getNextLesson(int);
+
 
 private slots:
     void keyPressEvent(QKeyEvent *);

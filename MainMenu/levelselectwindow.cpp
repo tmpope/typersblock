@@ -9,9 +9,9 @@ LevelSelectWindow::LevelSelectWindow(std::string user, QWidget* previous, QWidge
     ui->setupUi(this);
     ui->label->setText("Welcome, " + QString::fromStdString(user));
     prev = previous;
-    canvas = new SFMLCanvas(this, QPoint(20, 20), QSize(1296, 728), 10);
-    canvas->show();
-    canvas->update();
+
+    connect(ui->logOutButton, SIGNAL(clicked(bool)), this, SLOT(logOut()));
+    connect(ui->startButton, SIGNAL(clicked(bool)), this, SLOT(startGame()));
 }
 
 LevelSelectWindow::~LevelSelectWindow()
@@ -19,8 +19,15 @@ LevelSelectWindow::~LevelSelectWindow()
     delete ui;
 }
 
-void LevelSelectWindow::on_pushButton_clicked()
+void LevelSelectWindow::logOut()
 {
     prev->show();
     this->close();
+}
+
+void LevelSelectWindow::startGame()
+{
+    canvas = new SFMLCanvas(this, QPoint(0, 0), QSize(1366, 768), 10);
+    canvas->show();
+    canvas->update();
 }

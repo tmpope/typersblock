@@ -16,6 +16,7 @@
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QPushButton>
+#include <QtWidgets/QSpinBox>
 #include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -25,7 +26,9 @@ class Ui_LevelSelectWindow
 public:
     QWidget *centralWidget;
     QLabel *label;
-    QPushButton *pushButton;
+    QPushButton *logOutButton;
+    QPushButton *startButton;
+    QSpinBox *spinBox;
 
     void setupUi(QWidget *LevelSelectWindow)
     {
@@ -44,14 +47,25 @@ public:
         label->setFont(font);
         label->setStyleSheet(QLatin1String("color: white;\n"
 "background-image: url(:/new/images/alpha.png);"));
-        pushButton = new QPushButton(centralWidget);
-        pushButton->setObjectName(QStringLiteral("pushButton"));
-        pushButton->setGeometry(QRect(10, 700, 101, 51));
+        logOutButton = new QPushButton(centralWidget);
+        logOutButton->setObjectName(QStringLiteral("logOutButton"));
+        logOutButton->setGeometry(QRect(10, 700, 101, 51));
         QFont font1;
         font1.setPointSize(16);
-        pushButton->setFont(font1);
-        pushButton->setStyleSheet(QLatin1String("color: white;\n"
+        logOutButton->setFont(font1);
+        logOutButton->setStyleSheet(QLatin1String("color: white;\n"
 "background-color: black;"));
+        startButton = new QPushButton(centralWidget);
+        startButton->setObjectName(QStringLiteral("startButton"));
+        startButton->setGeometry(QRect(200, 250, 101, 51));
+        startButton->setFont(font1);
+        startButton->setStyleSheet(QLatin1String("color: white;\n"
+"background-color: black;"));
+        spinBox = new QSpinBox(centralWidget);
+        spinBox->setObjectName(QStringLiteral("spinBox"));
+        spinBox->setGeometry(QRect(50, 250, 91, 51));
+        spinBox->setMinimum(1);
+        spinBox->setMaximum(9);
 
         retranslateUi(LevelSelectWindow);
 
@@ -62,7 +76,8 @@ public:
     {
         LevelSelectWindow->setWindowTitle(QApplication::translate("LevelSelectWindow", "Form", 0));
         label->setText(QApplication::translate("LevelSelectWindow", "Level Select", 0));
-        pushButton->setText(QApplication::translate("LevelSelectWindow", "Log Out", 0));
+        logOutButton->setText(QApplication::translate("LevelSelectWindow", "Log Out", 0));
+        startButton->setText(QApplication::translate("LevelSelectWindow", "Start", 0));
     } // retranslateUi
 
 };
