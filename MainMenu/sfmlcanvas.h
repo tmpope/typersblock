@@ -6,6 +6,7 @@
 #include <Box2D/Box2D.h>
 #include <SFML/Graphics/Text.hpp>
 #include <SFML/System/String.hpp>
+#include <SFML/Audio.hpp>
 #include <QPushButton>
 
 class SFMLCanvas : public QWidget, public sf::RenderWindow
@@ -34,6 +35,9 @@ private:
     sf::Texture pauseTexture;
     sf::Texture playTexture;
     sf::Texture backgroundTexture;
+
+    //Music
+    sf::Music music;
 
     int numMistakes;
     int lessonNum;

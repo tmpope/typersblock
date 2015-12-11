@@ -16,6 +16,13 @@ MainWindow::MainWindow(QWidget *parent) :
     //Connect buttons to their respective methods.
     connect(ui->loginButton, SIGNAL(clicked(bool)), this, SLOT(login()));
     connect(ui->newAccountButton, SIGNAL(clicked(bool)), this, SLOT(createAccount()));
+    //Set up music
+    if (!music.openFromFile("../MainMenu/Music/Login_Music.ogg"))
+    {
+        QMessageBox::critical(this, "Error", "Sound files missing!");
+    }
+    music.setLoop(true);
+    music.play();
 }
 
 MainWindow::~MainWindow()
@@ -65,6 +72,7 @@ void MainWindow::login()
     levelSelectWindow = new LevelSelectWindow("Ryan",this);
     levelSelectWindow->show();
     this->hide();
+    music.stop();
     return;
 
     if (ui->userLoginText->toPlainText() == "" || ui->passLoginText->toPlainText() == "")
@@ -164,4 +172,11 @@ void MainWindow::enterGame(std::string response)
     levelSelectWindow = new LevelSelectWindow(doc["user"].GetString());
     levelSelectWindow->show();
     this->hide();
+    music.stop();
+}
+
+void MainWindow::showEvent(QShowEvent* event)
+{
+    QWidget::showEvent(event);
+    music.play();
 }

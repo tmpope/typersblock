@@ -74,6 +74,8 @@ void SFMLCanvas::showEvent(QShowEvent*)
         repaintTimer.start();
         gameTimer.start(10);
         initialized = true;
+        //Start the music
+        music.play();
 	}
 }
 
@@ -132,11 +134,18 @@ void SFMLCanvas::initialize()
     initializeText(userText, 200, 200, textString.toAnsiString().c_str());
 
     //Set up text for the timer
-    initializeText(timerText, 20, 150, "00:00");
+    initializeText(timerText, 10, 120, "00:00");
     timerText.setFont(numberFont);
+    timerText.setCharacterSize(40);
 
     //Text to display the number of mistakes made.
-    initializeText(mistakeText, 20, 500, "0");
+    initializeText(mistakeText, 10, 420, "0");
+    mistakeText.setCharacterSize(40);
+    //Load music files
+    if (!music.openFromFile("../MainMenu/Music/Game_Music.ogg"))
+    {
+        throw std::invalid_argument("Couldn't find game music file.");
+    }
 
 
 }
@@ -194,6 +203,7 @@ void SFMLCanvas::update()
 
     //Draw text on top, since it's the most important
     draw(timerText);
+    draw(mistakeText);
     draw(displayText);
     draw(userText);
 
@@ -242,7 +252,9 @@ void SFMLCanvas::keyPressEvent(QKeyEvent* event)
             else
             {
                 numMistakes++;
-                std::cout << "You made " << numMistakes << " mistakes" << std::endl;
+                std::ostringstream temp;
+                temp << numMistakes;
+                mistakeText.setString(temp.str());
             }
         }
         //Reaching the end of the line and hitting return will pull the next lesson
@@ -366,6 +378,7 @@ sf::String SFMLCanvas::getNextLesson(int indexOfLesson)
 void SFMLCanvas::pause()
 {
     gameTimer.stop();
+    music.pause();
     state = PAUSE;
 }
 
@@ -373,6 +386,7 @@ void SFMLCanvas::pause()
 void SFMLCanvas::play()
 {
     gameTimer.start();
+    music.play();
     state = PLAY;
 }
 

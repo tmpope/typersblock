@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <SFML/Network.hpp>
+#include <SFML/Audio.hpp>
 #include <levelselectwindow.h>
 
 namespace Ui {
@@ -20,6 +21,7 @@ public:
 private slots:
     void login();
     void createAccount();
+    void showEvent(QShowEvent *);
 
 private:
     Ui::MainWindow *ui;
@@ -30,6 +32,7 @@ private:
     LevelSelectWindow* levelSelectWindow;
     sf::Socket::Status connectToServer(sf::TcpSocket& socket);
     void enterGame(std::string response);
+    sf::Music music;
 };
 
 #endif // MAINWINDOW_H

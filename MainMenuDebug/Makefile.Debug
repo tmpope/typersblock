@@ -678,6 +678,23 @@ debug\moc_mainwindow.cpp: D:\Qt\5.5\msvc2013_64\include\QtWidgets\QMainWindow \
 		..\SFML\include\SFML\Network\SocketSelector.hpp \
 		..\SFML\include\SFML\Network\TcpListener.hpp \
 		..\SFML\include\SFML\Network\UdpSocket.hpp \
+		..\SFML\include\SFML\Audio.hpp \
+		..\SFML\include\SFML\Audio\InputSoundFile.hpp \
+		..\SFML\include\SFML\Audio\Export.hpp \
+		..\SFML\include\SFML\Audio\Listener.hpp \
+		..\SFML\include\SFML\Audio\Music.hpp \
+		..\SFML\include\SFML\Audio\SoundStream.hpp \
+		..\SFML\include\SFML\Audio\SoundSource.hpp \
+		..\SFML\include\SFML\Audio\AlResource.hpp \
+		..\SFML\include\SFML\Audio\OutputSoundFile.hpp \
+		..\SFML\include\SFML\Audio\Sound.hpp \
+		..\SFML\include\SFML\Audio\SoundBuffer.hpp \
+		..\SFML\include\SFML\Audio\SoundBufferRecorder.hpp \
+		..\SFML\include\SFML\Audio\SoundRecorder.hpp \
+		..\SFML\include\SFML\Audio\SoundFileFactory.hpp \
+		..\SFML\include\SFML\Audio\SoundFileFactory.inl \
+		..\SFML\include\SFML\Audio\SoundFileReader.hpp \
+		..\SFML\include\SFML\Audio\SoundFileWriter.hpp \
 		..\MainMenu\levelselectwindow.h \
 		D:\Qt\5.5\msvc2013_64\include\QtWidgets\QWidget \
 		..\MainMenu\sfmlcanvas.h \
@@ -1380,6 +1397,23 @@ debug\main.obj: ..\MainMenu\main.cpp ../MainMenu/mainwindow.h \
 		..\SFML\include\SFML\Network\SocketSelector.hpp \
 		..\SFML\include\SFML\Network\TcpListener.hpp \
 		..\SFML\include\SFML\Network\UdpSocket.hpp \
+		..\SFML\include\SFML\Audio.hpp \
+		..\SFML\include\SFML\Audio\InputSoundFile.hpp \
+		..\SFML\include\SFML\Audio\Export.hpp \
+		..\SFML\include\SFML\Audio\Listener.hpp \
+		..\SFML\include\SFML\Audio\Music.hpp \
+		..\SFML\include\SFML\Audio\SoundStream.hpp \
+		..\SFML\include\SFML\Audio\SoundSource.hpp \
+		..\SFML\include\SFML\Audio\AlResource.hpp \
+		..\SFML\include\SFML\Audio\OutputSoundFile.hpp \
+		..\SFML\include\SFML\Audio\Sound.hpp \
+		..\SFML\include\SFML\Audio\SoundBuffer.hpp \
+		..\SFML\include\SFML\Audio\SoundBufferRecorder.hpp \
+		..\SFML\include\SFML\Audio\SoundRecorder.hpp \
+		..\SFML\include\SFML\Audio\SoundFileFactory.hpp \
+		..\SFML\include\SFML\Audio\SoundFileFactory.inl \
+		..\SFML\include\SFML\Audio\SoundFileReader.hpp \
+		..\SFML\include\SFML\Audio\SoundFileWriter.hpp \
 		../MainMenu/levelselectwindow.h \
 		D:\Qt\5.5\msvc2013_64\include\QtWidgets\QWidget \
 		../MainMenu/sfmlcanvas.h \
@@ -1623,6 +1657,23 @@ debug\mainwindow.obj: ..\MainMenu\mainwindow.cpp ../MainMenu/mainwindow.h \
 		..\SFML\include\SFML\Network\SocketSelector.hpp \
 		..\SFML\include\SFML\Network\TcpListener.hpp \
 		..\SFML\include\SFML\Network\UdpSocket.hpp \
+		..\SFML\include\SFML\Audio.hpp \
+		..\SFML\include\SFML\Audio\InputSoundFile.hpp \
+		..\SFML\include\SFML\Audio\Export.hpp \
+		..\SFML\include\SFML\Audio\Listener.hpp \
+		..\SFML\include\SFML\Audio\Music.hpp \
+		..\SFML\include\SFML\Audio\SoundStream.hpp \
+		..\SFML\include\SFML\Audio\SoundSource.hpp \
+		..\SFML\include\SFML\Audio\AlResource.hpp \
+		..\SFML\include\SFML\Audio\OutputSoundFile.hpp \
+		..\SFML\include\SFML\Audio\Sound.hpp \
+		..\SFML\include\SFML\Audio\SoundBuffer.hpp \
+		..\SFML\include\SFML\Audio\SoundBufferRecorder.hpp \
+		..\SFML\include\SFML\Audio\SoundRecorder.hpp \
+		..\SFML\include\SFML\Audio\SoundFileFactory.hpp \
+		..\SFML\include\SFML\Audio\SoundFileFactory.inl \
+		..\SFML\include\SFML\Audio\SoundFileReader.hpp \
+		..\SFML\include\SFML\Audio\SoundFileWriter.hpp \
 		../MainMenu/levelselectwindow.h \
 		D:\Qt\5.5\msvc2013_64\include\QtWidgets\QWidget \
 		../MainMenu/sfmlcanvas.h \

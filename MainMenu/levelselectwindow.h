@@ -3,6 +3,8 @@
 
 #include <QWidget>
 #include "sfmlcanvas.h"
+#include "SFML/Audio.hpp"
+#include "SFML/Network.hpp"
 #include "Box2D/Box2D.h"
 
 namespace Ui {
@@ -25,6 +27,7 @@ private:
     Ui::LevelSelectWindow *ui;
     QWidget* prev;
     SFMLCanvas* canvas;
+    sf::Music music;
 };
 
 #endif // LEVELSELECTWINDOW_H
