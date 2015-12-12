@@ -68,12 +68,12 @@ std::string MainWindow::receivePacket(sf::TcpSocket& socket)
  * contact the server, providing login information. */
 void MainWindow::login()
 {
-    /*I've been using this for testing the level select window itself.*/
+    /*I've been using this for testing the level select window itself.
     levelSelectWindow = new LevelSelectWindow("Ryan",this);
     levelSelectWindow->show();
     this->hide();
     music.stop();
-    return;
+    return;*/
 
     if (ui->userLoginText->toPlainText() == "" || ui->passLoginText->toPlainText() == "")
     {
@@ -129,7 +129,7 @@ void MainWindow::createAccount()
     //Assemble the JSON to send over.
     writer.StartObject();
     writer.String("action");
-    writer.Uint(0);
+    writer.Uint(1);
     writer.String("user");
     writer.String(ui->userCreateText->toPlainText().toStdString().c_str());
     writer.String("password");
@@ -169,7 +169,7 @@ void MainWindow::enterGame(std::string response)
     }
 
     //Been successful up to this point. Launch level select.
-    levelSelectWindow = new LevelSelectWindow(doc["user"].GetString());
+    levelSelectWindow = new LevelSelectWindow(doc["user"].GetString(), this);
     levelSelectWindow->show();
     this->hide();
     music.stop();

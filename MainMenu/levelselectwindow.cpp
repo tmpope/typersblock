@@ -3,6 +3,7 @@
 #include "sfmlcanvas.h"
 #include <QMessageBox>
 #include <QDebug>
+#include <iostream>
 
 LevelSelectWindow::LevelSelectWindow(std::string user, QWidget* previous, QWidget* parent) :
     QWidget(parent),
@@ -33,8 +34,8 @@ LevelSelectWindow::~LevelSelectWindow()
 void LevelSelectWindow::logOut()
 {
     prev->show();
+    this->hide();
     music.stop();
-    this->close();
 }
 
 void LevelSelectWindow::startGame()
