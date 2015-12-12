@@ -22,6 +22,8 @@ public:
 private slots:
     void logOut();
     void startGame();
+    void showEvent(QShowEvent*);
+    void showMenu();
 
 private:
     Ui::LevelSelectWindow *ui;

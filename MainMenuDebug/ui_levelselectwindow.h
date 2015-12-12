@@ -74,7 +74,7 @@ public:
 
     void retranslateUi(QWidget *LevelSelectWindow)
     {
-        LevelSelectWindow->setWindowTitle(QApplication::translate("LevelSelectWindow", "Form", 0));
+        LevelSelectWindow->setWindowTitle(QApplication::translate("LevelSelectWindow", "Level Select", 0));
         label->setText(QApplication::translate("LevelSelectWindow", "Level Select", 0));
         logOutButton->setText(QApplication::translate("LevelSelectWindow", "Log Out", 0));
         startButton->setText(QApplication::translate("LevelSelectWindow", "Start", 0));

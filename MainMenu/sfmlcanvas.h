@@ -1,5 +1,10 @@
 #ifndef SFML_CANVAS_H
 #define SFML_CANVAS_H
+#define START 1
+#define PLAY 2
+#define PAUSE 3
+#define END 4
+
 #include <QWidget>
 #include <SFML/Graphics.hpp>
 #include <QTimer>
@@ -13,7 +18,7 @@ class SFMLCanvas : public QWidget, public sf::RenderWindow
 {
     Q_OBJECT
 public:
-    SFMLCanvas(QWidget * parent, const QPoint& position, const QSize& size, int frameTime = 0);
+    SFMLCanvas(QWidget * parent, const QPoint& position, const QSize& size, int frameTime = 0, int lesson = 1);
     //Some public methods used to interface with Qt. We keep the opttion to inherit from this class open.
 	virtual void showEvent(QShowEvent*);
 	virtual QPaintEngine* paintEngine() const;
@@ -35,17 +40,21 @@ private:
     sf::Texture pauseTexture;
     sf::Texture playTexture;
     sf::Texture backgroundTexture;
+    sf::Texture finishTexture;
+    sf::Texture startTexture;
 
     //Music
     sf::Music music;
 
     int numMistakes;
     int lessonNum;
+    int numberOfLines;
 
     //Various texts, strings, fonts, etc.
     //These are all used for drawing text to the screen - an important task for a typing game.
     sf::String textString;
     sf::String displayString;
+    sf::String fallingString;
     sf::Font textFont;
     sf::Font numberFont;
     sf::Text displayText;
@@ -53,9 +62,10 @@ private:
     sf::Text timerText;
     sf::Text mistakeText;
     size_t index;
+    std::string filePath;
 
     //Some game state variables
-    int state = 2;
+    int state = START;
     int gameTime = 0;
 	bool initialized;
 
@@ -71,7 +81,15 @@ private:
     //Sets up a sf::Text with some basic properties. Cuts down on code copying.
     void initializeText(sf::Text& text, int x, int y, const char* string);
     sf::String getNextLesson(int);
+    int countLines();
+    void startGame();
+    void endGame();
+    void exitGame();
 
+    void closeEvent(QCloseEvent *);
+
+signals:
+    void widgetClosed();
 
 private slots:
     void keyPressEvent(QKeyEvent *);

@@ -1,10 +1,6 @@
 #define _USE_MATH_DEFINES
 #define SCALE 30
 #define FONTSIZE 26
-#define START 1
-#define PLAY 2
-#define PAUSE 3
-#define END 4
 
 #include "sfmlcanvas.h"
 #include "SFML/Graphics.hpp"
@@ -21,7 +17,7 @@
 #include <sstream>
 #include <math.h>
 
-SFMLCanvas::SFMLCanvas(QWidget* parent, const QPoint& position, const QSize& size, int frameTime) : QWidget(parent), initialized(false)
+SFMLCanvas::SFMLCanvas(QWidget* parent, const QPoint& position, const QSize& size, int frameTime, int lesson) : QWidget(parent), initialized(false)
 {
     //Allows us to return to the previous screen
     prev = parent;
@@ -46,7 +42,12 @@ SFMLCanvas::SFMLCanvas(QWidget* parent, const QPoint& position, const QSize& siz
     gravity = new b2Vec2(1.0f, 10.0f);
     world = new b2World(*gravity);
     makeGround(650, 900);
-    makeDynamicBody(300, 100);
+    makeDynamicBody(300, 900);
+
+    //Build a file path
+    std::ostringstream pathStream;
+    pathStream << "../MainMenu/Lessons/lesson" << lesson << ".txt";
+    filePath = pathStream.str();
 }
 
 SFMLCanvas::~SFMLCanvas()
@@ -72,10 +73,7 @@ void SFMLCanvas::showEvent(QShowEvent*)
         connect(&gameTimer, SIGNAL(timeout()), this, SLOT(updateGameTime()));
         //Start timer
         repaintTimer.start();
-        gameTimer.start(10);
         initialized = true;
-        //Start the music
-        music.play();
 	}
 }
 
@@ -107,13 +105,23 @@ void SFMLCanvas::initialize()
     {
         throw std::invalid_argument("Couldn't find background image.");
     }
+    if(!finishTexture.loadFromFile("../MainMenu/Images/finish.png"))
+    {
+        throw std::invalid_argument("Couldn't find finish image.");
+    }
+    if(!startTexture.loadFromFile("../MainMenu/Images/start.png"))
+    {
+        throw std::invalid_argument("Couldn't find start image.");
+    }
 
     //Some vars used for loading lessons.
     index = 0;
     numMistakes = 0;
     lessonNum = 0;
-
     textString = "";
+    //Count how many lines there are in the current lesson
+    numberOfLines = countLines();
+    //Get the first string to be typed
     displayString = getNextLesson(lessonNum);
 
     //Load relevant fonts
@@ -141,13 +149,14 @@ void SFMLCanvas::initialize()
     //Text to display the number of mistakes made.
     initializeText(mistakeText, 10, 420, "0");
     mistakeText.setCharacterSize(40);
+
     //Load music files
     if (!music.openFromFile("../MainMenu/Music/Game_Music.ogg"))
     {
         throw std::invalid_argument("Couldn't find game music file.");
     }
-
-
+    music.setVolume(70);
+    music.play();
 }
 
 /* Draws all relevant information to the screen,
@@ -163,7 +172,7 @@ void SFMLCanvas::update()
     draw(background);
 
     //Draw box2D stuff
-    if (state == PLAY)
+    if (state == PLAY || state == END)
     {
         world->Step(1/60.f, 8, 3);
     }
@@ -171,18 +180,25 @@ void SFMLCanvas::update()
     {
         if (bodyIt->GetType() == b2_dynamicBody)
         {
-            sf::Text boxText;
-            boxText.setFont(textFont);
-            boxText.setString(displayString);
-            boxText.setColor(sf::Color(0, 255, 0));
-            boxText.setOrigin(16.f, 16.f);
-            boxText.setPosition(bodyIt->GetPosition().x * SCALE, bodyIt->GetPosition().y * SCALE);
-            boxText.setRotation(bodyIt->GetAngle() * 180/b2_pi);
-            boxText.setCharacterSize(FONTSIZE);
-            draw(boxText);
+            sf::Text fallingText;
+            initializeText(fallingText, bodyIt->GetPosition().x * SCALE, bodyIt->GetPosition().y * SCALE, fallingString.toAnsiString().c_str());
+            fallingText.setColor(sf::Color(0, 255, 0));
+            fallingText.setOrigin(16.f, 16.f);
+            fallingText.setRotation(bodyIt->GetAngle() * 180/b2_pi);
+            draw(fallingText);
         }
     }
 
+    //NOTE: Errors were thrown when I used a switch statement. So, I just used a chain of if, else ifs.
+    //Draw starting screen
+    if (state == START)
+    {
+        sf::Sprite startSprite;
+        startSprite.setTexture(startTexture);
+        //Dynamically position the texture in the middle of the screen.
+        startSprite.setPosition(((this->size().rwidth()/2) - startTexture.getSize().x/2), ((this->size().rheight()/2) - startTexture.getSize().y/2));
+        draw(startSprite);
+    }
     //Draw pause icon when paused
     if (state == PAUSE)
     {
@@ -200,6 +216,14 @@ void SFMLCanvas::update()
         playSprite.setPosition(10, (this->size().rheight() - playTexture.getSize().x) - 10);
         draw(playSprite);
     }
+    //Draw ending screen
+    else if (state == END)
+    {
+        sf::Sprite endSprite;
+        endSprite.setTexture(finishTexture);
+        endSprite.setPosition(((this->size().rwidth()/2) - finishTexture.getSize().x/2), ((this->size().rheight()/2) - finishTexture.getSize().y/2));
+        draw(endSprite);
+    }
 
     //Draw text on top, since it's the most important
     draw(timerText);
@@ -215,13 +239,13 @@ void SFMLCanvas::update()
  * Handles all of the text required interactions. */
 void SFMLCanvas::keyPressEvent(QKeyEvent* event)
 {
-    //Pause or unpause when escape is pressed.
+    //Pause/unpause when escape is pressed. Exit game if the game is over.
     if (event->key() == Qt::Key_Escape)
     {
         switch(state)
         {
         case START:
-            //begin
+            //startGame();
             break;
         case PLAY:
             pause();
@@ -230,11 +254,18 @@ void SFMLCanvas::keyPressEvent(QKeyEvent* event)
             play();
             break;
         case END:
-            //finish game
+            exitGame();
             break;
         }
     }
-
+    //Allow the user to press enter to begin the game.
+    if (state == START)
+    {
+        if (event->key() == Qt::Key_Return)
+        {
+            startGame();
+        }
+    }
     //When the game is being played, check for user input.
     if (state == PLAY)
     {
@@ -260,13 +291,18 @@ void SFMLCanvas::keyPressEvent(QKeyEvent* event)
         //Reaching the end of the line and hitting return will pull the next lesson
         else if (event->key() == Qt::Key_Return)
         {
+            //If we've reached the end of a line
             if (index == displayString.getSize())
             {
+                //Take note of the text that will fall
+                fallingString = textString;
                 for (b2Body* bodyIt = world->GetBodyList(); bodyIt != 0; bodyIt = bodyIt->GetNext())
                 {
                     if (bodyIt->GetType() == b2_dynamicBody)
                     {
+                        //Destroy old falling text
                         world->DestroyBody(bodyIt);
+                        //Create new body for falling text
                         makeDynamicBody(userText.getPosition().x, userText.getPosition().y);
                     }
                 }
@@ -357,21 +393,44 @@ void SFMLCanvas::makeDynamicBody(int x, int y)
 sf::String SFMLCanvas::getNextLesson(int indexOfLesson)
 {
     std::string line;
-    std::ifstream myfile("../MainMenu/Lessons/lesson.txt");
-    if (myfile.is_open())
+    std::ifstream file(filePath);
+
+    if (file.is_open())
     {
-        for (int lineno = 0; getline(myfile, line) && lineno < 1000; lineno++)
+        for (int lineno = 0; getline(file, line) && lineno < numberOfLines; lineno++)
         {
             if (lineno == indexOfLesson)
             {
+                std::cout << "Line " << lineno << ": " << line << std::endl;
                 return line;
             }
         }
-        myfile.close();
+        //We exited the for loop - no more lines to pull from the file. Thus, the game is over.
+        endGame();
+        file.close();
     }
 
     else std::cout << "Unable to open file";
     return "";
+}
+
+int SFMLCanvas::countLines()
+{
+    int numLines = 0;
+
+    std::string line;
+    std::ifstream file(filePath);
+
+    while (std::getline(file, line))
+    {
+        numLines++;
+    }
+    //Return to the beginning of the file
+    file.clear();
+    file.seekg(0, std::ios::beg);
+    std::cout << "Number of lines: " << numLines << std::endl;
+
+    return numLines;
 }
 
 /* Sets the game to the paused state, stops the timer (used for WPM). */
@@ -417,3 +476,35 @@ void SFMLCanvas::updateGameTime()
     //Compose a timer string matching the minute:second:hundredth second format.
     timerText.setString(temp.str());
 }
+
+/* Starts the game timer, and sets the game state to play. */
+void SFMLCanvas::startGame()
+{
+    state = PLAY;
+    gameTimer.start(10);
+}
+
+/* To be called after the user has fully completed the game.
+ * Sets the state to end, takes care of timers. */
+void SFMLCanvas::endGame()
+{
+    state = END;
+    gameTimer.stop();
+
+}
+
+/* To be called when the user wishes to exit the game.
+ * Shuts off music, shows the level select screen, and sends scores to the server. */
+void SFMLCanvas::exitGame()
+{
+    //TODO: SEND SCORES THROUGH JSON HERE
+    music.stop();
+    this->QWidget::close();
+}
+
+void SFMLCanvas::closeEvent(QCloseEvent* event)
+{
+    emit widgetClosed();
+    event->accept();
+}
+
