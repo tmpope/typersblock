@@ -157,6 +157,17 @@ void SFMLCanvas::initialize()
     }
     music.setVolume(70);
     music.play();
+
+    //Load sound effect files
+    if(!endSound.loadFromFile("../MainMenu/Sounds/Victory.wav"))
+    {
+        throw std::invalid_argument("Couldn't find end game sound file.");
+    }
+    if(!lineSound.loadFromFile("../MainMenu/Sounds/Alright.flac"))
+    {
+        throw std::invalid_argument("Couldn't find end game sound file.");
+    }
+
 }
 
 /* Draws all relevant information to the screen,
@@ -326,6 +337,17 @@ void SFMLCanvas::keyPressEvent(QKeyEvent* event)
                 textString = "";
                 userText.setString(textString);
                 displayText.setString(displayString);
+                switch(state)
+                {
+                case PLAY:
+                    sound.setBuffer(lineSound);
+                    break;
+                case END:
+                    sound.setBuffer(endSound);
+                    break;
+                }
+                sound.play();
+
             }
         }
     }
@@ -397,7 +419,7 @@ sf::String SFMLCanvas::getNextLesson(int indexOfLesson)
 
     if (file.is_open())
     {
-        for (int lineno = 0; getline(file, line) && lineno < numberOfLines; lineno++)
+        for (int lineno = 0; getline(file, line) && lineno < 2; lineno++)
         {
             if (lineno == indexOfLesson)
             {
@@ -489,6 +511,7 @@ void SFMLCanvas::startGame()
 void SFMLCanvas::endGame()
 {
     state = END;
+    music.setVolume(20);
     gameTimer.stop();
 
 }

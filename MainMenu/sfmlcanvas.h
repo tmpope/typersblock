@@ -46,6 +46,11 @@ private:
     //Music
     sf::Music music;
 
+    //Sound effects
+    sf::SoundBuffer endSound;
+    sf::SoundBuffer lineSound;
+    sf::Sound sound;
+
     int numMistakes;
     int lessonNum;
     int numberOfLines;
@@ -63,6 +68,7 @@ private:
     sf::Text mistakeText;
     size_t index;
     std::string filePath;
+
 
     //Some game state variables
     int state = START;
