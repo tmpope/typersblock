@@ -118,6 +118,8 @@ void SFMLCanvas::initialize()
     index = 0;
     numMistakes = 0;
     lessonNum = 0;
+    gameTime = 1;
+    charactersTyped = 0;
     textString = "";
     //Count how many lines there are in the current lesson
     numberOfLines = countLines();
@@ -149,6 +151,12 @@ void SFMLCanvas::initialize()
     //Text to display the number of mistakes made.
     initializeText(mistakeText, 10, 420, "0");
     mistakeText.setCharacterSize(40);
+
+    initializeText(scoreText, 10, 580, "0");
+    scoreText.setCharacterSize(40);
+
+    initializeText(wpmText, 10, 240, "0");
+    wpmText.setCharacterSize(40);
 
     //Load music files
     if (!music.openFromFile("../MainMenu/Music/Game_Music.ogg"))
@@ -222,6 +230,12 @@ void SFMLCanvas::update()
     //Draw play icon while playing
     else if (state == PLAY)
     {
+        std::ostringstream temp;
+        temp << calcGrossWPM();
+        wpmText.setString(temp.str().c_str());
+        std::ostringstream temp2;
+        temp2 << calcRunningScore();
+        scoreText.setString(temp2.str().c_str());
         sf::Sprite playSprite;
         playSprite.setTexture(playTexture);
         playSprite.setPosition(10, (this->size().rheight() - playTexture.getSize().x) - 10);
@@ -237,6 +251,8 @@ void SFMLCanvas::update()
     }
 
     //Draw text on top, since it's the most important
+    draw(wpmText);
+    draw(scoreText);
     draw(timerText);
     draw(mistakeText);
     draw(displayText);
@@ -289,6 +305,7 @@ void SFMLCanvas::keyPressEvent(QKeyEvent* event)
                 //stringBuild += (static_cast<char>(event.text.unicode));
                 textString += event->text().toStdString().at(0);
                 index++;
+                charactersTyped++;
             }
             //If it's not a match add it as a mistake
             else
@@ -506,6 +523,29 @@ void SFMLCanvas::startGame()
     gameTimer.start(10);
 }
 
+/*Methods that calculates the word per minute*/
+int SFMLCanvas::calcGrossWPM()
+{
+    return ((charactersTyped/5) * 60000)/(gameTime);
+}
+
+int SFMLCanvas::calcNetWPM()
+{
+    return (((charactersTyped/5) - numMistakes) * 60000)/(gameTime);
+}
+
+int SFMLCanvas::calcRunningScore()
+{
+    int score = (charactersTyped * 6) - (numMistakes * 8);
+    if(score < 0) return 0;
+    else return score;
+}
+
+int SFMLCanvas::calcFinalScore()
+{
+    return calcRunningScore() * calcGrossWPM()/25;
+}
+
 /* To be called after the user has fully completed the game.
  * Sets the state to end, takes care of timers. */
 void SFMLCanvas::endGame()
@@ -513,7 +553,9 @@ void SFMLCanvas::endGame()
     state = END;
     music.setVolume(20);
     gameTimer.stop();
-
+    std::ostringstream temp;
+    temp << calcFinalScore();
+    scoreText.setString(temp.str());
 }
 
 /* To be called when the user wishes to exit the game.

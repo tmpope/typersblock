@@ -54,6 +54,7 @@ private:
     int numMistakes;
     int lessonNum;
     int numberOfLines;
+    int charactersTyped;
 
     //Various texts, strings, fonts, etc.
     //These are all used for drawing text to the screen - an important task for a typing game.
@@ -66,6 +67,8 @@ private:
     sf::Text userText;
     sf::Text timerText;
     sf::Text mistakeText;
+    sf::Text wpmText;
+    sf::Text scoreText;
     size_t index;
     std::string filePath;
 
@@ -91,6 +94,10 @@ private:
     void startGame();
     void endGame();
     void exitGame();
+    int calcGrossWPM();
+    int calcNetWPM();
+    int calcRunningScore();
+    int calcFinalScore();
 
     void closeEvent(QCloseEvent *);
 
