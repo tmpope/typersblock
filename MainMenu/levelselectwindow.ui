@@ -36,6 +36,7 @@
     </property>
     <property name="font">
      <font>
+      <family>GALACTIC VANGUARDIAN NCV</family>
       <pointsize>24</pointsize>
      </font>
     </property>

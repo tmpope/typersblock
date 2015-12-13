@@ -12,15 +12,25 @@
 #include <SFML/Graphics/Font.hpp>
 #include <SFML/System/String.hpp>
 #include <SFML/Graphics/Text.hpp>
+#include <SFML/Network.hpp>
 #include <fstream>
 #include <iostream>
 #include <sstream>
 #include <math.h>
+#include <rapidjson/document.h>
+#include <rapidjson/stringbuffer.h>
+#include <rapidjson/writer.h>
+#include <QMessageBox>
 
-SFMLCanvas::SFMLCanvas(QWidget* parent, const QPoint& position, const QSize& size, int frameTime, int lesson) : QWidget(parent), initialized(false)
+SFMLCanvas::SFMLCanvas(QWidget* parent, const QPoint& position, const QSize& size, int frameTime, int lesson, std::string user, std::string pass) : QWidget(parent), initialized(false)
 {
     //Allows us to return to the previous screen
     prev = parent;
+
+    userName = user;
+    password = pass;
+
+    level = lesson;
 
 	//Allow rendering into the widget
 	setAttribute(Qt::WA_PaintOnScreen);
@@ -563,6 +573,65 @@ void SFMLCanvas::endGame()
 void SFMLCanvas::exitGame()
 {
     //TODO: SEND SCORES THROUGH JSON HERE
+    rapidjson::StringBuffer s;
+    rapidjson::Writer<rapidjson::StringBuffer> writer(s);
+
+    //Assemble the JSON to send over.
+    writer.StartObject();
+    writer.String("action");
+    writer.Uint(3);
+    writer.String("user");
+    writer.String(userName.c_str());
+    writer.String("password");
+    writer.String(password.c_str());
+    writer.String("level");
+    writer.Uint(level);
+    writer.String("wpm");
+    writer.Uint(calcNetWPM());
+    writer.String("mistakes");
+    writer.Uint(numMistakes);
+    writer.String("score");
+    writer.Uint(calcFinalScore());
+    writer.EndObject();
+
+    qDebug() << QString::fromStdString(s.GetString());
+
+    //Connect to the server
+    sf::TcpSocket socket;
+    socket.connect("waihoilaf.duckdns.org", 53000);
+
+    //Store data in a packet
+    sf::Packet packet;
+    packet << s.GetString();
+    //Send the packet
+    if (socket.send(packet) != sf::Socket::Done)
+    {
+         QMessageBox::critical(this, "Error", "Couldn't contact the server. Try again later.");
+    }
+    //Recieve a response
+    sf::Packet data;
+    if (socket.receive(data) != sf::Socket::Done)
+    {
+        QMessageBox::critical(this, "Error", "No response from server.");
+    }
+    std::string msg;
+    data >> msg;
+    qDebug() << "Message received: " << QString::fromStdString(msg);
+    socket.disconnect();
+
+
+
+    /*rapidjson::Document doc;
+    if (doc.Parse(response.c_str()).HasParseError())
+    {
+        QMessageBox::critical(this, "Error", "Server response corrupted.");
+    }
+    if (doc["type"].GetString() == "failure")
+    {
+        //Not authenticated correctly.
+        QMessageBox::critical(this, "Error", "Couldn't send scores correctly.");
+    }*/
+
     music.stop();
     this->QWidget::close();
 }

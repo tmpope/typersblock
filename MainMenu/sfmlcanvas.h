@@ -18,7 +18,7 @@ class SFMLCanvas : public QWidget, public sf::RenderWindow
 {
     Q_OBJECT
 public:
-    SFMLCanvas(QWidget * parent, const QPoint& position, const QSize& size, int frameTime = 0, int lesson = 1);
+    SFMLCanvas(QWidget* parent, const QPoint& position, const QSize& size, int frameTime = 0, int lesson = 1, std::string user = "", std::string pass = "");
     //Some public methods used to interface with Qt. We keep the opttion to inherit from this class open.
 	virtual void showEvent(QShowEvent*);
 	virtual QPaintEngine* paintEngine() const;
@@ -56,6 +56,10 @@ private:
     int numberOfLines;
     int charactersTyped;
 
+    //Required to send scores to the server.
+    std::string userName;
+    std::string password;
+
     //Various texts, strings, fonts, etc.
     //These are all used for drawing text to the screen - an important task for a typing game.
     sf::String textString;
@@ -76,6 +80,7 @@ private:
     //Some game state variables
     int state = START;
     int gameTime = 0;
+    int level;
 	bool initialized;
 
     //Box2D variables

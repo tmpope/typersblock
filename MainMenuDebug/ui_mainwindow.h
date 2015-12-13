@@ -149,7 +149,7 @@ public:
 
     void retranslateUi(QMainWindow *MainWindow)
     {
-        MainWindow->setWindowTitle(QApplication::translate("MainWindow", "MainWindow", 0));
+        MainWindow->setWindowTitle(QApplication::translate("MainWindow", "Typer's Block", 0));
         loginButton->setText(QApplication::translate("MainWindow", "Login", 0));
         newAccountButton->setText(QApplication::translate("MainWindow", "New Account", 0));
         label_3->setText(QApplication::translate("MainWindow", "First/Last", 0));

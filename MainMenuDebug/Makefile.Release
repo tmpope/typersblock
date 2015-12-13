@@ -17,7 +17,7 @@ CXXFLAGS      = -nologo -Zc:wchar_t -FS -O2 -MD -Zc:strictStrings -GR -W3 -w3410
 INCPATH       = -I..\MainMenu -I. -I..\SFML\include -I..\MainMenu\include -ID:\Qt\5.5\msvc2013_64\include -ID:\Qt\5.5\msvc2013_64\include\QtWidgets -ID:\Qt\5.5\msvc2013_64\include\QtGui -ID:\Qt\5.5\msvc2013_64\include\QtANGLE -ID:\Qt\5.5\msvc2013_64\include\QtCore -Irelease -I. -ID:\Qt\5.5\msvc2013_64\mkspecs\win32-msvc2013 
 LINKER        = link
 LFLAGS        = /NOLOGO /DYNAMICBASE /NXCOMPAT /INCREMENTAL:NO /SUBSYSTEM:WINDOWS "/MANIFESTDEPENDENCY:type='win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' publicKeyToken='6595b64144ccf1df' language='*' processorArchitecture='*'"
-LIBS          = /LIBPATH:D:\Qt\5.5\msvc2013_64\lib D:\Qt\5.5\msvc2013_64\lib\qtmain.lib shell32.lib /LIBPATH:D:\Qt\5.5\msvc2013_64\lib D:\Qt\5.5\msvc2013_64\lib\Qt5Core.lib /LIBPATH:..\SFML\lib ..\SFML\lib\sfml-audio.lib ..\SFML\lib\sfml-graphics.lib ..\SFML\lib\sfml-main.lib ..\SFML\lib\sfml-network.lib ..\SFML\lib\sfml-window.lib ..\SFML\lib\sfml-system.lib D:\Qt\5.5\msvc2013_64\lib\Qt5Widgets.lib D:\Qt\5.5\msvc2013_64\lib\Qt5Gui.lib D:\Qt\5.5\msvc2013_64\lib\Qt5Core.lib 
+LIBS          = /LIBPATH:D:\Qt\5.5\msvc2013_64\lib D:\Qt\5.5\msvc2013_64\lib\qtmain.lib shell32.lib /LIBPATH:D:\Qt\5.5\msvc2013_64\lib D:\Qt\5.5\msvc2013_64\lib\Qt5Core.lib /LIBPATH:..\SFML\lib sfml-audio.lib sfml-graphics.lib sfml-main.lib sfml-network.lib sfml-window.lib sfml-system.lib D:\Qt\5.5\msvc2013_64\lib\Qt5Widgets.lib D:\Qt\5.5\msvc2013_64\lib\Qt5Gui.lib D:\Qt\5.5\msvc2013_64\lib\Qt5Core.lib 
 QMAKE         = D:\Qt\5.5\msvc2013_64\bin\qmake.exe
 IDC           = idc
 IDL           = midl
@@ -787,7 +787,7 @@ release\moc_mainwindow.cpp: D:\Qt\5.5\msvc2013_64\include\QtWidgets\QMainWindow 
 		D:\Qt\5.5\msvc2013_64\include\QtWidgets\qpushbutton.h \
 		D:\Qt\5.5\msvc2013_64\include\QtWidgets\qabstractbutton.h \
 		..\MainMenu\mainwindow.h
-	D:\Qt\5.5\msvc2013_64\bin\moc.exe $(DEFINES) -D_MSC_VER=1800 -D_WIN32 -D_WIN64 -ID:/Qt/5.5/msvc2013_64/mkspecs/win32-msvc2013 -IC:/Users/ryant_000/Desktop/typersblock/MainMenu -IC:/Users/ryant_000/Desktop/typersblock/SFML/include -IC:/Users/ryant_000/Desktop/typersblock/MainMenu/include -ID:/Qt/5.5/msvc2013_64/include -ID:/Qt/5.5/msvc2013_64/include/QtWidgets -ID:/Qt/5.5/msvc2013_64/include/QtGui -ID:/Qt/5.5/msvc2013_64/include/QtANGLE -ID:/Qt/5.5/msvc2013_64/include/QtCore -I. ..\MainMenu\mainwindow.h -o release\moc_mainwindow.cpp
+	D:\Qt\5.5\msvc2013_64\bin\moc.exe $(DEFINES) -D_MSC_VER=1800 -D_WIN32 -D_WIN64 -ID:/Qt/5.5/msvc2013_64/mkspecs/win32-msvc2013 -IC:/Users/ryant_000/Downloads/typersblock/MainMenu -IC:/Users/ryant_000/Downloads/typersblock/SFML/include -IC:/Users/ryant_000/Downloads/typersblock/MainMenu/include -ID:/Qt/5.5/msvc2013_64/include -ID:/Qt/5.5/msvc2013_64/include/QtWidgets -ID:/Qt/5.5/msvc2013_64/include/QtGui -ID:/Qt/5.5/msvc2013_64/include/QtANGLE -ID:/Qt/5.5/msvc2013_64/include/QtCore -I. ..\MainMenu\mainwindow.h -o release\moc_mainwindow.cpp
 
 release\moc_levelselectwindow.cpp: D:\Qt\5.5\msvc2013_64\include\QtWidgets\QWidget \
 		D:\Qt\5.5\msvc2013_64\include\QtWidgets\qwidget.h \
@@ -1003,12 +1003,41 @@ release\moc_levelselectwindow.cpp: D:\Qt\5.5\msvc2013_64\include\QtWidgets\QWidg
 		..\MainMenu\Box2D\Dynamics\Joints\b2RopeJoint.h \
 		..\MainMenu\Box2D\Dynamics\Joints\b2WeldJoint.h \
 		..\MainMenu\Box2D\Dynamics\Joints\b2WheelJoint.h \
+		..\SFML\include\SFML\Audio.hpp \
+		..\SFML\include\SFML\Audio\InputSoundFile.hpp \
+		..\SFML\include\SFML\Audio\Export.hpp \
+		..\SFML\include\SFML\Audio\Listener.hpp \
+		..\SFML\include\SFML\Audio\Music.hpp \
+		..\SFML\include\SFML\Audio\SoundStream.hpp \
+		..\SFML\include\SFML\Audio\SoundSource.hpp \
+		..\SFML\include\SFML\Audio\AlResource.hpp \
+		..\SFML\include\SFML\Audio\OutputSoundFile.hpp \
+		..\SFML\include\SFML\Audio\Sound.hpp \
+		..\SFML\include\SFML\Audio\SoundBuffer.hpp \
+		..\SFML\include\SFML\Audio\SoundBufferRecorder.hpp \
+		..\SFML\include\SFML\Audio\SoundRecorder.hpp \
+		..\SFML\include\SFML\Audio\SoundFileFactory.hpp \
+		..\SFML\include\SFML\Audio\SoundFileFactory.inl \
+		..\SFML\include\SFML\Audio\SoundFileReader.hpp \
+		..\SFML\include\SFML\Audio\SoundFileWriter.hpp \
 		D:\Qt\5.5\msvc2013_64\include\QtWidgets\QPushButton \
 		D:\Qt\5.5\msvc2013_64\include\QtWidgets\qpushbutton.h \
 		D:\Qt\5.5\msvc2013_64\include\QtWidgets\qabstractbutton.h \
 		D:\Qt\5.5\msvc2013_64\include\QtGui\qicon.h \
+		..\SFML\include\SFML\Network.hpp \
+		..\SFML\include\SFML\Network\Ftp.hpp \
+		..\SFML\include\SFML\Network\Export.hpp \
+		..\SFML\include\SFML\Network\TcpSocket.hpp \
+		..\SFML\include\SFML\Network\Socket.hpp \
+		..\SFML\include\SFML\Network\SocketHandle.hpp \
+		..\SFML\include\SFML\Network\Http.hpp \
+		..\SFML\include\SFML\Network\IpAddress.hpp \
+		..\SFML\include\SFML\Network\Packet.hpp \
+		..\SFML\include\SFML\Network\SocketSelector.hpp \
+		..\SFML\include\SFML\Network\TcpListener.hpp \
+		..\SFML\include\SFML\Network\UdpSocket.hpp \
 		..\MainMenu\levelselectwindow.h
-	D:\Qt\5.5\msvc2013_64\bin\moc.exe $(DEFINES) -D_MSC_VER=1800 -D_WIN32 -D_WIN64 -ID:/Qt/5.5/msvc2013_64/mkspecs/win32-msvc2013 -IC:/Users/ryant_000/Desktop/typersblock/MainMenu -IC:/Users/ryant_000/Desktop/typersblock/SFML/include -IC:/Users/ryant_000/Desktop/typersblock/MainMenu/include -ID:/Qt/5.5/msvc2013_64/include -ID:/Qt/5.5/msvc2013_64/include/QtWidgets -ID:/Qt/5.5/msvc2013_64/include/QtGui -ID:/Qt/5.5/msvc2013_64/include/QtANGLE -ID:/Qt/5.5/msvc2013_64/include/QtCore -I. ..\MainMenu\levelselectwindow.h -o release\moc_levelselectwindow.cpp
+	D:\Qt\5.5\msvc2013_64\bin\moc.exe $(DEFINES) -D_MSC_VER=1800 -D_WIN32 -D_WIN64 -ID:/Qt/5.5/msvc2013_64/mkspecs/win32-msvc2013 -IC:/Users/ryant_000/Downloads/typersblock/MainMenu -IC:/Users/ryant_000/Downloads/typersblock/SFML/include -IC:/Users/ryant_000/Downloads/typersblock/MainMenu/include -ID:/Qt/5.5/msvc2013_64/include -ID:/Qt/5.5/msvc2013_64/include/QtWidgets -ID:/Qt/5.5/msvc2013_64/include/QtGui -ID:/Qt/5.5/msvc2013_64/include/QtANGLE -ID:/Qt/5.5/msvc2013_64/include/QtCore -I. ..\MainMenu\levelselectwindow.h -o release\moc_levelselectwindow.cpp
 
 release\moc_sfmlcanvas.cpp: D:\Qt\5.5\msvc2013_64\include\QtWidgets\QWidget \
 		D:\Qt\5.5\msvc2013_64\include\QtWidgets\qwidget.h \
@@ -1223,12 +1252,29 @@ release\moc_sfmlcanvas.cpp: D:\Qt\5.5\msvc2013_64\include\QtWidgets\QWidget \
 		..\MainMenu\Box2D\Dynamics\Joints\b2RopeJoint.h \
 		..\MainMenu\Box2D\Dynamics\Joints\b2WeldJoint.h \
 		..\MainMenu\Box2D\Dynamics\Joints\b2WheelJoint.h \
+		..\SFML\include\SFML\Audio.hpp \
+		..\SFML\include\SFML\Audio\InputSoundFile.hpp \
+		..\SFML\include\SFML\Audio\Export.hpp \
+		..\SFML\include\SFML\Audio\Listener.hpp \
+		..\SFML\include\SFML\Audio\Music.hpp \
+		..\SFML\include\SFML\Audio\SoundStream.hpp \
+		..\SFML\include\SFML\Audio\SoundSource.hpp \
+		..\SFML\include\SFML\Audio\AlResource.hpp \
+		..\SFML\include\SFML\Audio\OutputSoundFile.hpp \
+		..\SFML\include\SFML\Audio\Sound.hpp \
+		..\SFML\include\SFML\Audio\SoundBuffer.hpp \
+		..\SFML\include\SFML\Audio\SoundBufferRecorder.hpp \
+		..\SFML\include\SFML\Audio\SoundRecorder.hpp \
+		..\SFML\include\SFML\Audio\SoundFileFactory.hpp \
+		..\SFML\include\SFML\Audio\SoundFileFactory.inl \
+		..\SFML\include\SFML\Audio\SoundFileReader.hpp \
+		..\SFML\include\SFML\Audio\SoundFileWriter.hpp \
 		D:\Qt\5.5\msvc2013_64\include\QtWidgets\QPushButton \
 		D:\Qt\5.5\msvc2013_64\include\QtWidgets\qpushbutton.h \
 		D:\Qt\5.5\msvc2013_64\include\QtWidgets\qabstractbutton.h \
 		D:\Qt\5.5\msvc2013_64\include\QtGui\qicon.h \
 		..\MainMenu\sfmlcanvas.h
-	D:\Qt\5.5\msvc2013_64\bin\moc.exe $(DEFINES) -D_MSC_VER=1800 -D_WIN32 -D_WIN64 -ID:/Qt/5.5/msvc2013_64/mkspecs/win32-msvc2013 -IC:/Users/ryant_000/Desktop/typersblock/MainMenu -IC:/Users/ryant_000/Desktop/typersblock/SFML/include -IC:/Users/ryant_000/Desktop/typersblock/MainMenu/include -ID:/Qt/5.5/msvc2013_64/include -ID:/Qt/5.5/msvc2013_64/include/QtWidgets -ID:/Qt/5.5/msvc2013_64/include/QtGui -ID:/Qt/5.5/msvc2013_64/include/QtANGLE -ID:/Qt/5.5/msvc2013_64/include/QtCore -I. ..\MainMenu\sfmlcanvas.h -o release\moc_sfmlcanvas.cpp
+	D:\Qt\5.5\msvc2013_64\bin\moc.exe $(DEFINES) -D_MSC_VER=1800 -D_WIN32 -D_WIN64 -ID:/Qt/5.5/msvc2013_64/mkspecs/win32-msvc2013 -IC:/Users/ryant_000/Downloads/typersblock/MainMenu -IC:/Users/ryant_000/Downloads/typersblock/SFML/include -IC:/Users/ryant_000/Downloads/typersblock/MainMenu/include -ID:/Qt/5.5/msvc2013_64/include -ID:/Qt/5.5/msvc2013_64/include/QtWidgets -ID:/Qt/5.5/msvc2013_64/include/QtGui -ID:/Qt/5.5/msvc2013_64/include/QtANGLE -ID:/Qt/5.5/msvc2013_64/include/QtCore -I. ..\MainMenu\sfmlcanvas.h -o release\moc_sfmlcanvas.cpp
 
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
@@ -2007,11 +2053,44 @@ release\levelselectwindow.obj: ..\MainMenu\levelselectwindow.cpp ../MainMenu/lev
 		../MainMenu/Box2D/Dynamics/Joints/b2RopeJoint.h \
 		../MainMenu/Box2D/Dynamics/Joints/b2WeldJoint.h \
 		../MainMenu/Box2D/Dynamics/Joints/b2WheelJoint.h \
+		..\SFML\include\SFML\Audio.hpp \
+		..\SFML\include\SFML\Audio\InputSoundFile.hpp \
+		..\SFML\include\SFML\Audio\Export.hpp \
+		..\SFML\include\SFML\Audio\Listener.hpp \
+		..\SFML\include\SFML\Audio\Music.hpp \
+		..\SFML\include\SFML\Audio\SoundStream.hpp \
+		..\SFML\include\SFML\Audio\SoundSource.hpp \
+		..\SFML\include\SFML\Audio\AlResource.hpp \
+		..\SFML\include\SFML\Audio\OutputSoundFile.hpp \
+		..\SFML\include\SFML\Audio\Sound.hpp \
+		..\SFML\include\SFML\Audio\SoundBuffer.hpp \
+		..\SFML\include\SFML\Audio\SoundBufferRecorder.hpp \
+		..\SFML\include\SFML\Audio\SoundRecorder.hpp \
+		..\SFML\include\SFML\Audio\SoundFileFactory.hpp \
+		..\SFML\include\SFML\Audio\SoundFileFactory.inl \
+		..\SFML\include\SFML\Audio\SoundFileReader.hpp \
+		..\SFML\include\SFML\Audio\SoundFileWriter.hpp \
 		D:\Qt\5.5\msvc2013_64\include\QtWidgets\QPushButton \
 		D:\Qt\5.5\msvc2013_64\include\QtWidgets\qpushbutton.h \
 		D:\Qt\5.5\msvc2013_64\include\QtWidgets\qabstractbutton.h \
 		D:\Qt\5.5\msvc2013_64\include\QtGui\qicon.h \
-		ui_levelselectwindow.h
+		..\SFML\include\SFML\Network.hpp \
+		..\SFML\include\SFML\Network\Ftp.hpp \
+		..\SFML\include\SFML\Network\Export.hpp \
+		..\SFML\include\SFML\Network\TcpSocket.hpp \
+		..\SFML\include\SFML\Network\Socket.hpp \
+		..\SFML\include\SFML\Network\SocketHandle.hpp \
+		..\SFML\include\SFML\Network\Http.hpp \
+		..\SFML\include\SFML\Network\IpAddress.hpp \
+		..\SFML\include\SFML\Network\Packet.hpp \
+		..\SFML\include\SFML\Network\SocketSelector.hpp \
+		..\SFML\include\SFML\Network\TcpListener.hpp \
+		..\SFML\include\SFML\Network\UdpSocket.hpp \
+		ui_levelselectwindow.h \
+		D:\Qt\5.5\msvc2013_64\include\QtWidgets\QMessageBox \
+		D:\Qt\5.5\msvc2013_64\include\QtWidgets\qmessagebox.h \
+		D:\Qt\5.5\msvc2013_64\include\QtWidgets\qdialog.h \
+		D:\Qt\5.5\msvc2013_64\include\QtCore\QDebug
 
 release\sfmlcanvas.obj: ..\MainMenu\sfmlcanvas.cpp ../MainMenu/sfmlcanvas.h \
 		D:\Qt\5.5\msvc2013_64\include\QtWidgets\QWidget \
@@ -2227,6 +2306,23 @@ release\sfmlcanvas.obj: ..\MainMenu\sfmlcanvas.cpp ../MainMenu/sfmlcanvas.h \
 		../MainMenu/Box2D/Dynamics/Joints/b2RopeJoint.h \
 		../MainMenu/Box2D/Dynamics/Joints/b2WeldJoint.h \
 		../MainMenu/Box2D/Dynamics/Joints/b2WheelJoint.h \
+		..\SFML\include\SFML\Audio.hpp \
+		..\SFML\include\SFML\Audio\InputSoundFile.hpp \
+		..\SFML\include\SFML\Audio\Export.hpp \
+		..\SFML\include\SFML\Audio\Listener.hpp \
+		..\SFML\include\SFML\Audio\Music.hpp \
+		..\SFML\include\SFML\Audio\SoundStream.hpp \
+		..\SFML\include\SFML\Audio\SoundSource.hpp \
+		..\SFML\include\SFML\Audio\AlResource.hpp \
+		..\SFML\include\SFML\Audio\OutputSoundFile.hpp \
+		..\SFML\include\SFML\Audio\Sound.hpp \
+		..\SFML\include\SFML\Audio\SoundBuffer.hpp \
+		..\SFML\include\SFML\Audio\SoundBufferRecorder.hpp \
+		..\SFML\include\SFML\Audio\SoundRecorder.hpp \
+		..\SFML\include\SFML\Audio\SoundFileFactory.hpp \
+		..\SFML\include\SFML\Audio\SoundFileFactory.inl \
+		..\SFML\include\SFML\Audio\SoundFileReader.hpp \
+		..\SFML\include\SFML\Audio\SoundFileWriter.hpp \
 		D:\Qt\5.5\msvc2013_64\include\QtWidgets\QPushButton \
 		D:\Qt\5.5\msvc2013_64\include\QtWidgets\qpushbutton.h \
 		D:\Qt\5.5\msvc2013_64\include\QtWidgets\qabstractbutton.h \

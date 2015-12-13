@@ -16,7 +16,7 @@ class LevelSelectWindow : public QWidget
     Q_OBJECT
 
 public:
-    explicit LevelSelectWindow(std::string user = "user", QWidget* previous = 0, QWidget* parent = 0);
+    explicit LevelSelectWindow(std::string user = "user", std::string pass = "", QWidget* previous = 0, QWidget* parent = 0);
     ~LevelSelectWindow();
 
 private slots:
@@ -30,6 +30,8 @@ private:
     QWidget* prev;
     SFMLCanvas* canvas;
     sf::Music music;
+    std::string password;
+    std::string userName;
 };
 
 #endif // LEVELSELECTWINDOW_H
