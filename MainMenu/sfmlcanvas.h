@@ -26,6 +26,7 @@ public:
 	virtual ~SFMLCanvas();
 	virtual void initialize();
 	virtual void update();
+    void setDvorak(bool);
 private:
     //Various Qt constructs
     QTimer repaintTimer;
@@ -51,9 +52,12 @@ private:
     sf::SoundBuffer lineSound;
     sf::Sound sound;
 
+    //Variables used for loading lessons from file.
     int numMistakes;
     int lessonNum;
     int numberOfLines;
+
+    //Total number of characters typed. Used for calculating score.
     int charactersTyped;
 
     //Required to send scores to the server.
@@ -76,6 +80,9 @@ private:
     size_t index;
     std::string filePath;
 
+    //Conversion method for keyboard layouts
+    int convert(QKeyEvent*);
+    bool dvorak = false;
 
     //Some game state variables
     int state = START;
