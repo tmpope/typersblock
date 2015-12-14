@@ -100,7 +100,7 @@ void MainWindow::login()
 
     if (sendPacket(s.GetString(), socket))
     {
-        enterGame(receivePacket(socket));
+        enterGame(receivePacket(socket), 0);
     }
 
     //"{\"action\":0,\"user\":\"newUser\",\"password\":\"notAndre\"}"    <-- example packet
@@ -144,16 +144,20 @@ void MainWindow::createAccount()
 
     if (sendPacket(s.GetString(), socket))
     {
-        enterGame(receivePacket(socket));
+        enterGame(receivePacket(socket), 1);
     }
 }
 
+/* Connects a socket to the server. This way, if the server changes,
+ * we won't have to update it multiple times in this file. */
 sf::Socket::Status MainWindow::connectToServer(sf::TcpSocket& socket)
 {
     return socket.connect("waihoilaf.duckdns.org", 53000);
 }
 
-void MainWindow::enterGame(std::string response)
+/* Tries to enter the game - which is reliant upon the server's response.
+ * Shows errors and returns to the login page if the server couldn't authenticate the user. */
+void MainWindow::enterGame(std::string response, int action)
 {
     rapidjson::Document doc;
     if (doc.Parse(response.c_str()).HasParseError())
@@ -169,7 +173,15 @@ void MainWindow::enterGame(std::string response)
     }
 
     //Been successful up to this point. Launch level select.
-    levelSelectWindow = new LevelSelectWindow(doc["user"].GetString(), ui->passLoginText->text().toStdString(), this);
+    if (action == 0)
+    {
+        levelSelectWindow = new LevelSelectWindow(doc["user"].GetString(), ui->passLoginText->text().toStdString(), this);
+    }
+    else
+    {
+        levelSelectWindow = new LevelSelectWindow(doc["user"].GetString(), ui->passCreateText->text().toStdString(), this);
+    }
+
     levelSelectWindow->show();
     this->hide();
     music.stop();

@@ -31,7 +31,7 @@ private:
     std::string receivePacket(sf::TcpSocket& socket);
     LevelSelectWindow* levelSelectWindow;
     sf::Socket::Status connectToServer(sf::TcpSocket& socket);
-    void enterGame(std::string response);
+    void enterGame(std::string response, int action);
     sf::Music music;
 };
 

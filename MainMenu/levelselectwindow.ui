@@ -70,45 +70,10 @@ background-color: black;</string>
      <string>Log Out</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="startButton">
-    <property name="geometry">
-     <rect>
-      <x>360</x>
-      <y>600</y>
-      <width>101</width>
-      <height>51</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>16</pointsize>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">color: white;
-background-color: black;</string>
-    </property>
-    <property name="text">
-     <string>Start</string>
-    </property>
-   </widget>
-   <widget class="QSpinBox" name="spinBox">
-    <property name="geometry">
-     <rect>
-      <x>250</x>
-      <y>600</y>
-      <width>91</width>
-      <height>51</height>
-     </rect>
-    </property>
-    <property name="minimum">
-     <number>1</number>
-    </property>
-    <property name="maximum">
-     <number>9</number>
-    </property>
-   </widget>
    <widget class="QPushButton" name="Level1">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
     <property name="geometry">
      <rect>
       <x>260</x>
@@ -131,6 +96,9 @@ background-color: black;</string>
     </property>
    </widget>
    <widget class="QPushButton" name="Level2">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
     <property name="geometry">
      <rect>
       <x>260</x>
@@ -153,6 +121,9 @@ background-color: black;</string>
     </property>
    </widget>
    <widget class="QPushButton" name="Level3">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
     <property name="geometry">
      <rect>
       <x>260</x>
@@ -175,6 +146,9 @@ background-color: black;</string>
     </property>
    </widget>
    <widget class="QPushButton" name="Level4">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
     <property name="geometry">
      <rect>
       <x>640</x>
@@ -197,6 +171,9 @@ background-color: black;</string>
     </property>
    </widget>
    <widget class="QPushButton" name="Level6">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
     <property name="geometry">
      <rect>
       <x>640</x>
@@ -219,6 +196,9 @@ background-color: black;</string>
     </property>
    </widget>
    <widget class="QPushButton" name="Level8">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
     <property name="geometry">
      <rect>
       <x>1020</x>
@@ -241,6 +221,9 @@ background-color: black;</string>
     </property>
    </widget>
    <widget class="QPushButton" name="Level7">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
     <property name="geometry">
      <rect>
       <x>1020</x>
@@ -263,6 +246,9 @@ background-color: black;</string>
     </property>
    </widget>
    <widget class="QPushButton" name="Level5">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
     <property name="geometry">
      <rect>
       <x>640</x>
@@ -285,6 +271,9 @@ background-color: black;</string>
     </property>
    </widget>
    <widget class="QPushButton" name="Level9">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
     <property name="geometry">
      <rect>
       <x>1020</x>

@@ -43,6 +43,7 @@ private:
     sf::Music music;
     std::string password;
     std::string userName;
+    void getScores();
 };
 
 #endif // LEVELSELECTWINDOW_H
