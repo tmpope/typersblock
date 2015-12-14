@@ -61,8 +61,13 @@ SFMLCanvas::SFMLCanvas(QWidget* parent, const QPoint& position, const QSize& siz
     if(isDvorak)
     {
         pathStream << "d";
+        dvorak = true;
     }
-    else pathStream << "q";
+    else
+    {
+        pathStream << "q";
+        dvorak = false;
+    }
 
     pathStream << "lesson" << lesson << ".txt";
     filePath = pathStream.str();
