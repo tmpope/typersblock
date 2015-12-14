@@ -89,7 +89,7 @@ background-color: black;</string>
     </property>
     <property name="styleSheet">
      <string notr="true">color: white;
-background-color: black;</string>
+background-color: gold;</string>
     </property>
     <property name="text">
      <string>Level 1</string>

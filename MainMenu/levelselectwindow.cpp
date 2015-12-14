@@ -130,27 +130,35 @@ void LevelSelectWindow::getScores()
         {
         case 0:
             ui->Level2->setEnabled(true);
+            ui->Level2->setStyleSheet("color: white; background-color: gold");
             break;
         case 1:
             ui->Level3->setEnabled(true);
+            ui->Level3->setStyleSheet("color: white; background-color: gold");
             break;
         case 2:
             ui->Level4->setEnabled(true);
+            ui->Level4->setStyleSheet("color: white; background-color: gold");
             break;
         case 3:
             ui->Level5->setEnabled(true);
+            ui->Level5->setStyleSheet("color: white; background-color: gold");
             break;
         case 4:
             ui->Level6->setEnabled(true);
+            ui->Level6->setStyleSheet("color: white; background-color: gold");
             break;
         case 5:
             ui->Level7->setEnabled(true);
+            ui->Level7->setStyleSheet("color: white; background-color: gold");
             break;
         case 6:
             ui->Level8->setEnabled(true);
+            ui->Level8->setStyleSheet("color: white; background-color: gold;");
             break;
         case 7:
             ui->Level9->setEnabled(true);
+            ui->Level9->setStyleSheet("color: white; background-color: gold");
             break;
         }
     }
