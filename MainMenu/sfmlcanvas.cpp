@@ -22,7 +22,7 @@
 #include <rapidjson/writer.h>
 #include <QMessageBox>
 
-SFMLCanvas::SFMLCanvas(QWidget* parent, const QPoint& position, const QSize& size, int frameTime, int lesson, std::string user, std::string pass) : QWidget(parent), initialized(false)
+SFMLCanvas::SFMLCanvas(QWidget* parent, const QPoint& position, const QSize& size, int frameTime, bool isDvorak, int lesson, std::string user, std::string pass) : QWidget(parent), initialized(false)
 {
     //Allows us to return to the previous screen
     prev = parent;
@@ -56,7 +56,15 @@ SFMLCanvas::SFMLCanvas(QWidget* parent, const QPoint& position, const QSize& siz
 
     //Build a file path
     std::ostringstream pathStream;
-    pathStream << "../MainMenu/Lessons/lesson" << lesson << ".txt";
+    pathStream << "../MainMenu/Lessons/";
+    //Switch statement to load dvorak or qwerty lessons
+    if(isDvorak)
+    {
+        pathStream << "d";
+    }
+    else pathStream << "q";
+
+    pathStream << "lesson" << lesson << ".txt";
     filePath = pathStream.str();
 }
 

@@ -41,9 +41,10 @@ void LevelSelectWindow::logOut()
     music.stop();
 }
 
-void LevelSelectWindow::startGame()
+void LevelSelectWindow::startGame(int level)
 {
-    canvas = new SFMLCanvas(this, QPoint(0, 0), QSize(1366, 768), 10, ui->spinBox->value(), userName, password);
+    //canvas = new SFMLCanvas(this, QPoint(0, 0), QSize(1366, 768), 10, ui->spinBox->value(), userName, password);
+    canvas = new SFMLCanvas(this, QPoint(0, 0), QSize(1366, 768), 10, ui->dvorakButton->isChecked(), level, userName, password);
     connect(canvas, SIGNAL(widgetClosed()), this, SLOT(showMenu()));
     canvas->show();
     canvas->update();
@@ -64,4 +65,49 @@ void LevelSelectWindow::showMenu()
 {
     music.play();
     //TODO: Update scores via JSON from server
+}
+
+void LevelSelectWindow::on_Level1_clicked()
+{
+    startGame(1);
+}
+
+void LevelSelectWindow::on_Level2_clicked()
+{
+    startGame(2);
+}
+
+void LevelSelectWindow::on_Level3_clicked()
+{
+    startGame(3);
+}
+
+void LevelSelectWindow::on_Level4_clicked()
+{
+    startGame(4);
+}
+
+void LevelSelectWindow::on_Level5_clicked()
+{
+    startGame(5);
+}
+
+void LevelSelectWindow::on_Level6_clicked()
+{
+    startGame(6);
+}
+
+void LevelSelectWindow::on_Level7_clicked()
+{
+    startGame(7);
+}
+
+void LevelSelectWindow::on_Level8_clicked()
+{
+    startGame(8);
+}
+
+void LevelSelectWindow::on_Level9_clicked()
+{
+    startGame(9);
 }

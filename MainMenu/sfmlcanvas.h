@@ -18,7 +18,7 @@ class SFMLCanvas : public QWidget, public sf::RenderWindow
 {
     Q_OBJECT
 public:
-    SFMLCanvas(QWidget* parent, const QPoint& position, const QSize& size, int frameTime = 0, int lesson = 1, std::string user = "", std::string pass = "");
+    SFMLCanvas(QWidget* parent, const QPoint& position, const QSize& size, int frameTime = 0, bool isDvorak = true, int lesson = 1, std::string user = "", std::string pass = "");
     //Some public methods used to interface with Qt. We keep the opttion to inherit from this class open.
 	virtual void showEvent(QShowEvent*);
 	virtual QPaintEngine* paintEngine() const;
@@ -26,7 +26,7 @@ public:
 	virtual ~SFMLCanvas();
 	virtual void initialize();
 	virtual void update();
-    void setDvorak(bool);
+    //void setDvorak(bool);
 private:
     //Various Qt constructs
     QTimer repaintTimer;

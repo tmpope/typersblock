@@ -21,9 +21,20 @@ public:
 
 private slots:
     void logOut();
-    void startGame();
+    void startGame(int);
     void showEvent(QShowEvent*);
     void showMenu();
+
+    //Makes sure when the level button is clicked, the corret lesson shows up
+    void on_Level1_clicked();
+    void on_Level2_clicked();
+    void on_Level3_clicked();
+    void on_Level4_clicked();
+    void on_Level5_clicked();
+    void on_Level6_clicked();
+    void on_Level7_clicked();
+    void on_Level8_clicked();
+    void on_Level9_clicked();
 
 private:
     Ui::LevelSelectWindow *ui;
