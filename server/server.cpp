@@ -80,23 +80,24 @@ bool validate(std::string user, std::string pass)
     return result;
 }
 
-int* getScores(std::string user) 
+int* getScores(std::string user, int& scoreCount) 
 {
-  std::string query = "SELECT score FROM scores_table WHERE user='" + user + "'";
+    std::string query = "SELECT score FROM scores_table WHERE user='" + user + "'";
 
-  sql::ResultSet *res = runSqlQuery(query);
-  
-  // NOTE: We are going to have nine levels
-  int* scores = new int[9];
-  for(int i = 0; i < 9; i++)
-    scores[i] = 0;
-
-  int counter = 0;
-  while(res->next()){
-    int score = res->getInt(1);
-    std::cout << "Got a score: " << score << std::endl;
-    scores[counter++] = score;
-  }
+    sql::ResultSet *res = runSqlQuery(query);
+    scoreCount = res->rowsCount();
+    int* scores = new int[scoreCount];
+    for (int i = 0; i < scoreCount; i++)
+    {
+        scores[i] = 0;
+    }
+    int counter = 0;
+    while (res->next())
+    {
+        int score = res->getInt(1);
+        std::cout << "Got a score: " << score << std::endl;
+        scores[counter++] = score;
+    }
 
   return scores;
 }
@@ -105,7 +106,8 @@ void insertScore(std::string user, std::string pass, int level, int wpm, int mis
     sql::ResultSet *res;
     std::string query = "INSERT INTO scores_table values('" + user
         + "', " + std::to_string(level) + ", " + std::to_string(wpm) + ", " 
-        + std::to_string(mistakes) + ", " + std::to_string(score) + ")";
+        + std::to_string(mistakes) + ", " + std::to_string(score) + ")"
+        + " ON DUPLICATE KEY UPDATE score = " + std::to_string(score);
     std::cout << query << std::endl;
     runSqlQuery(query);
     return;
@@ -156,9 +158,9 @@ std::string generateResponse(std::string user, std::string pass)
         writer.String("scores");
         writer.StartArray();
 
-	// We have nine levels; or in other words: nine scores.
-	int* scores = getScores(user);
-        for (int i = 0; i < 9; i++)
+	int scoreCount;
+    int* scores = getScores(user, scoreCount);
+        for (int i = 0; i < scoreCount; i++)
             writer.Uint(scores[i]);
 
         writer.EndArray();
