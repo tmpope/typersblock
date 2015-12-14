@@ -1,0 +1,16 @@
+<RCC>
+    <qresource prefix="/new/images">
+        <file>space_scene_by_felandi.jpg</file>
+        <file>Tiny-Grid-Seamless-Patterns-For-Website-Backgrounds.jpg</file>
+        <file>levelSelectBackground.jpg</file>
+        <file>Images/earth.jpg</file>
+        <file>Images/jupiter.jpg</file>
+        <file>Images/mars.jpg</file>
+        <file>Images/mercury.jpg</file>
+        <file>Images/neptune.jpg</file>
+        <file>Images/pluto.jpg</file>
+        <file>Images/saturn.jpg</file>
+        <file>Images/uranus.jpg</file>
+        <file>Images/venus.jpg</file>
+    </qresource>
+</RCC>
