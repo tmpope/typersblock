@@ -25,7 +25,6 @@ LevelSelectWindow::LevelSelectWindow(std::string user, std::string pass, QWidget
     //music.play();
 
     connect(ui->logOutButton, SIGNAL(clicked(bool)), this, SLOT(logOut()));
-    connect(ui->startButton, SIGNAL(clicked(bool)), this, SLOT(startGame()));
 }
 
 LevelSelectWindow::~LevelSelectWindow()
@@ -43,7 +42,6 @@ void LevelSelectWindow::logOut()
 
 void LevelSelectWindow::startGame(int level)
 {
-    //canvas = new SFMLCanvas(this, QPoint(0, 0), QSize(1366, 768), 10, ui->spinBox->value(), userName, password);
     canvas = new SFMLCanvas(this, QPoint(0, 0), QSize(1366, 768), 10, ui->dvorakButton->isChecked(), level, userName, password);
     connect(canvas, SIGNAL(widgetClosed()), this, SLOT(showMenu()));
     canvas->show();

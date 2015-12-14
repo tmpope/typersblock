@@ -17,7 +17,7 @@ CXXFLAGS      = -nologo -Zc:wchar_t -FS -Zi -MDd -GR -W3 -w34100 -w34189 -w44996
 INCPATH       = -I..\MainMenu -I. -I..\SFML\include -I..\MainMenu\include -ID:\Qt\5.5\msvc2013_64\include -ID:\Qt\5.5\msvc2013_64\include\QtWidgets -ID:\Qt\5.5\msvc2013_64\include\QtGui -ID:\Qt\5.5\msvc2013_64\include\QtANGLE -ID:\Qt\5.5\msvc2013_64\include\QtCore -Idebug -I. -ID:\Qt\5.5\msvc2013_64\mkspecs\win32-msvc2013 
 LINKER        = link
 LFLAGS        = /NOLOGO /DYNAMICBASE /NXCOMPAT /DEBUG /SUBSYSTEM:WINDOWS "/MANIFESTDEPENDENCY:type='win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' publicKeyToken='6595b64144ccf1df' language='*' processorArchitecture='*'"
-LIBS          = /LIBPATH:D:\Qt\5.5\msvc2013_64\lib D:\Qt\5.5\msvc2013_64\lib\qtmaind.lib shell32.lib /LIBPATH:D:\Qt\5.5\msvc2013_64\lib D:\Qt\5.5\msvc2013_64\lib\Qt5Cored.lib /LIBPATH:..\SFML\lib sfml-audio-d.lib sfml-graphics-d.lib sfml-main-d.lib sfml-network-d.lib sfml-window-d.lib sfml-system-d.lib D:\Qt\5.5\msvc2013_64\lib\Qt5Widgetsd.lib D:\Qt\5.5\msvc2013_64\lib\Qt5Guid.lib D:\Qt\5.5\msvc2013_64\lib\Qt5Cored.lib 
+LIBS          = /LIBPATH:D:\Qt\5.5\msvc2013_64\lib D:\Qt\5.5\msvc2013_64\lib\qtmaind.lib shell32.lib /LIBPATH:D:\Qt\5.5\msvc2013_64\lib D:\Qt\5.5\msvc2013_64\lib\Qt5Cored.lib /LIBPATH:..\SFML\lib ..\SFML\lib\sfml-audio-d.lib ..\SFML\lib\sfml-graphics-d.lib ..\SFML\lib\sfml-main-d.lib ..\SFML\lib\sfml-network-d.lib ..\SFML\lib\sfml-window-d.lib ..\SFML\lib\sfml-system-d.lib D:\Qt\5.5\msvc2013_64\lib\Qt5Widgetsd.lib D:\Qt\5.5\msvc2013_64\lib\Qt5Guid.lib D:\Qt\5.5\msvc2013_64\lib\Qt5Cored.lib 
 QMAKE         = D:\Qt\5.5\msvc2013_64\bin\qmake.exe
 IDC           = idc
 IDL           = midl
@@ -529,7 +529,16 @@ compiler_rcc_clean:
 debug\qrc_images.cpp: ..\MainMenu\images.qrc \
 		..\MainMenu\space_scene_by_felandi.jpg \
 		..\MainMenu\Tiny-Grid-Seamless-Patterns-For-Website-Backgrounds.jpg \
-		..\MainMenu\levelSelectBackground.jpg
+		..\MainMenu\levelSelectBackground.jpg \
+		..\MainMenu\Images\uranus.jpg \
+		..\MainMenu\Images\saturn.jpg \
+		..\MainMenu\Images\neptune.jpg \
+		..\MainMenu\Images\pluto.jpg \
+		..\MainMenu\Images\mars.jpg \
+		..\MainMenu\Images\mercury.jpg \
+		..\MainMenu\Images\jupiter.jpg \
+		..\MainMenu\Images\earth.jpg \
+		..\MainMenu\Images\venus.jpg
 	D:\Qt\5.5\msvc2013_64\bin\rcc.exe -name images ..\MainMenu\images.qrc -o debug\qrc_images.cpp
 
 compiler_moc_header_make_all: debug\moc_mainwindow.cpp debug\moc_levelselectwindow.cpp debug\moc_sfmlcanvas.cpp
@@ -1812,6 +1821,52 @@ debug\mainwindow.obj: ..\MainMenu\mainwindow.cpp ../MainMenu/mainwindow.h \
 		D:\Qt\5.5\msvc2013_64\include\QtWidgets\qpushbutton.h \
 		D:\Qt\5.5\msvc2013_64\include\QtWidgets\qabstractbutton.h \
 		ui_mainwindow.h \
+		D:\Qt\5.5\msvc2013_64\include\QtCore\QVariant \
+		D:\Qt\5.5\msvc2013_64\include\QtWidgets\QAction \
+		D:\Qt\5.5\msvc2013_64\include\QtWidgets\qaction.h \
+		D:\Qt\5.5\msvc2013_64\include\QtWidgets\qactiongroup.h \
+		D:\Qt\5.5\msvc2013_64\include\QtWidgets\QApplication \
+		D:\Qt\5.5\msvc2013_64\include\QtWidgets\qapplication.h \
+		D:\Qt\5.5\msvc2013_64\include\QtCore\qcoreapplication.h \
+		D:\Qt\5.5\msvc2013_64\include\QtCore\qeventloop.h \
+		D:\Qt\5.5\msvc2013_64\include\QtWidgets\qdesktopwidget.h \
+		D:\Qt\5.5\msvc2013_64\include\QtGui\qguiapplication.h \
+		D:\Qt\5.5\msvc2013_64\include\QtGui\qinputmethod.h \
+		D:\Qt\5.5\msvc2013_64\include\QtWidgets\QButtonGroup \
+		D:\Qt\5.5\msvc2013_64\include\QtWidgets\qbuttongroup.h \
+		D:\Qt\5.5\msvc2013_64\include\QtWidgets\QHeaderView \
+		D:\Qt\5.5\msvc2013_64\include\QtWidgets\qheaderview.h \
+		D:\Qt\5.5\msvc2013_64\include\QtWidgets\qabstractitemview.h \
+		D:\Qt\5.5\msvc2013_64\include\QtWidgets\qabstractscrollarea.h \
+		D:\Qt\5.5\msvc2013_64\include\QtWidgets\qframe.h \
+		D:\Qt\5.5\msvc2013_64\include\QtCore\qabstractitemmodel.h \
+		D:\Qt\5.5\msvc2013_64\include\QtCore\qitemselectionmodel.h \
+		D:\Qt\5.5\msvc2013_64\include\QtWidgets\qabstractitemdelegate.h \
+		D:\Qt\5.5\msvc2013_64\include\QtWidgets\qstyleoption.h \
+		D:\Qt\5.5\msvc2013_64\include\QtWidgets\qabstractspinbox.h \
+		D:\Qt\5.5\msvc2013_64\include\QtGui\qvalidator.h \
+		D:\Qt\5.5\msvc2013_64\include\QtCore\qregularexpression.h \
+		D:\Qt\5.5\msvc2013_64\include\QtWidgets\qslider.h \
+		D:\Qt\5.5\msvc2013_64\include\QtWidgets\qabstractslider.h \
+		D:\Qt\5.5\msvc2013_64\include\QtWidgets\qstyle.h \
+		D:\Qt\5.5\msvc2013_64\include\QtWidgets\qtabbar.h \
+		D:\Qt\5.5\msvc2013_64\include\QtWidgets\qrubberband.h \
+		D:\Qt\5.5\msvc2013_64\include\QtWidgets\QLabel \
+		D:\Qt\5.5\msvc2013_64\include\QtWidgets\qlabel.h \
+		D:\Qt\5.5\msvc2013_64\include\QtWidgets\QMenuBar \
+		D:\Qt\5.5\msvc2013_64\include\QtWidgets\qmenubar.h \
+		D:\Qt\5.5\msvc2013_64\include\QtWidgets\qmenu.h \
+		D:\Qt\5.5\msvc2013_64\include\QtWidgets\QStatusBar \
+		D:\Qt\5.5\msvc2013_64\include\QtWidgets\qstatusbar.h \
+		D:\Qt\5.5\msvc2013_64\include\QtWidgets\QTextEdit \
+		D:\Qt\5.5\msvc2013_64\include\QtWidgets\qtextedit.h \
+		D:\Qt\5.5\msvc2013_64\include\QtGui\qtextdocument.h \
+		D:\Qt\5.5\msvc2013_64\include\QtGui\qtextoption.h \
+		D:\Qt\5.5\msvc2013_64\include\QtGui\qtextcursor.h \
+		D:\Qt\5.5\msvc2013_64\include\QtGui\qtextformat.h \
+		D:\Qt\5.5\msvc2013_64\include\QtGui\qpen.h \
+		D:\Qt\5.5\msvc2013_64\include\QtWidgets\QToolBar \
+		D:\Qt\5.5\msvc2013_64\include\QtWidgets\qtoolbar.h \
 		D:\Qt\5.5\msvc2013_64\include\QtWidgets\QMessageBox \
 		D:\Qt\5.5\msvc2013_64\include\QtWidgets\qmessagebox.h \
 		D:\Qt\5.5\msvc2013_64\include\QtWidgets\qdialog.h \
@@ -2087,6 +2142,43 @@ debug\levelselectwindow.obj: ..\MainMenu\levelselectwindow.cpp ../MainMenu/level
 		..\SFML\include\SFML\Network\TcpListener.hpp \
 		..\SFML\include\SFML\Network\UdpSocket.hpp \
 		ui_levelselectwindow.h \
+		D:\Qt\5.5\msvc2013_64\include\QtCore\QVariant \
+		D:\Qt\5.5\msvc2013_64\include\QtWidgets\QAction \
+		D:\Qt\5.5\msvc2013_64\include\QtWidgets\qaction.h \
+		D:\Qt\5.5\msvc2013_64\include\QtWidgets\qactiongroup.h \
+		D:\Qt\5.5\msvc2013_64\include\QtWidgets\QApplication \
+		D:\Qt\5.5\msvc2013_64\include\QtWidgets\qapplication.h \
+		D:\Qt\5.5\msvc2013_64\include\QtCore\qcoreapplication.h \
+		D:\Qt\5.5\msvc2013_64\include\QtCore\qeventloop.h \
+		D:\Qt\5.5\msvc2013_64\include\QtWidgets\qdesktopwidget.h \
+		D:\Qt\5.5\msvc2013_64\include\QtGui\qguiapplication.h \
+		D:\Qt\5.5\msvc2013_64\include\QtGui\qinputmethod.h \
+		D:\Qt\5.5\msvc2013_64\include\QtWidgets\QButtonGroup \
+		D:\Qt\5.5\msvc2013_64\include\QtWidgets\qbuttongroup.h \
+		D:\Qt\5.5\msvc2013_64\include\QtWidgets\QHeaderView \
+		D:\Qt\5.5\msvc2013_64\include\QtWidgets\qheaderview.h \
+		D:\Qt\5.5\msvc2013_64\include\QtWidgets\qabstractitemview.h \
+		D:\Qt\5.5\msvc2013_64\include\QtWidgets\qabstractscrollarea.h \
+		D:\Qt\5.5\msvc2013_64\include\QtWidgets\qframe.h \
+		D:\Qt\5.5\msvc2013_64\include\QtCore\qabstractitemmodel.h \
+		D:\Qt\5.5\msvc2013_64\include\QtCore\qitemselectionmodel.h \
+		D:\Qt\5.5\msvc2013_64\include\QtWidgets\qabstractitemdelegate.h \
+		D:\Qt\5.5\msvc2013_64\include\QtWidgets\qstyleoption.h \
+		D:\Qt\5.5\msvc2013_64\include\QtWidgets\qabstractspinbox.h \
+		D:\Qt\5.5\msvc2013_64\include\QtGui\qvalidator.h \
+		D:\Qt\5.5\msvc2013_64\include\QtCore\qregularexpression.h \
+		D:\Qt\5.5\msvc2013_64\include\QtWidgets\qslider.h \
+		D:\Qt\5.5\msvc2013_64\include\QtWidgets\qabstractslider.h \
+		D:\Qt\5.5\msvc2013_64\include\QtWidgets\qstyle.h \
+		D:\Qt\5.5\msvc2013_64\include\QtWidgets\qtabbar.h \
+		D:\Qt\5.5\msvc2013_64\include\QtWidgets\qtabwidget.h \
+		D:\Qt\5.5\msvc2013_64\include\QtWidgets\qrubberband.h \
+		D:\Qt\5.5\msvc2013_64\include\QtWidgets\QLabel \
+		D:\Qt\5.5\msvc2013_64\include\QtWidgets\qlabel.h \
+		D:\Qt\5.5\msvc2013_64\include\QtWidgets\QRadioButton \
+		D:\Qt\5.5\msvc2013_64\include\QtWidgets\qradiobutton.h \
+		D:\Qt\5.5\msvc2013_64\include\QtWidgets\QSpinBox \
+		D:\Qt\5.5\msvc2013_64\include\QtWidgets\qspinbox.h \
 		D:\Qt\5.5\msvc2013_64\include\QtWidgets\QMessageBox \
 		D:\Qt\5.5\msvc2013_64\include\QtWidgets\qmessagebox.h \
 		D:\Qt\5.5\msvc2013_64\include\QtWidgets\qdialog.h \
@@ -2327,7 +2419,43 @@ debug\sfmlcanvas.obj: ..\MainMenu\sfmlcanvas.cpp ../MainMenu/sfmlcanvas.h \
 		D:\Qt\5.5\msvc2013_64\include\QtWidgets\qpushbutton.h \
 		D:\Qt\5.5\msvc2013_64\include\QtWidgets\qabstractbutton.h \
 		D:\Qt\5.5\msvc2013_64\include\QtGui\qicon.h \
-		D:\Qt\5.5\msvc2013_64\include\QtGui\QKeyEvent
+		D:\Qt\5.5\msvc2013_64\include\QtGui\QKeyEvent \
+		..\SFML\include\SFML\Network.hpp \
+		..\SFML\include\SFML\Network\Ftp.hpp \
+		..\SFML\include\SFML\Network\Export.hpp \
+		..\SFML\include\SFML\Network\TcpSocket.hpp \
+		..\SFML\include\SFML\Network\Socket.hpp \
+		..\SFML\include\SFML\Network\SocketHandle.hpp \
+		..\SFML\include\SFML\Network\Http.hpp \
+		..\SFML\include\SFML\Network\IpAddress.hpp \
+		..\SFML\include\SFML\Network\Packet.hpp \
+		..\SFML\include\SFML\Network\SocketSelector.hpp \
+		..\SFML\include\SFML\Network\TcpListener.hpp \
+		..\SFML\include\SFML\Network\UdpSocket.hpp \
+		../MainMenu/include/rapidjson/document.h \
+		../MainMenu/include/rapidjson/reader.h \
+		../MainMenu/include/rapidjson/rapidjson.h \
+		../MainMenu/include/rapidjson/msinttypes/stdint.h \
+		../MainMenu/include/rapidjson/msinttypes/inttypes.h \
+		../MainMenu/include/rapidjson/allocators.h \
+		../MainMenu/include/rapidjson/encodings.h \
+		../MainMenu/include/rapidjson/internal/meta.h \
+		../MainMenu/include/rapidjson/internal/stack.h \
+		../MainMenu/include/rapidjson/internal/swap.h \
+		../MainMenu/include/rapidjson/internal/strtod.h \
+		../MainMenu/include/rapidjson/internal/ieee754.h \
+		../MainMenu/include/rapidjson/internal/biginteger.h \
+		../MainMenu/include/rapidjson/internal/diyfp.h \
+		../MainMenu/include/rapidjson/internal/pow10.h \
+		../MainMenu/include/rapidjson/error/error.h \
+		../MainMenu/include/rapidjson/internal/strfunc.h \
+		../MainMenu/include/rapidjson/stringbuffer.h \
+		../MainMenu/include/rapidjson/writer.h \
+		../MainMenu/include/rapidjson/internal/dtoa.h \
+		../MainMenu/include/rapidjson/internal/itoa.h \
+		D:\Qt\5.5\msvc2013_64\include\QtWidgets\QMessageBox \
+		D:\Qt\5.5\msvc2013_64\include\QtWidgets\qmessagebox.h \
+		D:\Qt\5.5\msvc2013_64\include\QtWidgets\qdialog.h
 
 debug\b2ChainShape.obj: ..\MainMenu\Box2D\Collision\Shapes\b2ChainShape.cpp ../MainMenu/Box2D/Collision/Shapes/b2ChainShape.h \
 		../MainMenu/Box2D/Collision/Shapes/b2Shape.h \

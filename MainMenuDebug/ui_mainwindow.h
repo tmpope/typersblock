@@ -63,6 +63,7 @@ public:
         passLoginText->setObjectName(QStringLiteral("passLoginText"));
         passLoginText->setGeometry(QRect(60, 250, 341, 31));
         passLoginText->setStyleSheet(QStringLiteral("background-image: url(:/new/images/Tiny-Grid-Seamless-Patterns-For-Website-Backgrounds.jpg);"));
+        passLoginText->setInputMethodHints(Qt::ImhNone);
         passLoginText->setTabChangesFocus(true);
         loginButton = new QPushButton(centralWidget);
         loginButton->setObjectName(QStringLiteral("loginButton"));
@@ -145,7 +146,7 @@ public:
 "background-image: url(:/new/images/alpha.png);"));
         label_2 = new QLabel(centralWidget);
         label_2->setObjectName(QStringLiteral("label_2"));
-        label_2->setGeometry(QRect(130, 40, 91, 31));
+        label_2->setGeometry(QRect(100, 45, 91, 31));
         QFont font1;
         font1.setPointSize(16);
         font1.setBold(true);

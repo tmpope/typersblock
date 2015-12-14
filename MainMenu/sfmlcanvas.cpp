@@ -60,12 +60,12 @@ SFMLCanvas::SFMLCanvas(QWidget* parent, const QPoint& position, const QSize& siz
     //Switch statement to load dvorak or qwerty lessons
     if(isDvorak)
     {
-        pathStream << "d";
+        pathStream << "D";
         dvorak = true;
     }
     else
     {
-        pathStream << "q";
+        pathStream << "Q";
         dvorak = false;
     }
 
@@ -150,7 +150,7 @@ void SFMLCanvas::initialize()
     displayString = getNextLesson(lessonNum);
 
     //Load relevant fonts
-    if (!textFont.loadFromFile("../MainMenu/Fonts/GALACTIC_VANGUARDIAN_NCV.ttf"))
+    if (!textFont.loadFromFile("../MainMenu/Fonts/GALACTICVANGUARDIANNCV.ttf"))
     {
         throw std::invalid_argument("Could not find font file.");
     }
@@ -459,7 +459,7 @@ sf::String SFMLCanvas::getNextLesson(int indexOfLesson)
         file.close();
     }
 
-    else std::cout << "Unable to open file";
+    else qDebug() << "Unable to open file";
     return "";
 }
 
@@ -648,11 +648,6 @@ void SFMLCanvas::closeEvent(QCloseEvent* event)
     event->accept();
 }
 
-/* Public method to tell the game whether to use dvorak or not. */
-void SFMLCanvas::setDvorak(bool dvorakFlag)
-{
-    dvorak = dvorakFlag;
-}
 
 /* Converts the key within the key event from qwerty to dvorak.
  * Does nothing if the bool flag dvorak == false. */

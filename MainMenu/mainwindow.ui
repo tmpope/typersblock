@@ -32,6 +32,9 @@
     <property name="styleSheet">
      <string notr="true">background-image: url(:/new/images/Tiny-Grid-Seamless-Patterns-For-Website-Backgrounds.jpg);</string>
     </property>
+    <property name="inputMethodHints">
+     <set>Qt::ImhNone</set>
+    </property>
     <property name="tabChangesFocus">
      <bool>true</bool>
     </property>
