@@ -15,6 +15,7 @@
 #include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
+#include <QtWidgets/QLineEdit>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
@@ -46,6 +47,7 @@ public:
     QLabel *label_8;
     QLabel *label;
     QLabel *label_2;
+    QLineEdit *lineEdit;
     QMenuBar *menuBar;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
@@ -146,7 +148,7 @@ public:
 "background-image: url(:/new/images/alpha.png);"));
         label_2 = new QLabel(centralWidget);
         label_2->setObjectName(QStringLiteral("label_2"));
-        label_2->setGeometry(QRect(100, 45, 91, 31));
+        label_2->setGeometry(QRect(130, 40, 91, 31));
         QFont font1;
         font1.setPointSize(16);
         font1.setBold(true);
@@ -154,6 +156,10 @@ public:
         label_2->setFont(font1);
         label_2->setStyleSheet(QLatin1String("color: white;\n"
 "background-image: url(:/new/images/alpha.png);"));
+        lineEdit = new QLineEdit(centralWidget);
+        lineEdit->setObjectName(QStringLiteral("lineEdit"));
+        lineEdit->setGeometry(QRect(70, 100, 331, 41));
+        lineEdit->setStyleSheet(QStringLiteral("background-image: url(:/new/images/Tiny-Grid-Seamless-Patterns-For-Website-Backgrounds.jpg);"));
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
