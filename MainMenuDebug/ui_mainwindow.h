@@ -44,6 +44,8 @@ public:
     QLabel *label_6;
     QLabel *label_7;
     QLabel *label_8;
+    QLabel *label;
+    QLabel *label_2;
     QMenuBar *menuBar;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
@@ -130,6 +132,27 @@ public:
         label_8->setGeometry(QRect(410, 210, 51, 16));
         label_8->setStyleSheet(QLatin1String("color: white;\n"
 "background-image: url(:/new/images/alpha.png);"));
+        label = new QLabel(centralWidget);
+        label->setObjectName(QStringLiteral("label"));
+        label->setGeometry(QRect(40, 30, 241, 61));
+        QFont font;
+        font.setFamily(QStringLiteral("GALACTIC VANGUARDIAN NCV"));
+        font.setPointSize(16);
+        font.setBold(true);
+        font.setWeight(75);
+        label->setFont(font);
+        label->setStyleSheet(QLatin1String("color: white;\n"
+"background-image: url(:/new/images/alpha.png);"));
+        label_2 = new QLabel(centralWidget);
+        label_2->setObjectName(QStringLiteral("label_2"));
+        label_2->setGeometry(QRect(130, 40, 91, 31));
+        QFont font1;
+        font1.setPointSize(16);
+        font1.setBold(true);
+        font1.setWeight(75);
+        label_2->setFont(font1);
+        label_2->setStyleSheet(QLatin1String("color: white;\n"
+"background-image: url(:/new/images/alpha.png);"));
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
@@ -149,15 +172,17 @@ public:
 
     void retranslateUi(QMainWindow *MainWindow)
     {
-        MainWindow->setWindowTitle(QApplication::translate("MainWindow", "MainWindow", 0));
+        MainWindow->setWindowTitle(QApplication::translate("MainWindow", "Typer's Block", 0));
         loginButton->setText(QApplication::translate("MainWindow", "Login", 0));
         newAccountButton->setText(QApplication::translate("MainWindow", "New Account", 0));
         label_3->setText(QApplication::translate("MainWindow", "First/Last", 0));
-        label_4->setText(QApplication::translate("MainWindow", "Class #", 0));
+        label_4->setText(QApplication::translate("MainWindow", "Class", 0));
         label_5->setText(QApplication::translate("MainWindow", "Password", 0));
         label_6->setText(QApplication::translate("MainWindow", "Username", 0));
         label_7->setText(QApplication::translate("MainWindow", "Password", 0));
         label_8->setText(QApplication::translate("MainWindow", "Username", 0));
+        label->setText(QApplication::translate("MainWindow", "Typer s Block", 0));
+        label_2->setText(QApplication::translate("MainWindow", "'", 0));
     } // retranslateUi
 
 };

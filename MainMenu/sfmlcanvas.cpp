@@ -12,15 +12,25 @@
 #include <SFML/Graphics/Font.hpp>
 #include <SFML/System/String.hpp>
 #include <SFML/Graphics/Text.hpp>
+#include <SFML/Network.hpp>
 #include <fstream>
 #include <iostream>
 #include <sstream>
 #include <math.h>
+#include <rapidjson/document.h>
+#include <rapidjson/stringbuffer.h>
+#include <rapidjson/writer.h>
+#include <QMessageBox>
 
-SFMLCanvas::SFMLCanvas(QWidget* parent, const QPoint& position, const QSize& size, int frameTime, int lesson) : QWidget(parent), initialized(false)
+SFMLCanvas::SFMLCanvas(QWidget* parent, const QPoint& position, const QSize& size, int frameTime, int lesson, std::string user, std::string pass) : QWidget(parent), initialized(false)
 {
     //Allows us to return to the previous screen
     prev = parent;
+
+    userName = user;
+    password = pass;
+
+    level = lesson;
 
 	//Allow rendering into the widget
 	setAttribute(Qt::WA_PaintOnScreen);
@@ -259,15 +269,21 @@ void SFMLCanvas::update()
     draw(userText);
 
 	//Reset clock variable
-	clock.restart();
+    //clock.restart();
 }
 
-/* How Qt intercepts key events.
- * Handles all of the text required interactions. */
+/* Handles all of the text required interactions. */
 void SFMLCanvas::keyPressEvent(QKeyEvent* event)
 {
+    //Will switch the key to Dvorak if dvorak == true, else returns the given key.
+    int key = convert(event);
+    //Convert to lower case - Qt uses upper case for whatever reason.
+    if (key >= 65 && key <= 90)
+    {
+        key += 32;
+    }
     //Pause/unpause when escape is pressed. Exit game if the game is over.
-    if (event->key() == Qt::Key_Escape)
+    if (key == Qt::Key_Escape)
     {
         switch(state)
         {
@@ -288,7 +304,7 @@ void SFMLCanvas::keyPressEvent(QKeyEvent* event)
     //Allow the user to press enter to begin the game.
     if (state == START)
     {
-        if (event->key() == Qt::Key_Return)
+        if (key == Qt::Key_Return)
         {
             startGame();
         }
@@ -297,13 +313,13 @@ void SFMLCanvas::keyPressEvent(QKeyEvent* event)
     if (state == PLAY)
     {
         //When a key is entered...
-        if (event->text().at(0).unicode() < static_cast<ushort>(127) && event->text().at(0).unicode() > static_cast<ushort>(31))
+        if (key < 127 && key > 31)
         {
             //If the key matches the one in the lesson string move to the next char
-            if (event->text().toStdString().at(0) == displayString[index])
+            if (key == displayString[index])
             {
-                //stringBuild += (static_cast<char>(event.text.unicode));
-                textString += event->text().toStdString().at(0);
+                //sf string doesn't cast int to char for you
+                textString += static_cast<char>(key);
                 index++;
                 charactersTyped++;
             }
@@ -317,7 +333,7 @@ void SFMLCanvas::keyPressEvent(QKeyEvent* event)
             }
         }
         //Reaching the end of the line and hitting return will pull the next lesson
-        else if (event->key() == Qt::Key_Return)
+        else if (key == Qt::Key_Return)
         {
             //If we've reached the end of a line
             if (index == displayString.getSize())
@@ -348,12 +364,15 @@ void SFMLCanvas::keyPressEvent(QKeyEvent* event)
                         //bodyIt->ApplyLinearImpulse(b2Vec2(0, 10), bodyIt->GetWorldCenter(), true);
                     }
                 }
+                //Reset variables for pulling next line from file.
                 lessonNum++;
                 displayString = getNextLesson(lessonNum);
                 index = 0;
                 textString = "";
+                //Update strings drawn on the screen
                 userText.setString(textString);
                 displayText.setString(displayString);
+                //Play different sound if that was the last line, or any other line.
                 switch(state)
                 {
                 case PLAY:
@@ -368,29 +387,6 @@ void SFMLCanvas::keyPressEvent(QKeyEvent* event)
             }
         }
     }
-    //Implementation of previous function using unicode
-    /*else if (event->text().at(0).unicode() == static_cast<ushort>(13))
-    {
-        //TextString += "\n";
-        if (index == DisplayString.getSize())
-        {
-            lessonNum++;
-            DisplayString = getNextLesson(lessonNum);
-            index = 0;
-            TextString = "";
-            Text.setString(TextString);
-            DisplayText.setString(DisplayString);
-        }
-
-    }
-    //implementation of backspace if we ever need it
-    else if (event->key() == Qt::Key_Backspace)
-    {
-        //stringBuild = stringBuild.substr(0, stringBuild.size() - 1);
-        TextString = TextString.substring(0, TextString.getSize() - 1);
-        index--;
-    }*/
-
     userText.setString(textString);
     update();
 }
@@ -429,6 +425,8 @@ void SFMLCanvas::makeDynamicBody(int x, int y)
     body->CreateFixture(&fixtureDef);
 }
 
+/* Gets the next line to be typed from the lesson on file.
+ * Will end the game if called when there are no more lessons to be found. */
 sf::String SFMLCanvas::getNextLesson(int indexOfLesson)
 {
     std::string line;
@@ -436,11 +434,10 @@ sf::String SFMLCanvas::getNextLesson(int indexOfLesson)
 
     if (file.is_open())
     {
-        for (int lineno = 0; getline(file, line) && lineno < 2; lineno++)
+        for (int lineno = 0; getline(file, line) && lineno < numberOfLines; lineno++)
         {
             if (lineno == indexOfLesson)
             {
-                std::cout << "Line " << lineno << ": " << line << std::endl;
                 return line;
             }
         }
@@ -453,6 +450,8 @@ sf::String SFMLCanvas::getNextLesson(int indexOfLesson)
     return "";
 }
 
+/* Counts the total number of lines in a lesson.
+ * Useful for knowing when the game is over. */
 int SFMLCanvas::countLines()
 {
     int numLines = 0;
@@ -464,10 +463,9 @@ int SFMLCanvas::countLines()
     {
         numLines++;
     }
-    //Return to the beginning of the file
+    //Return to the beginning of the file (had some weird errors if we didn't try this.)
     file.clear();
     file.seekg(0, std::ios::beg);
-    std::cout << "Number of lines: " << numLines << std::endl;
 
     return numLines;
 }
@@ -528,17 +526,21 @@ int SFMLCanvas::calcGrossWPM()
 {
     return ((charactersTyped/5) * 60000)/(gameTime);
 }
-
+/* Calculates net words per minute. Takes mistakes into account. */
 int SFMLCanvas::calcNetWPM()
 {
     return (((charactersTyped/5) - numMistakes) * 60000)/(gameTime);
 }
-
+/* Calculates the running score. Mistakes take points away, correct characters add points.
+ * Score will sit at 0, instead of going negative. */
 int SFMLCanvas::calcRunningScore()
 {
     int score = (charactersTyped * 6) - (numMistakes * 8);
-    if(score < 0) return 0;
-    else return score;
+    if(score < 0)
+    {
+        return 0;
+    }
+    return score;
 }
 
 int SFMLCanvas::calcFinalScore()
@@ -563,13 +565,196 @@ void SFMLCanvas::endGame()
 void SFMLCanvas::exitGame()
 {
     //TODO: SEND SCORES THROUGH JSON HERE
+    rapidjson::StringBuffer s;
+    rapidjson::Writer<rapidjson::StringBuffer> writer(s);
+
+    //Assemble the JSON to send over.
+    writer.StartObject();
+    writer.String("action");
+    writer.Uint(3);
+    writer.String("user");
+    writer.String(userName.c_str());
+    writer.String("password");
+    writer.String(password.c_str());
+    writer.String("level");
+    writer.Uint(level);
+    writer.String("wpm");
+    writer.Uint(calcNetWPM());
+    writer.String("mistakes");
+    writer.Uint(numMistakes);
+    writer.String("score");
+    writer.Uint(calcFinalScore());
+    writer.EndObject();
+
+    qDebug() << QString::fromStdString(s.GetString());
+
+    //Connect to the server
+    sf::TcpSocket socket;
+    socket.connect("waihoilaf.duckdns.org", 53000);
+
+    //Store data in a packet
+    sf::Packet packet;
+    packet << s.GetString();
+    //Send the packet
+    if (socket.send(packet) != sf::Socket::Done)
+    {
+         QMessageBox::critical(this, "Error", "Couldn't contact the server. Try again later.");
+    }
+    //Recieve a response
+    sf::Packet data;
+    if (socket.receive(data) != sf::Socket::Done)
+    {
+        QMessageBox::critical(this, "Error", "No response from server.");
+    }
+    std::string msg;
+    data >> msg;
+    qDebug() << "Message received: " << QString::fromStdString(msg);
+    socket.disconnect();
+
+
+
+    /*rapidjson::Document doc;
+    if (doc.Parse(response.c_str()).HasParseError())
+    {
+        QMessageBox::critical(this, "Error", "Server response corrupted.");
+    }
+    if (doc["type"].GetString() == "failure")
+    {
+        //Not authenticated correctly.
+        QMessageBox::critical(this, "Error", "Couldn't send scores correctly.");
+    }*/
+
     music.stop();
     this->QWidget::close();
 }
 
+/* Emits a signal when the widget closes. */
 void SFMLCanvas::closeEvent(QCloseEvent* event)
 {
     emit widgetClosed();
     event->accept();
 }
 
+/* Public method to tell the game whether to use dvorak or not. */
+void SFMLCanvas::setDvorak(bool dvorakFlag)
+{
+    dvorak = dvorakFlag;
+}
+
+/* Converts the key within the key event from qwerty to dvorak.
+ * Does nothing if the bool flag dvorak == false. */
+int SFMLCanvas::convert(QKeyEvent* event)
+{
+    int key = event->key();
+    //Big, long, ugly switch statement that converts qwerty to dvorak
+    //There's probably a more elegant way to do this, but for now, this'll work.
+    if (dvorak)
+    {
+        switch(event->key())
+        {
+        case Qt::Key_B:
+            key = Qt::Key_X;
+            break;
+        case Qt::Key_C:
+            key = Qt::Key_J;
+            break;
+        case Qt::Key_D:
+            key = Qt::Key_E;
+            break;
+        case Qt::Key_E:
+            key = Qt::Key_Period;
+            break;
+        case Qt::Key_F:
+            key = Qt::Key_U;
+            break;
+        case Qt::Key_G:
+            key = Qt::Key_I;
+            break;
+        case Qt::Key_H:
+            key = Qt::Key_D;
+            break;
+        case Qt::Key_I:
+            key = Qt::Key_C;
+            break;
+        case Qt::Key_J:
+            key = Qt::Key_H;
+            break;
+        case Qt::Key_K:
+            key = Qt::Key_T;
+            break;
+        case Qt::Key_L:
+            key = Qt::Key_N;
+            break;
+        case Qt::Key_M:
+            key = Qt::Key_M;
+            break;
+        case Qt::Key_N:
+            key = Qt::Key_B;
+            break;
+        case Qt::Key_O:
+            key = Qt::Key_R;
+            break;
+        case Qt::Key_P:
+            key = Qt::Key_L;
+            break;
+        case Qt::Key_Q:
+            key = Qt::Key_Apostrophe;
+            break;
+        case Qt::Key_R:
+            key = Qt::Key_P;
+            break;
+        case Qt::Key_S:
+            key = Qt::Key_O;
+            break;
+        case Qt::Key_T:
+            key = Qt::Key_Y;
+            break;
+        case Qt::Key_U:
+            key = Qt::Key_G;
+            break;
+        case Qt::Key_V:
+            key = Qt::Key_K;
+            break;
+        case Qt::Key_W:
+            key = Qt::Key_Comma;
+            break;
+        case Qt::Key_X:
+            key = Qt::Key_Q;
+            break;
+        case Qt::Key_Y:
+            key = Qt::Key_F;
+            break;
+        case Qt::Key_Z:
+            key = Qt::Key_Semicolon;
+            break;
+        case Qt::Key_BracketLeft:
+            key = Qt::Key_Slash;
+            break;
+        case Qt::Key_BracketRight:
+            key = Qt::Key_Equal;
+            break;
+        case Qt::Key_Semicolon:
+            key = Qt::Key_S;
+            break;
+        case Qt::Key_Apostrophe:
+            key = Qt::Key_Minus;
+            break;
+        case Qt::Key_Comma:
+            key = Qt::Key_W;
+            break;
+        case Qt::Key_Period:
+            key = Qt::Key_V;
+            break;
+        case Qt::Key_Slash:
+            key = Qt::Key_Z;
+            break;
+        case Qt::Key_Minus:
+            key = Qt::Key_BracketLeft;
+            break;
+        case Qt::Key_Equal:
+            key = Qt::Key_BracketRight;
+            break;
+        }
+    }
+    return key;
+}

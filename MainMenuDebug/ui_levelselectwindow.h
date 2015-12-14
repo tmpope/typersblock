@@ -43,6 +43,7 @@ public:
         label->setObjectName(QStringLiteral("label"));
         label->setGeometry(QRect(60, 40, 501, 91));
         QFont font;
+        font.setFamily(QStringLiteral("GALACTIC VANGUARDIAN NCV"));
         font.setPointSize(24);
         label->setFont(font);
         label->setStyleSheet(QLatin1String("color: white;\n"

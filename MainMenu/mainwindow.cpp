@@ -169,7 +169,7 @@ void MainWindow::enterGame(std::string response)
     }
 
     //Been successful up to this point. Launch level select.
-    levelSelectWindow = new LevelSelectWindow(doc["user"].GetString(), this);
+    levelSelectWindow = new LevelSelectWindow(doc["user"].GetString(), ui->passLoginText->toPlainText().toStdString(), this);
     levelSelectWindow->show();
     this->hide();
     music.stop();

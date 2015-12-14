@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Typer's Block</string>
   </property>
   <property name="styleSheet">
    <string notr="true"/>
@@ -195,7 +195,7 @@ background-image: url(:/new/images/alpha.png);</string>
 background-image: url(:/new/images/alpha.png);</string>
     </property>
     <property name="text">
-     <string>Class #</string>
+     <string>Class</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_5">
@@ -264,6 +264,55 @@ background-image: url(:/new/images/alpha.png);</string>
     </property>
     <property name="text">
      <string>Username</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>30</y>
+      <width>241</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>GALACTIC VANGUARDIAN NCV</family>
+      <pointsize>16</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: white;
+background-image: url(:/new/images/alpha.png);</string>
+    </property>
+    <property name="text">
+     <string>Typer s Block</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_2">
+    <property name="geometry">
+     <rect>
+      <x>130</x>
+      <y>40</y>
+      <width>91</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>16</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: white;
+background-image: url(:/new/images/alpha.png);</string>
+    </property>
+    <property name="text">
+     <string>'</string>
     </property>
    </widget>
   </widget>

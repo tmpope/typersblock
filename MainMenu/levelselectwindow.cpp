@@ -5,13 +5,16 @@
 #include <QDebug>
 #include <iostream>
 
-LevelSelectWindow::LevelSelectWindow(std::string user, QWidget* previous, QWidget* parent) :
+LevelSelectWindow::LevelSelectWindow(std::string user, std::string pass, QWidget* previous, QWidget* parent) :
     QWidget(parent),
     ui(new Ui::LevelSelectWindow)
 {
     ui->setupUi(this);
     ui->label->setText("Welcome, " + QString::fromStdString(user));
     prev = previous;
+
+    userName = user;
+    password = pass;
 
     //Set up music
     if (!music.openFromFile("../MainMenu/Music/Level_Select.ogg"))
@@ -40,7 +43,7 @@ void LevelSelectWindow::logOut()
 
 void LevelSelectWindow::startGame()
 {
-    canvas = new SFMLCanvas(this, QPoint(0, 0), QSize(1366, 768), 10, ui->spinBox->value());
+    canvas = new SFMLCanvas(this, QPoint(0, 0), QSize(1366, 768), 10, ui->spinBox->value(), userName, password);
     connect(canvas, SIGNAL(widgetClosed()), this, SLOT(showMenu()));
     canvas->show();
     canvas->update();
