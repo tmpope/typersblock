@@ -88,7 +88,7 @@ int* getScores(std::string user)
   
   // NOTE: We are going to have nine levels
   int* scores = new int[9];
-  for(int i = 0; i < 3; i++)
+  for(int i = 0; i < 9; i++)
     scores[i] = 0;
 
   int counter = 0;
