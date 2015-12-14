@@ -20,7 +20,6 @@
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QStatusBar>
-#include <QtWidgets/QTextEdit>
 #include <QtWidgets/QToolBar>
 #include <QtWidgets/QWidget>
 
@@ -30,15 +29,8 @@ class Ui_MainWindow
 {
 public:
     QWidget *centralWidget;
-    QTextEdit *passLoginText;
     QPushButton *loginButton;
-    QTextEdit *userLoginText;
-    QTextEdit *lastNameText;
     QPushButton *newAccountButton;
-    QTextEdit *userCreateText;
-    QTextEdit *firstNameText;
-    QTextEdit *classText;
-    QTextEdit *passCreateText;
     QLabel *label_3;
     QLabel *label_4;
     QLabel *label_5;
@@ -47,7 +39,13 @@ public:
     QLabel *label_8;
     QLabel *label;
     QLabel *label_2;
-    QLineEdit *lineEdit;
+    QLineEdit *userLoginText;
+    QLineEdit *passLoginText;
+    QLineEdit *userCreateText;
+    QLineEdit *passCreateText;
+    QLineEdit *classText;
+    QLineEdit *firstNameText;
+    QLineEdit *lastNameText;
     QMenuBar *menuBar;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
@@ -56,55 +54,19 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QStringLiteral("MainWindow"));
-        MainWindow->resize(920, 585);
+        MainWindow->resize(961, 585);
         MainWindow->setStyleSheet(QStringLiteral(""));
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         centralWidget->setStyleSheet(QStringLiteral("background-image: url(:/new/images/space_scene_by_felandi.jpg);"));
-        passLoginText = new QTextEdit(centralWidget);
-        passLoginText->setObjectName(QStringLiteral("passLoginText"));
-        passLoginText->setGeometry(QRect(60, 250, 341, 31));
-        passLoginText->setStyleSheet(QStringLiteral("background-image: url(:/new/images/Tiny-Grid-Seamless-Patterns-For-Website-Backgrounds.jpg);"));
-        passLoginText->setInputMethodHints(Qt::ImhNone);
-        passLoginText->setTabChangesFocus(true);
         loginButton = new QPushButton(centralWidget);
         loginButton->setObjectName(QStringLiteral("loginButton"));
         loginButton->setGeometry(QRect(180, 320, 101, 31));
         loginButton->setStyleSheet(QStringLiteral("background-image: url(:/new/images/Tiny-Grid-Seamless-Patterns-For-Website-Backgrounds.jpg);"));
-        userLoginText = new QTextEdit(centralWidget);
-        userLoginText->setObjectName(QStringLiteral("userLoginText"));
-        userLoginText->setGeometry(QRect(60, 200, 341, 31));
-        userLoginText->setStyleSheet(QStringLiteral("background-image: url(:/new/images/Tiny-Grid-Seamless-Patterns-For-Website-Backgrounds.jpg);"));
-        userLoginText->setTabChangesFocus(true);
-        lastNameText = new QTextEdit(centralWidget);
-        lastNameText->setObjectName(QStringLiteral("lastNameText"));
-        lastNameText->setGeometry(QRect(710, 100, 151, 31));
-        lastNameText->setStyleSheet(QStringLiteral("background-image: url(:/new/images/Tiny-Grid-Seamless-Patterns-For-Website-Backgrounds.jpg);"));
-        lastNameText->setTabChangesFocus(true);
         newAccountButton = new QPushButton(centralWidget);
         newAccountButton->setObjectName(QStringLiteral("newAccountButton"));
         newAccountButton->setGeometry(QRect(640, 320, 101, 31));
         newAccountButton->setStyleSheet(QStringLiteral("background-image: url(:/new/images/Tiny-Grid-Seamless-Patterns-For-Website-Backgrounds.jpg);"));
-        userCreateText = new QTextEdit(centralWidget);
-        userCreateText->setObjectName(QStringLiteral("userCreateText"));
-        userCreateText->setGeometry(QRect(520, 150, 341, 31));
-        userCreateText->setStyleSheet(QStringLiteral("background-image: url(:/new/images/Tiny-Grid-Seamless-Patterns-For-Website-Backgrounds.jpg);"));
-        userCreateText->setTabChangesFocus(true);
-        firstNameText = new QTextEdit(centralWidget);
-        firstNameText->setObjectName(QStringLiteral("firstNameText"));
-        firstNameText->setGeometry(QRect(520, 100, 151, 31));
-        firstNameText->setStyleSheet(QStringLiteral("background-image: url(:/new/images/Tiny-Grid-Seamless-Patterns-For-Website-Backgrounds.jpg);"));
-        firstNameText->setTabChangesFocus(true);
-        classText = new QTextEdit(centralWidget);
-        classText->setObjectName(QStringLiteral("classText"));
-        classText->setGeometry(QRect(520, 250, 341, 31));
-        classText->setStyleSheet(QStringLiteral("background-image: url(:/new/images/Tiny-Grid-Seamless-Patterns-For-Website-Backgrounds.jpg);"));
-        classText->setTabChangesFocus(true);
-        passCreateText = new QTextEdit(centralWidget);
-        passCreateText->setObjectName(QStringLiteral("passCreateText"));
-        passCreateText->setGeometry(QRect(520, 200, 341, 31));
-        passCreateText->setStyleSheet(QStringLiteral("background-image: url(:/new/images/Tiny-Grid-Seamless-Patterns-For-Website-Backgrounds.jpg);"));
-        passCreateText->setTabChangesFocus(true);
         label_3 = new QLabel(centralWidget);
         label_3->setObjectName(QStringLiteral("label_3"));
         label_3->setGeometry(QRect(870, 110, 47, 13));
@@ -156,14 +118,40 @@ public:
         label_2->setFont(font1);
         label_2->setStyleSheet(QLatin1String("color: white;\n"
 "background-image: url(:/new/images/alpha.png);"));
-        lineEdit = new QLineEdit(centralWidget);
-        lineEdit->setObjectName(QStringLiteral("lineEdit"));
-        lineEdit->setGeometry(QRect(70, 100, 331, 41));
-        lineEdit->setStyleSheet(QStringLiteral("background-image: url(:/new/images/Tiny-Grid-Seamless-Patterns-For-Website-Backgrounds.jpg);"));
+        userLoginText = new QLineEdit(centralWidget);
+        userLoginText->setObjectName(QStringLiteral("userLoginText"));
+        userLoginText->setGeometry(QRect(60, 200, 341, 31));
+        userLoginText->setStyleSheet(QStringLiteral("background-image: url(:/new/images/Tiny-Grid-Seamless-Patterns-For-Website-Backgrounds.jpg);"));
+        passLoginText = new QLineEdit(centralWidget);
+        passLoginText->setObjectName(QStringLiteral("passLoginText"));
+        passLoginText->setGeometry(QRect(60, 250, 341, 31));
+        passLoginText->setStyleSheet(QStringLiteral("background-image: url(:/new/images/Tiny-Grid-Seamless-Patterns-For-Website-Backgrounds.jpg);"));
+        passLoginText->setEchoMode(QLineEdit::Password);
+        userCreateText = new QLineEdit(centralWidget);
+        userCreateText->setObjectName(QStringLiteral("userCreateText"));
+        userCreateText->setGeometry(QRect(520, 150, 341, 31));
+        userCreateText->setStyleSheet(QStringLiteral("background-image: url(:/new/images/Tiny-Grid-Seamless-Patterns-For-Website-Backgrounds.jpg);"));
+        passCreateText = new QLineEdit(centralWidget);
+        passCreateText->setObjectName(QStringLiteral("passCreateText"));
+        passCreateText->setGeometry(QRect(520, 200, 341, 31));
+        passCreateText->setStyleSheet(QStringLiteral("background-image: url(:/new/images/Tiny-Grid-Seamless-Patterns-For-Website-Backgrounds.jpg);"));
+        passCreateText->setEchoMode(QLineEdit::Password);
+        classText = new QLineEdit(centralWidget);
+        classText->setObjectName(QStringLiteral("classText"));
+        classText->setGeometry(QRect(520, 250, 341, 31));
+        classText->setStyleSheet(QStringLiteral("background-image: url(:/new/images/Tiny-Grid-Seamless-Patterns-For-Website-Backgrounds.jpg);"));
+        firstNameText = new QLineEdit(centralWidget);
+        firstNameText->setObjectName(QStringLiteral("firstNameText"));
+        firstNameText->setGeometry(QRect(520, 100, 151, 31));
+        firstNameText->setStyleSheet(QStringLiteral("background-image: url(:/new/images/Tiny-Grid-Seamless-Patterns-For-Website-Backgrounds.jpg);"));
+        lastNameText = new QLineEdit(centralWidget);
+        lastNameText->setObjectName(QStringLiteral("lastNameText"));
+        lastNameText->setGeometry(QRect(710, 100, 151, 31));
+        lastNameText->setStyleSheet(QStringLiteral("background-image: url(:/new/images/Tiny-Grid-Seamless-Patterns-For-Website-Backgrounds.jpg);"));
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 920, 21));
+        menuBar->setGeometry(QRect(0, 0, 961, 21));
         MainWindow->setMenuBar(menuBar);
         mainToolBar = new QToolBar(MainWindow);
         mainToolBar->setObjectName(QStringLiteral("mainToolBar"));

@@ -75,7 +75,7 @@ void MainWindow::login()
     music.stop();
     return;*/
 
-    if (ui->userLoginText->toPlainText() == "" || ui->passLoginText->toPlainText() == "")
+    if (ui->userLoginText->text() == "" || ui->passLoginText->text() == "")
     {
         //Tell user to input information before trying to login
         QMessageBox::critical(this, "Error", "Please fill out the username and password fields before trying to login.");
@@ -93,9 +93,9 @@ void MainWindow::login()
     writer.String("action");
     writer.Uint(0);
     writer.String("user");
-    writer.String(ui->userLoginText->toPlainText().toStdString().c_str());
+    writer.String(ui->userLoginText->text().toStdString().c_str());
     writer.String("password");
-    writer.String(ui->passLoginText->toPlainText().toStdString().c_str());
+    writer.String(ui->passLoginText->text().toStdString().c_str());
     writer.EndObject();
 
     if (sendPacket(s.GetString(), socket))
@@ -112,8 +112,8 @@ void MainWindow::login()
 void MainWindow::createAccount()
 {
     //If fields are blank, print out an error.
-    if (ui->firstNameText->toPlainText() == "" || ui->lastNameText->toPlainText() == ""
-            || ui->userCreateText->toPlainText() == "" || ui->passCreateText->toPlainText() == "" || ui->classText->toPlainText() == "")
+    if (ui->firstNameText->text() == "" || ui->lastNameText->text() == ""
+            || ui->userCreateText->text() == "" || ui->passCreateText->text() == "" || ui->classText->text() == "")
     {
         //Ask for all information
         QMessageBox::critical(this, "Error", "All fields required to create an account. Passwords must be 8 characters or longer.");
@@ -131,15 +131,15 @@ void MainWindow::createAccount()
     writer.String("action");
     writer.Uint(1);
     writer.String("user");
-    writer.String(ui->userCreateText->toPlainText().toStdString().c_str());
+    writer.String(ui->userCreateText->text().toStdString().c_str());
     writer.String("password");
-    writer.String(ui->passCreateText->toPlainText().toStdString().c_str());
+    writer.String(ui->passCreateText->text().toStdString().c_str());
     writer.String("first");
-    writer.String(ui->firstNameText->toPlainText().toStdString().c_str());
+    writer.String(ui->firstNameText->text().toStdString().c_str());
     writer.String("last");
-    writer.String(ui->lastNameText->toPlainText().toStdString().c_str());
+    writer.String(ui->lastNameText->text().toStdString().c_str());
     writer.String("className");
-    writer.String(ui->classText->toPlainText().toStdString().c_str());
+    writer.String(ui->classText->text().toStdString().c_str());
     writer.EndObject();
 
     if (sendPacket(s.GetString(), socket))
@@ -169,7 +169,7 @@ void MainWindow::enterGame(std::string response)
     }
 
     //Been successful up to this point. Launch level select.
-    levelSelectWindow = new LevelSelectWindow(doc["user"].GetString(), ui->passLoginText->toPlainText().toStdString(), this);
+    levelSelectWindow = new LevelSelectWindow(doc["user"].GetString(), ui->passLoginText->text().toStdString(), this);
     levelSelectWindow->show();
     this->hide();
     music.stop();

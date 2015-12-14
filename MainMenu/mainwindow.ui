@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>920</width>
+    <width>961</width>
     <height>585</height>
    </rect>
   </property>
@@ -20,25 +20,6 @@
    <property name="styleSheet">
     <string notr="true">background-image: url(:/new/images/space_scene_by_felandi.jpg);</string>
    </property>
-   <widget class="QTextEdit" name="passLoginText">
-    <property name="geometry">
-     <rect>
-      <x>60</x>
-      <y>250</y>
-      <width>341</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-image: url(:/new/images/Tiny-Grid-Seamless-Patterns-For-Website-Backgrounds.jpg);</string>
-    </property>
-    <property name="inputMethodHints">
-     <set>Qt::ImhNone</set>
-    </property>
-    <property name="tabChangesFocus">
-     <bool>true</bool>
-    </property>
-   </widget>
    <widget class="QPushButton" name="loginButton">
     <property name="geometry">
      <rect>
@@ -55,38 +36,6 @@
      <string>Login</string>
     </property>
    </widget>
-   <widget class="QTextEdit" name="userLoginText">
-    <property name="geometry">
-     <rect>
-      <x>60</x>
-      <y>200</y>
-      <width>341</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-image: url(:/new/images/Tiny-Grid-Seamless-Patterns-For-Website-Backgrounds.jpg);</string>
-    </property>
-    <property name="tabChangesFocus">
-     <bool>true</bool>
-    </property>
-   </widget>
-   <widget class="QTextEdit" name="lastNameText">
-    <property name="geometry">
-     <rect>
-      <x>710</x>
-      <y>100</y>
-      <width>151</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-image: url(:/new/images/Tiny-Grid-Seamless-Patterns-For-Website-Backgrounds.jpg);</string>
-    </property>
-    <property name="tabChangesFocus">
-     <bool>true</bool>
-    </property>
-   </widget>
    <widget class="QPushButton" name="newAccountButton">
     <property name="geometry">
      <rect>
@@ -101,70 +50,6 @@
     </property>
     <property name="text">
      <string>New Account</string>
-    </property>
-   </widget>
-   <widget class="QTextEdit" name="userCreateText">
-    <property name="geometry">
-     <rect>
-      <x>520</x>
-      <y>150</y>
-      <width>341</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-image: url(:/new/images/Tiny-Grid-Seamless-Patterns-For-Website-Backgrounds.jpg);</string>
-    </property>
-    <property name="tabChangesFocus">
-     <bool>true</bool>
-    </property>
-   </widget>
-   <widget class="QTextEdit" name="firstNameText">
-    <property name="geometry">
-     <rect>
-      <x>520</x>
-      <y>100</y>
-      <width>151</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-image: url(:/new/images/Tiny-Grid-Seamless-Patterns-For-Website-Backgrounds.jpg);</string>
-    </property>
-    <property name="tabChangesFocus">
-     <bool>true</bool>
-    </property>
-   </widget>
-   <widget class="QTextEdit" name="classText">
-    <property name="geometry">
-     <rect>
-      <x>520</x>
-      <y>250</y>
-      <width>341</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-image: url(:/new/images/Tiny-Grid-Seamless-Patterns-For-Website-Backgrounds.jpg);</string>
-    </property>
-    <property name="tabChangesFocus">
-     <bool>true</bool>
-    </property>
-   </widget>
-   <widget class="QTextEdit" name="passCreateText">
-    <property name="geometry">
-     <rect>
-      <x>520</x>
-      <y>200</y>
-      <width>341</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-image: url(:/new/images/Tiny-Grid-Seamless-Patterns-For-Website-Backgrounds.jpg);</string>
-    </property>
-    <property name="tabChangesFocus">
-     <bool>true</bool>
     </property>
    </widget>
    <widget class="QLabel" name="label_3">
@@ -318,13 +203,110 @@ background-image: url(:/new/images/alpha.png);</string>
      <string>'</string>
     </property>
    </widget>
+   <widget class="QLineEdit" name="userLoginText">
+    <property name="geometry">
+     <rect>
+      <x>60</x>
+      <y>200</y>
+      <width>341</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-image: url(:/new/images/Tiny-Grid-Seamless-Patterns-For-Website-Backgrounds.jpg);</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="passLoginText">
+    <property name="geometry">
+     <rect>
+      <x>60</x>
+      <y>250</y>
+      <width>341</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-image: url(:/new/images/Tiny-Grid-Seamless-Patterns-For-Website-Backgrounds.jpg);</string>
+    </property>
+    <property name="echoMode">
+     <enum>QLineEdit::Password</enum>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="userCreateText">
+    <property name="geometry">
+     <rect>
+      <x>520</x>
+      <y>150</y>
+      <width>341</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-image: url(:/new/images/Tiny-Grid-Seamless-Patterns-For-Website-Backgrounds.jpg);</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="passCreateText">
+    <property name="geometry">
+     <rect>
+      <x>520</x>
+      <y>200</y>
+      <width>341</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-image: url(:/new/images/Tiny-Grid-Seamless-Patterns-For-Website-Backgrounds.jpg);</string>
+    </property>
+    <property name="echoMode">
+     <enum>QLineEdit::Password</enum>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="classText">
+    <property name="geometry">
+     <rect>
+      <x>520</x>
+      <y>250</y>
+      <width>341</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-image: url(:/new/images/Tiny-Grid-Seamless-Patterns-For-Website-Backgrounds.jpg);</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="firstNameText">
+    <property name="geometry">
+     <rect>
+      <x>520</x>
+      <y>100</y>
+      <width>151</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-image: url(:/new/images/Tiny-Grid-Seamless-Patterns-For-Website-Backgrounds.jpg);</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lastNameText">
+    <property name="geometry">
+     <rect>
+      <x>710</x>
+      <y>100</y>
+      <width>151</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-image: url(:/new/images/Tiny-Grid-Seamless-Patterns-For-Website-Backgrounds.jpg);</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>920</width>
+     <width>961</width>
      <height>21</height>
     </rect>
    </property>
