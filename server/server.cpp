@@ -86,8 +86,8 @@ int* getScores(std::string user)
 
   sql::ResultSet *res = runSqlQuery(query);
   
-  // NOTE: We're assuming there's only three levels!
-  int* scores = new int[3];
+  // NOTE: We are going to have nine levels
+  int* scores = new int[9];
   for(int i = 0; i < 3; i++)
     scores[i] = 0;
 
@@ -156,9 +156,9 @@ std::string generateResponse(std::string user, std::string pass)
         writer.String("scores");
         writer.StartArray();
 
-	// We're assuming three scores right now. That may change in the future!
+	// We have nine levels; or in other words: nine scores.
 	int* scores = getScores(user);
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < 9; i++)
             writer.Uint(scores[i]);
 
         writer.EndArray();
