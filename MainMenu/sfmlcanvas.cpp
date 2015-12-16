@@ -447,7 +447,7 @@ sf::String SFMLCanvas::getNextLesson(int indexOfLesson)
 
     if (file.is_open())
     {
-        for (int lineno = 0; getline(file, line) && lineno < numberOfLines; lineno++)
+        for (int lineno = 0; getline(file, line) && lineno < /*numberOfLines*/ 3; lineno++)
         {
             if (lineno == indexOfLesson)
             {
@@ -540,6 +540,7 @@ int SFMLCanvas::calcGrossWPM()
     return ((charactersTyped/5) * 60000)/(gameTime);
 }
 /* Calculates net words per minute. Takes mistakes into account. */
+/*DO NOT USE*/
 int SFMLCanvas::calcNetWPM()
 {
     return (((charactersTyped/5) - numMistakes) * 60000)/(gameTime);
@@ -592,7 +593,7 @@ void SFMLCanvas::exitGame()
     writer.String("level");
     writer.Uint(level);
     writer.String("wpm");
-    writer.Uint(calcNetWPM());
+    writer.Uint(calcGrossWPM());
     writer.String("mistakes");
     writer.Uint(numMistakes);
     writer.String("score");

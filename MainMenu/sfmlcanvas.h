@@ -58,7 +58,7 @@ private:
     int numberOfLines;
 
     //Total number of characters typed. Used for calculating score.
-    int charactersTyped;
+    int charactersTyped = 0;
 
     //Required to send scores to the server.
     std::string userName;
