@@ -5,7 +5,7 @@
 #include <rapidjson/document.h>
 #include <rapidjson/stringbuffer.h>
 #include <rapidjson/writer.h>
-
+#include <iostream>
 #include <QDebug>
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -165,10 +165,12 @@ void MainWindow::enterGame(std::string response, int action)
         QMessageBox::critical(this, "Error", "Server response corrupted.");
         return;
     }
+
     if (doc["type"].GetString() == "failure")
     {
+        qDebug() << "Failure to login.";
         //Not authenticated correctly.
-        QMessageBox::critical(this, "Error", QString::fromStdString(doc["message"].GetString()));
+        QMessageBox::critical(this, "Error", "Invalid credentials.");
         return;
     }
 
